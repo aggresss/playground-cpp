@@ -5,11 +5,13 @@ MAINTAINER yujia <yujia@qiniu.com>
 # Pick up some build dependencies
 RUN sed -i 's/archive.ubuntu/mirrors.aliyun/g' /etc/apt/sources.list && \
 apt-get update && apt-get install -y --no-install-recommends \
+sudo \
 tzdata \
 curl \
 vim \
 ssh \
 git \
+ca-certificates \
 unzip \
 xz-utils \
 build-essential \
@@ -38,5 +40,6 @@ make
 EXPOSE 8080
 EXPOSE 1935
 
-WORKDIR /srs
-CMD ./objs/srs -c conf/http.flv.live.conf
+WORKDIR /srs/trunk
+ENTRYPOINT ["/srs/trunk/objs/srs"]
+CMD ["-c", "conf/http.flv.live.conf"]
