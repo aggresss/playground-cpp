@@ -31,7 +31,7 @@ apt-get clean && \
 rm -rf /var/lib/apt/lists/*
 
 # VIM configuration
-wget -P /root https://raw.githubusercontent.com/aggresss/dotfiles/master/vim/.vimrc
+RUN wget -P /root https://raw.githubusercontent.com/aggresss/dotfiles/master/vim/.vimrc
 
 # Modify timezone to GTM+8
 ENV TZ=Asia/Shanghai
