@@ -29,7 +29,7 @@ main-compose_1: a
 main-compose_2: a
 	$(CXX) main.cpp -o main-compose_2 -L. -l:libtest.a
 run: main
-	@export LD_LIBRARY_PATH=.:${LD_LIBRARY_PATH} && ./main
+	export LD_LIBRARY_PATH=.:$${LD_LIBRARY_PATH} && ./main
 clean:
 	rm -rf  *.o *.so *.a main main-compose* main-static
 
