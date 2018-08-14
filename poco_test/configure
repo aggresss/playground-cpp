@@ -1,0 +1,25 @@
+# configure for poco compile
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_POCO=$PATH_LIB/poco
+
+if [ ! -d $PATH_LIB ] ; then
+    mkdir -p $PATH_LIB
+fi
+
+#poco
+if [ ! -d $PATH_POCO ] ; then
+    cd $PATH_LIB && \
+        git clone --depth=1 -b poco-1.9.0-release https://github.com/pocoproject/poco.git
+fi
+
+cd $PATH_POCO && \
+    ./configure \
+    --minimal \
+    --static \
+    --no-tests \
+    --no-samples \
+    --prefix=`pwd`/prefix && \
+    make && make install
+

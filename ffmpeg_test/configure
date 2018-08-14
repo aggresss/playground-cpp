@@ -7,6 +7,10 @@ PATH_FDKAAC=$PATH_LIB/fdk-aac
 PATH_X264=$PATH_LIB/x264
 PATH_FFMPEG=$PATH_LIB/ffmpeg
 
+if [ ! -d $PATH_LIB ] ; then
+    mkdir -p $PATH_LIB
+fi
+
 #nasm
 if [ ! -d $PATH_NASM ] ; then
     cd $PATH_LIB && \
