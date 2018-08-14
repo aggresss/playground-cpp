@@ -29,6 +29,9 @@ yasm \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/*
 
+# VIM configuration
+wget -P /root https://raw.githubusercontent.com/aggresss/dotfiles/master/vim/.vimrc
+
 # Modify timezone to GTM+8
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
