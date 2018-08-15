@@ -30,5 +30,5 @@ $(Target):$(OBJS)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 .PHONY:clean
-
 clean:
+	rm *.o $(Target)

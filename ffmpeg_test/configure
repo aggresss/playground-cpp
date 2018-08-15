@@ -35,6 +35,7 @@ fi
 cd $PATH_FDKAAC && \
     ./autogen.sh && \
     ./configure  \
+        --disable-shared \
         --enable-static \
         --prefix="$PATH_FDKAAC/prefix" && \
     make && make install
