@@ -1,4 +1,10 @@
 # configure for ffmpeg compile
+#
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/fdk-aac-v0.1.6.tar.bz2
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/ffmpeg-3.4.4.tar.bz2
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/nasm-2.13.03.tar.bz2
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/x264-snapshot-20180711.tar.bz2
+#
 
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
