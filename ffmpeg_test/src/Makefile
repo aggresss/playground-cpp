@@ -9,11 +9,12 @@ HEADER = $(wildcard ../include/*.h)
 #Lib3=  -ldl -lrt
 
 PATH_LIB=$(shell cd ../lib && pwd)
+PATH_OPENSSL=$(PATH_LIB)/openssl
 PATH_FDKAAC=$(PATH_LIB)/fdk-aac
 PATH_X264=$(PATH_LIB)/x264
 PATH_FREETYPE=$(PATH_LIB)/freetype
 PATH_FFMPEG=$(PATH_LIB)/ffmpeg
-export PKG_CONFIG_PATH=$(PATH_X264)/prefix/lib/pkgconfig:$(PATH_FDKAAC)/prefix/lib/pkgconfig:$(PATH_FFMPEG)/prefix/lib/pkgconfig
+export PKG_CONFIG_PATH=$(PATH_X264)/prefix/lib/pkgconfig:$(PATH_FDKAAC)/prefix/lib/pkgconfig:$(PATH_FFMPEG)/prefix/lib/pkgconfig:$(PATH_OPENSSL)/prefix/lib/pkgconfig
 
 CFLAGS += `pkg-config --cflags libavfilter libavformat libavdevice libavcodec libswscale libavutil libswresample`
 LDFLAGS += `pkg-config --libs libavfilter libavformat libavdevice libavcodec libswscale libavutil libswresample`
