@@ -7,6 +7,7 @@ LABEL VERSION=1.0
 RUN sed -i 's/archive.ubuntu/mirrors.aliyun/g' /etc/apt/sources.list && \
 apt-get update && apt-get install -y --no-install-recommends \
 sudo \
+man \
 tzdata \
 curl \
 wget \
