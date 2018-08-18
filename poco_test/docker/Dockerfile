@@ -1,11 +1,13 @@
 FROM ubuntu:16.04
 
 MAINTAINER yujia <aggresss@163.com>
+LABEL VERSION=1.0
 
 # Pick up some build dependencies
 RUN sed -i 's/archive.ubuntu/mirrors.aliyun/g' /etc/apt/sources.list && \
 apt-get update && apt-get install -y --no-install-recommends \
 sudo \
+man \
 tzdata \
 curl \
 wget \
