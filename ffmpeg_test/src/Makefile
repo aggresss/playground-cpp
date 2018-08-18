@@ -1,10 +1,11 @@
-CC = g++
+CC = gcc
+CXX = g++
 Cflag = -g
-SRC = $(wildcard *.cpp)
-OBJS = $(patsubst %cpp, %o, $(SRC))
+OBJS = $(patsubst %c, %o, $(wildcard *.c))
+OBJS += $(patsubst %cpp, %o, $(wildcard *.cpp))
 HEADER = $(wildcard ../include/*.h)
 
-#Lib1= -lavfilter -lavformat -lavdevice -lavcodec -lswscale -lavutil -lswresample -lpthread 
+#Lib1= -lavfilter -lavformat -lavdevice -lavcodec -lswscale -lavutil -lswresample -lpthread
 #Lib2= -lz -lm -lbz2 -llzma
 #Lib3=  -ldl -lrt
 
@@ -24,6 +25,9 @@ Target = ffmpeg_test
 all: $(Target)
 
 %.o:%.cpp $(HEADER)
+	$(CXX) $(CFLAGS) -c $< -o $@
+
+%.o:%.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(Target):$(OBJS)
