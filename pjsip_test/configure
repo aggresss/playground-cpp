@@ -1,0 +1,31 @@
+# configure for pjsip compile
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_PJSIP=$PATH_LIB/pjproject-2.7.2
+
+if [ ! -d $PATH_LIB ] ; then
+    mkdir -p $PATH_LIB
+fi
+
+#pjsip
+if [ ! -d $PATH_PJSIP ] ; then
+    cd $PATH_LIB && \
+        # curl -OL http://www.pjsip.org/release/2.7.2/pjproject-2.7.2.tar.bz2
+        git clone --depth=1 -b 2.7.2 https://github.com/pjsip/pjproject.git pjproject-2.7.2
+fi
+
+cd $PATH_PJSIP && \
+    ./configure \
+        --disable-shared \
+        --enable-static \
+        --disable-sdl \
+        --disable-ffmpeg \
+        --disable-v4l2 \
+        --disable-openh264 \
+        --disable-libwebrtc \
+        --disable-sound \
+        --disable-libyuv \
+        --prefix=`pwd`/prefix && \
+    make && make install
+
