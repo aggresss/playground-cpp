@@ -1,5 +1,5 @@
 CC = g++
-Cflag = -g
+CFLAGS = -g
 SRC = $(wildcard *.cpp)
 OBJS = $(patsubst %cpp, %o, $(SRC))
 HEADER = $(wildcard ../include/*.h)

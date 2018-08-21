@@ -1,0 +1,23 @@
+# configure for pjsip compile
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_BOOST=$PATH_LIB/boost_1_68_0
+
+if [ ! -d $PATH_LIB ] ; then
+    mkdir -p $PATH_LIB
+fi
+
+#pjsip
+if [ ! -d $PATH_BOOST ] ; then
+    cd $PATH_LIB && \
+        # git clone -b boost-1.68.0 https://github.com/boostorg/boost.git && \
+        # git submodule update --init --recursive
+        curl -OL https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.bz2 && \
+        tar jvxf boost_1_68_0.tar.bz2
+fi
+
+cd $PATH_BOOST && \
+    ./bootstrap.sh && \
+    ./b2 install variant=release link=static threading=multi runtime-link=shared \
+        --prefix=`pwd`/prefix \
