@@ -20,4 +20,5 @@ fi
 cd $PATH_BOOST && \
     ./bootstrap.sh && \
     ./b2 install variant=release link=static threading=multi runtime-link=shared \
-        --prefix=`pwd`/prefix \
+        --prefix=`pwd`/prefix
+
