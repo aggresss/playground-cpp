@@ -27,8 +27,8 @@ all: $(Target)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(Target):$(OBJS)
-	echo ${PKG_CONFIG_PATH}
 	$(CXX) -o $@ $^ $(LDFLAGS)
+
 .PHONY:clean
 clean:
 	rm *.o $(Target)
