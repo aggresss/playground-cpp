@@ -1,3 +1,6 @@
+#include <functional>
+
+
 template <class T>
 class Singular
 {
@@ -25,3 +28,4 @@ private:
         return instance;
     }
 };
+
