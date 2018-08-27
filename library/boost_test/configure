@@ -13,6 +13,7 @@ if [ ! -d $PATH_BOOST ] ; then
     cd $PATH_LIB && \
         # git clone -b boost-1.68.0 https://github.com/boostorg/boost.git && \
         # git submodule update --init --recursive
+        # curl -OL http://pdi3zh561.bkt.clouddn.com/libs/boost_1_68_0.tar.bz2
         curl -OL https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.bz2 && \
         tar jvxf boost_1_68_0.tar.bz2
 fi
