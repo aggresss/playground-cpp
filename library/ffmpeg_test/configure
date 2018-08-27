@@ -1,0 +1,99 @@
+# configure for ffmpeg compile
+#
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/openssl-v1.1.0i.tar.bz2
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/fdk-aac-v0.1.6.tar.bz2
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/ffmpeg-3.4.4.tar.bz2
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/nasm-2.13.03.tar.bz2
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/x264-snapshot-20180711.tar.bz2
+#
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_OPENSSL=$PATH_LIB/openssl
+PATH_NASM=$PATH_LIB/nasm
+PATH_FDKAAC=$PATH_LIB/fdk-aac
+PATH_X264=$PATH_LIB/x264
+PATH_FFMPEG=$PATH_LIB/ffmpeg
+
+if [ ! -d $PATH_LIB ] ; then
+    mkdir -p $PATH_LIB
+fi
+
+#openssl
+if [ ! -d $PATH_OPENSSL ] ; then
+    cd $PATH_LIB && \
+    git clone --depth=1 -b OpenSSL_1_1_0i https://github.com/openssl/openssl.git
+fi
+
+cd $PATH_OPENSSL && \
+    ./config \
+        -fPIC \
+        --prefix=$PATH_OPENSSL/prefix \
+        no-shared  && \
+    make && make install
+
+#nasm
+if [ ! -d $PATH_NASM ] ; then
+    cd $PATH_LIB && \
+    wget https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.bz2 && \
+        tar jvxf nasm-2.13.03.tar.bz2 && \
+        mv nasm-2.13.03 nasm
+fi
+
+cd $PATH_NASM && \
+    ./configure \
+        --prefix="$PATH_NASM/prefix" \
+        --bindir="$PATH_NASM/bin" && \
+    make && make install
+PATH="$PATH_NASM/bin:$PATH"
+
+#fdk-aac
+if [ ! -d $PATH_FDKAAC ] ; then
+    cd $PATH_LIB && \
+        git clone --depth=1 -b v0.1.6 https://github.com/mstorsjo/fdk-aac.git
+fi
+
+cd $PATH_FDKAAC && \
+    ./autogen.sh && \
+    ./configure  \
+        --disable-shared \
+        --enable-static \
+        --prefix="$PATH_FDKAAC/prefix" && \
+    make && make install
+
+#x264
+if [ ! -d $PATH_X264 ] ; then
+    cd $PATH_LIB && \
+        git clone --depth=1 http://git.videolan.org/git/x264.git
+fi
+
+cd $PATH_X264 && \
+    ./configure \
+        --enable-static \
+        --disable-opencl \
+        --prefix="$PATH_X264/prefix" && \
+    make && make install
+
+#ffmpeg
+if [ ! -d $PATH_FFMPEG ] ; then
+    cd $PATH_LIB && \
+        git clone --depth=1 -b n3.4.4 https://github.com/ffmpeg/ffmpeg.git
+fi
+
+export PKG_CONFIG_PATH=$PATH_X264/prefix/lib/pkgconfig:$PATH_FDKAAC/prefix/lib/pkgconfig:$PATH_OPENSSL/prefix/lib/pkgconfig:$PKG_CONFIG_PATH
+cd $PATH_FFMPEG && \
+    ./configure \
+        --prefix=$PATH_FFMPEG/prefix \
+        --disable-doc \
+        --disable-programs \
+        --enable-gpl \
+        --enable-version3 \
+        --enable-nonfree \
+        --disable-shared \
+        --enable-static \
+        --enable-avresample \
+        --enable-openssl \
+        --enable-libx264 \
+        --enable-libfdk-aac && \
+    make && make install
+
