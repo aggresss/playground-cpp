@@ -31,4 +31,4 @@ $(Target):$(OBJS)
 
 .PHONY:clean
 clean:
-	rm *.o $(Target)
+	rm -rf *.o $(Target)
