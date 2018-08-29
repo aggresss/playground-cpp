@@ -19,7 +19,6 @@ if [ ! -d $PATH_ZLIB ] ; then
         mkdir ./zlib && tar -zvxf zlib-1.2.11.tar.gz -C ./zlib --strip-components 1 && \
         rm -rf zlib-1.2.11.tar.gz
 fi
-
 if [ ! -d $PATH_ZLIB/prefix ] ; then
     cd $PATH_ZLIB && \
     ./configure \
@@ -47,7 +46,6 @@ if [ ! -d $PATH_RTMPDUMP ] ; then
     cd $PATH_LIB && \
         git clone git://git.ffmpeg.org/rtmpdump
 fi
-
 if [ ! -d $PATH_RTMPDUMP/prefix ] ; then
     apt update && apt install libssl1.0-dev zlib1g-dev && \
     cd $PATH_RTMPDUMP && \
