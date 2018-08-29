@@ -1,4 +1,4 @@
-# configure for pjsip compile
+# configure for curl compile
 # curl -OL http://pdi3zh561.bkt.clouddn.com/libs/curl-7.61.0.tar.bz2
 
 PATH_CUR=`pwd`
