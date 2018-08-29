@@ -8,7 +8,7 @@ HEADER = $(wildcard ../include/*.h)
 
 
 PATH_LIB=$(shell cd ../lib && pwd)
-PATH_BOOST=$(PATH_LIB)/boost_1_68_0
+PATH_BOOST=$(PATH_LIB)/boost
 PATH_BOOST_PREFIX=$(PATH_BOOST)/prefix
 
 CFLAGS += -I$(PATH_BOOST_PREFIX)/include
