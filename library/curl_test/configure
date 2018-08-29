@@ -13,7 +13,7 @@ fi
 #openssl
 if [ ! -d $PATH_OPENSSL ] ; then
     cd $PATH_LIB && \
-    git clone --depth=1 -b OpenSSL_1_1_0i https://github.com/openssl/openssl.git
+    git clone --depth=1 -b OpenSSL_1_0_2p https://github.com/openssl/openssl.git
 fi
 if [ ! -d $PATH_OPENSSL/prefix ] ; then
     cd $PATH_OPENSSL && \
