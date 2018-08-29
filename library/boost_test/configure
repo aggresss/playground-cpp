@@ -3,7 +3,7 @@
 
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
-PATH_BOOST=$PATH_LIB/boost_1_68_0
+PATH_BOOST=$PATH_LIB/boost
 
 if [ ! -d $PATH_LIB ] ; then
     mkdir -p $PATH_LIB
