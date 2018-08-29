@@ -1,0 +1,54 @@
+# configure for pjsip compile
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/curl-7.61.0.tar.bz2
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_CURL=$PATH_LIB/curl
+PATH_OPENSSL=$PATH_LIB/openssl
+
+if [ ! -d $PATH_LIB ] ; then
+    mkdir -p $PATH_LIB
+fi
+
+#openssl
+if [ ! -d $PATH_OPENSSL ] ; then
+    cd $PATH_LIB && \
+    git clone --depth=1 -b OpenSSL_1_1_0i https://github.com/openssl/openssl.git
+fi
+if [ ! -d $PATH_OPENSSL/prefix ] ; then
+    cd $PATH_OPENSSL && \
+        ./config \
+            -fPIC \
+            --prefix=$PATH_OPENSSL/prefix \
+            no-shared  && \
+        make && make install
+fi
+
+#curl
+if [ ! -d $PATH_CURL ] ; then
+    cd $PATH_LIB && \
+        # git clone --depth=1 -b curl-7_61_0 https://github.com/curl/curl.git
+        curl -OL https://curl.haxx.se/download/curl-7.61.0.tar.bz2 && \
+        mkdir ./curl && tar -jvxf curl-7.61.0.tar.bz2 -C ./curl --strip-components 1 && \
+        rm -rf curl-7.61.0.tar.bz2
+fi
+
+if [ ! -d $PATH_CURL/prefix ] ; then
+    cd $PATH_CURL && \
+    ./configure \
+        --disable-shared \
+        --enable-static \
+        --without-libidn \
+        --without-librtmp \
+        --without-gnutls \
+        --without-nss \
+        --without-libssh2 \
+        --without-zlib \
+        --without-winidn \
+        --disable-rtsp \
+        --disable-ldap \
+        --disable-ldaps \
+        --disable-ipv6 \
+        --prefix=$PATH_CURL/prefix && \
+    make && make install
+fi

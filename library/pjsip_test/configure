@@ -2,7 +2,7 @@
 
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
-PATH_PJSIP=$PATH_LIB/pjproject-2.7.2
+PATH_PJSIP=$PATH_LIB/pjproject
 
 if [ ! -d $PATH_LIB ] ; then
     mkdir -p $PATH_LIB
@@ -11,8 +11,10 @@ fi
 #pjsip
 if [ ! -d $PATH_PJSIP ] ; then
     cd $PATH_LIB && \
-        # curl -OL http://www.pjsip.org/release/2.7.2/pjproject-2.7.2.tar.bz2
-        git clone --depth=1 -b 2.7.2 https://github.com/pjsip/pjproject.git pjproject-2.7.2
+        #git clone --depth=1 -b 2.7.2 https://github.com/pjsip/pjproject.git pjproject-2.7.2
+        curl -OL http://www.pjsip.org/release/2.7.2/pjproject-2.7.2.tar.bz2
+        mkdir ./pjproject && tar -jvxf pjproject-2.7.2.tar.bz2 -C ./pjproject --strip-components 1 && \
+        rm -rf pjproject-2.7.2.tar.bz2
 fi
 
 cd $PATH_PJSIP && \

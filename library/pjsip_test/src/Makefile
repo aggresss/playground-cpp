@@ -7,7 +7,7 @@ HEADER = $(wildcard ../include/*.h)
 
 
 PATH_LIB=$(shell cd ../lib && pwd)
-PATH_PJSIP=$(PATH_LIB)/pjproject-2.7.2
+PATH_PJSIP=$(PATH_LIB)/pjproject
 export PKG_CONFIG_PATH=$(PATH_PJSIP)/prefix/lib/pkgconfig
 
 CFLAGS += `pkg-config --cflags libpjproject`
