@@ -16,6 +16,11 @@ CXXFLAGS += -I$(PATH_BOOST_PREFIX)/include
 LDFLAGS += -L$(PATH_BOOST_PREFIX)/lib -lboost_system
 LDFLAGS += -lpthread -ldl -lrt
 
+DEPS := $(OBJS:.o=.d)
+-include $(DEPS)
+CFLAGS += -MMD -MP
+CXXFLAGS += -MMD -MP
+
 Target = boost_test.out
 
 all: $(Target)

@@ -26,6 +26,11 @@ LDFLAGS += -L$(PATH_ZLIB_PREFIX)/lib -l:libz.a
 
 LDFLAGS += -lpthread -ldl
 
+DEPS := $(OBJS:.o=.d)
+-include $(DEPS)
+CFLAGS += -MMD -MP
+CXXFLAGS += -MMD -MP
+
 Target = rtmpdump_test.out
 
 all: $(Target)
@@ -41,4 +46,4 @@ $(Target):$(OBJS)
 
 .PHONY:clean
 clean:
-	rm -rf *.o $(Target)
+	rm -rf *.o $(DEPS) $(Target)

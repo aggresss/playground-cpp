@@ -16,6 +16,11 @@ LDFLAGS += -L$(PATH_CURL_PREFIX)/lib -l:libcurl.a
 LDFLAGS += -L$(PATH_OPENSSL_PREFIX)/lib -l:libssl.a -l:libcrypto.a
 LDFLAGS += -lpthread -ldl
 
+DEPS := $(OBJS:.o=.d)
+-include $(DEPS)
+CFLAGS += -MMD -MP
+CXXFLAGS += -MMD -MP
+
 Target = curl_test.out
 
 all: $(Target)
@@ -31,4 +36,4 @@ $(Target):$(OBJS)
 
 .PHONY:clean
 clean:
-	rm -rf *.o $(Target)
+	rm -rf *.o $(DEPS) $(Target)

@@ -13,6 +13,11 @@ export PKG_CONFIG_PATH=$(PATH_PJSIP)/prefix/lib/pkgconfig
 CFLAGS += `pkg-config --cflags libpjproject`
 LDFLAGS += `pkg-config --libs libpjproject`
 
+DEPS := $(OBJS:.o=.d)
+-include $(DEPS)
+CFLAGS += -MMD -MP
+CXXFLAGS += -MMD -MP
+
 Target = pjsip_test.out
 
 all: $(Target)
@@ -29,4 +34,4 @@ $(Target):$(OBJS)
 
 .PHONY:clean
 clean:
-	rm *.o $(Target)
+	rm *.o $(DEPS) $(Target)

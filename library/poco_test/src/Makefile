@@ -24,8 +24,13 @@ CFLAGS += -I$(PATH_POCO)/prefix/include
 # ld ok. size:2.9M time:0m0.656s
 LDFLAGS += -L$(PATH_POCO)/prefix/lib -Xlinker "-(" $(LIBS) -Xlinker "-)"
 
-
 LDFLAGS += -lpthread -ldl -lrt
+
+DEPS := $(OBJS:.o=.d)
+-include $(DEPS)
+CFLAGS += -MMD -MP
+CXXFLAGS += -MMD -MP
+
 
 Target = poco_test.out
 
@@ -40,4 +45,4 @@ $(Target):$(OBJS)
 
 .PHONY:clean
 clean:
-	rm -rf $(Target) *.o
+	rm -rf $(Target) $(DEPS) *.o

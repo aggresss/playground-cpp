@@ -21,6 +21,11 @@ export PKG_CONFIG_PATH=$(PATH_X264)/prefix/lib/pkgconfig:$(PATH_FDKAAC)/prefix/l
 CFLAGS += `pkg-config --cflags libavfilter libavformat libavdevice libavcodec libswscale libavutil libswresample`
 LDFLAGS += `pkg-config --libs libavfilter libavformat libavdevice libavcodec libswscale libavutil libswresample`
 
+DEPS := $(OBJS:.o=.d)
+-include $(DEPS)
+CFLAGS += -MMD -MP
+CXXFLAGS += -MMD -MP
+
 Target = ffmpeg_test.out
 
 all: $(Target)
@@ -39,4 +44,4 @@ $(Target):$(OBJS)
 
 .PHONY:clean
 clean:
-	rm *.o $(Target)
+	rm *.o $(DEPS) $(Target)
