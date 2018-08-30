@@ -49,6 +49,7 @@ musl-1.1.19 => ./configure --disable-shared
 - crt1.o
 - crti.o
 - crtn.o
+- rcrt1.o
 - libc.a
 - libcrypt.a
 - libdl.a
@@ -59,4 +60,4 @@ musl-1.1.19 => ./configure --disable-shared
 - libutil.a
 - libxnet.a
 - musl-gcc.specs
-- rcrt1.o
+
