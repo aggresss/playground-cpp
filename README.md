@@ -43,3 +43,20 @@ apt-file list libc6-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
 - libc6-dev: /usr/lib/x86_64-linux-gnu/librpcsvc.a
 - libc6-dev: /usr/lib/x86_64-linux-gnu/librt.a
 - libc6-dev: /usr/lib/x86_64-linux-gnu/libutil.a
+
+musl-1.1.19 => ./configure --disable-shared
+- Scrt1.o
+- crt1.o
+- crti.o
+- crtn.o
+- libc.a
+- libcrypt.a
+- libdl.a
+- libm.a
+- libpthread.a
+- libresolv.a
+- librt.a
+- libutil.a
+- libxnet.a
+- musl-gcc.specs
+- rcrt1.o
