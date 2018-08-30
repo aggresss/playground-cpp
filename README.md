@@ -8,6 +8,7 @@ CFLAGS
 LDFLAGS
   1. -L
   2. LIBRARY_PATH
+  3. /usr/local/lib => /lib/x86_64-linux-gnu => /usr/lib/x86_64-linux-gnu => /lib => /usr/lib
 
 ref: https://gcc.gnu.org/onlinedocs/gcc/Environment-Variables.html
 
