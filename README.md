@@ -2,9 +2,8 @@
 
 
 ### apt-file list libc++-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
-
-  libc++-dev: /usr/lib/x86_64-linux-gnu/libc++.a
-  libc++-dev: /usr/lib/x86_64-linux-gnu/libc++experimental.a
+libc++-dev: /usr/lib/x86_64-linux-gnu/libc++.a
+libc++-dev: /usr/lib/x86_64-linux-gnu/libc++experimental.a
 
 ### apt-file list libc6-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
 
