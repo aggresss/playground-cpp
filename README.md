@@ -1,6 +1,24 @@
 # playground-cpp
 
 
+CFLAGS
+  1. -D macro => current directory => -I path
+  2. Environment Variables => CPATH / C_INCLUDE_PATH / CPLUS_INCLUDE_PATH / OBJC_INCLUDE_PATH
+  3. /usr/include => /usr/local/include => /usr/lib/gcc/x86_64-xxxxxx => .....
+
+ref: https://gcc.gnu.org/onlinedocs/cpp/Environment-Variables.html
+
+LDFLAGS
+  1. 
+  2. 
+
+
+
+
+
+PKGCONFIG
+
+
 apt-file list libc++-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
 - libc++-dev: /usr/lib/x86_64-linux-gnu/libc++.a
 - libc++-dev: /usr/lib/x86_64-linux-gnu/libc++experimental.a
@@ -25,6 +43,3 @@ apt-file list libc6-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
 - libc6-dev: /usr/lib/x86_64-linux-gnu/librpcsvc.a
 - libc6-dev: /usr/lib/x86_64-linux-gnu/librt.a
 - libc6-dev: /usr/lib/x86_64-linux-gnu/libutil.a
-
-C_INCLUDE_PATH
-CPP_INCLUDE_PATH
