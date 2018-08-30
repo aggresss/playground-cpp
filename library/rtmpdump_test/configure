@@ -30,6 +30,7 @@ export C_INCLUDE_PATH=$PATH_ZLIB/prefix/include:$C_INCLUDE_PATH
 export LIBRARY_PATH=$PATH_ZLIB/prefix/lib:$LIBRARY_PATH
 
 #openssl
+# rtmpdump only compatibility for openssl1.0.x
 if [ ! -d $PATH_OPENSSL ] ; then
     cd $PATH_LIB && \
     git clone --depth=1 -b OpenSSL_1_0_2p https://github.com/openssl/openssl.git
