@@ -16,14 +16,14 @@ CXXFLAGS += -I$(PATH_BOOST_PREFIX)/include
 LDFLAGS += -L$(PATH_BOOST_PREFIX)/lib -lboost_system
 LDFLAGS += -lpthread -ldl -lrt
 
+Target = boost_test.out
+
+all: $(Target)
+
 DEPS := $(OBJS:.o=.d)
 -include $(DEPS)
 CFLAGS += -MMD -MP
 CXXFLAGS += -MMD -MP
-
-Target = boost_test.out
-
-all: $(Target)
 
 %.o:%.cpp $(HEADER)
 	$(CXX) $(CXXFLAGS) -c $< -o $@

@@ -26,16 +26,15 @@ LDFLAGS += -L$(PATH_POCO)/prefix/lib -Xlinker "-(" $(LIBS) -Xlinker "-)"
 
 LDFLAGS += -lpthread -ldl -lrt
 
-DEPS := $(OBJS:.o=.d)
--include $(DEPS)
-CFLAGS += -MMD -MP
-CXXFLAGS += -MMD -MP
-
-
 Target = poco_test.out
 
 .PHONY:all
 all: $(Target)
+
+DEPS := $(OBJS:.o=.d)
+-include $(DEPS)
+CFLAGS += -MMD -MP
+CXXFLAGS += -MMD -MP
 
 %.o:%.cpp $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@

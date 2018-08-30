@@ -16,14 +16,14 @@ LDFLAGS += -L$(PATH_CURL_PREFIX)/lib -l:libcurl.a
 LDFLAGS += -L$(PATH_OPENSSL_PREFIX)/lib -l:libssl.a -l:libcrypto.a
 LDFLAGS += -lpthread -ldl
 
+Target = curl_test.out
+
+all: $(Target)
+
 DEPS := $(OBJS:.o=.d)
 -include $(DEPS)
 CFLAGS += -MMD -MP
 CXXFLAGS += -MMD -MP
-
-Target = curl_test.out
-
-all: $(Target)
 
 %.o:%.cpp $(HEADER)
 	$(CXX) $(CXXFLAGS) -c $< -o $@

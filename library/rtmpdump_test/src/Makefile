@@ -23,17 +23,16 @@ LDFLAGS += -L$(PATH_OPENSSL_PREFIX)/lib -l:libssl.a -l:libcrypto.a
 CFLAGS += -I$(PATH_ZLIB_PREFIX)/include
 CXXFLAGS += -I$(PATH_ZLIB_PREFIX)/include
 LDFLAGS += -L$(PATH_ZLIB_PREFIX)/lib -l:libz.a
-
 LDFLAGS += -lpthread -ldl
+
+Target = rtmpdump_test.out
+
+all: $(Target)
 
 DEPS := $(OBJS:.o=.d)
 -include $(DEPS)
 CFLAGS += -MMD -MP
 CXXFLAGS += -MMD -MP
-
-Target = rtmpdump_test.out
-
-all: $(Target)
 
 %.o:%.cpp $(HEADER)
 	$(CXX) $(CXXFLAGS) -c $< -o $@

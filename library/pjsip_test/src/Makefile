@@ -13,14 +13,14 @@ export PKG_CONFIG_PATH=$(PATH_PJSIP)/prefix/lib/pkgconfig
 CFLAGS += `pkg-config --cflags libpjproject`
 LDFLAGS += `pkg-config --libs libpjproject`
 
+Target = pjsip_test.out
+
+all: $(Target)
+
 DEPS := $(OBJS:.o=.d)
 -include $(DEPS)
 CFLAGS += -MMD -MP
 CXXFLAGS += -MMD -MP
-
-Target = pjsip_test.out
-
-all: $(Target)
 
 %.o:%.cpp $(HEADER)
 	$(CXX) $(CFLAGS) -c $< -o $@
