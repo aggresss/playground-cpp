@@ -1,23 +1,22 @@
 # playground-cpp
 
-
 CFLAGS
   1. -D macro => current directory => -I path
   2. Environment Variables => CPATH / C_INCLUDE_PATH / CPLUS_INCLUDE_PATH / OBJC_INCLUDE_PATH
   3. /usr/include => /usr/local/include => /usr/lib/gcc/x86_64-xxxxxx => .....
 
-ref: https://gcc.gnu.org/onlinedocs/cpp/Environment-Variables.html
-
 LDFLAGS
-  1. 
-  2. 
+  1. -L
+  2. LIBRARY_PATH
 
-
-
-
+ref: https://gcc.gnu.org/onlinedocs/gcc/Environment-Variables.html
 
 PKGCONFIG
+  PKG_CONFIG_PATH
+  
+ref: https://linux.die.net/man/1/pkg-config
 
+---
 
 apt-file list libc++-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
 - libc++-dev: /usr/lib/x86_64-linux-gnu/libc++.a
