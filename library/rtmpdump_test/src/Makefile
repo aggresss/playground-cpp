@@ -24,7 +24,7 @@ CFLAGS += -I$(PATH_ZLIB_PREFIX)/include
 CXXFLAGS += -I$(PATH_ZLIB_PREFIX)/include
 LDFLAGS += -l:libz.a -L$(PATH_ZLIB_PREFIX)/lib
 
-LDFLAGS += -lpthread -ldl
+LDFLAGS += -lpthread -ldl -static
 
 Target = rtmpdump_test.out
 
