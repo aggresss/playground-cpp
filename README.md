@@ -1,11 +1,13 @@
 # playground-cpp
 
 
-### apt-file list libc++-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
+<b>apt-file list libc++-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
 libc++-dev: /usr/lib/x86_64-linux-gnu/libc++.a
+
 libc++-dev: /usr/lib/x86_64-linux-gnu/libc++experimental.a
 
-### apt-file list libc6-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
+
+<b>apt-file list libc6-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
 
   libc6-dev: /usr/lib/x86_64-linux-gnu/libBrokenLocale.a
   libc6-dev: /usr/lib/x86_64-linux-gnu/libanl.a
