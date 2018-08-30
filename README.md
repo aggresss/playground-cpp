@@ -26,3 +26,5 @@ apt-file list libc6-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
 - libc6-dev: /usr/lib/x86_64-linux-gnu/librt.a
 - libc6-dev: /usr/lib/x86_64-linux-gnu/libutil.a
 
+C_INCLUDE_PATH
+CPP_INCLUDE_PATH
