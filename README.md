@@ -12,7 +12,7 @@ LDFLAGS
 ref: https://gcc.gnu.org/onlinedocs/gcc/Environment-Variables.html
 
 PKGCONFIG
-  PKG_CONFIG_PATH
+  - PKG_CONFIG_PATH
   
 ref: https://linux.die.net/man/1/pkg-config
 
