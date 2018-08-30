@@ -14,17 +14,17 @@ PATH_ZLIB_PREFIX=$(PATH_LIB)/zlib/prefix
 
 CFLAGS += -I$(PATH_RTMPDUMP)
 CXXFLAGS += -I$(PATH_RTMPDUMP)
-LDFLAGS += -l:librtmp.a -L$(PATH_LIBRTMP)
+LDFLAGS += -L$(PATH_LIBRTMP) -l:librtmp.a
 
 CFLAGS += -I$(PATH_OPENSSL_PREFIX)/include
 CXXFLAGS += -I$(PATH_OPENSSL_PREFIX)/include
-LDFLAGS += -l:libssl.a -l:libcrypto.a -L$(PATH_OPENSSL_PREFIX)/lib
+LDFLAGS += -L$(PATH_OPENSSL_PREFIX)/lib -l:libssl.a -l:libcrypto.a
 
 CFLAGS += -I$(PATH_ZLIB_PREFIX)/include
 CXXFLAGS += -I$(PATH_ZLIB_PREFIX)/include
-LDFLAGS += -l:libz.a -L$(PATH_ZLIB_PREFIX)/lib
+LDFLAGS += -L$(PATH_ZLIB_PREFIX)/lib -l:libz.a
 
-LDFLAGS += -lpthread -ldl -static
+LDFLAGS += -lpthread -ldl
 
 Target = rtmpdump_test.out
 

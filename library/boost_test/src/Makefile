@@ -13,7 +13,7 @@ PATH_BOOST_PREFIX=$(PATH_BOOST)/prefix
 
 CFLAGS += -I$(PATH_BOOST_PREFIX)/include
 CXXFLAGS += -I$(PATH_BOOST_PREFIX)/include
-LDFLAGS += -lboost_system -L$(PATH_BOOST_PREFIX)/lib
+LDFLAGS += -L$(PATH_BOOST_PREFIX)/lib -lboost_system
 LDFLAGS += -lpthread -ldl -lrt
 
 Target = boost_test.out

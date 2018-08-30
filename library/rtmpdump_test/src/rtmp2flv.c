@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
     }
 
     int count = 0;
-    while(count < 6000){
+    while(count < 1000){
         nRead=RTMP_Read(rtmp,buf,bufsize);
         fwrite(buf,1,nRead,fp);
         count++;
