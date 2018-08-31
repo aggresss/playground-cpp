@@ -17,6 +17,9 @@ pkg-config
   
 ref: https://linux.die.net/man/1/pkg-config
 
+load and run
+- LD_LIBRARY_PATH
+
 ---
 
 apt-file list libc++-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
