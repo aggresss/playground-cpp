@@ -38,7 +38,6 @@ fi
 if [ ! -d $PATH_OPENSSL/prefix ] ; then
     cd $PATH_OPENSSL && \
         ./config \
-            -fPIC \
             --prefix=$PATH_OPENSSL/prefix \
             no-shared && \
         make && make install
