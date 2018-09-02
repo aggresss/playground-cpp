@@ -1,4 +1,6 @@
 # configure for pjsip compile
+#
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/pjproject-2.7.2.tar.bz2
 
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
