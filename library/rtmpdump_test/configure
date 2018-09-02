@@ -1,6 +1,8 @@
 # configure for rtmpdump compile
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/rtmpdump-snapshot-fa8646daeb19dfd12c181f7d19de708d623704c0.tar.bz2
+#
 # curl -OL http://pdi3zh561.bkt.clouddn.com/libs/zlib-1.2.11.tar.gz
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/openssl-1.0.2p.tar.gz
+# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/rtmpdump-snapshot-fa8646daeb19dfd12c181f7d19de708d623704c0.tar.bz2
 
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
