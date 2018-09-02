@@ -1,4 +1,5 @@
 # configure for boost compile
+#
 # curl -OL http://pdi3zh561.bkt.clouddn.com/libs/boost_1_68_0.tar.bz2
 
 PATH_CUR=`pwd`
