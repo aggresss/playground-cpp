@@ -3,7 +3,7 @@
 # conclution:
 # if LDFLAGS no "-static-libgcc" will -> "Segmentation fault" and size smaller than add it.
 
-LIBP_GLIBC = .
+LIBP_GLIBC = /usr/local/lib
 CC = gcc
 CLAGS += -g
 
