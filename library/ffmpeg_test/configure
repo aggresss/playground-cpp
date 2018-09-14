@@ -28,7 +28,6 @@ function git_clone
     git clone --depth=1 $1 -b $2 $3
 }
 
-
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
 PATH_OPENSSL=$PATH_LIB/openssl
