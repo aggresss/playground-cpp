@@ -7,6 +7,28 @@
 # curl -OL http://pdi3zh561.bkt.clouddn.com/libs/freetype-2.9.1.tar.bz2
 # curl -OL http://pdi3zh561.bkt.clouddn.com/libs/ffmpeg-3.4.4.tar.bz2
 
+###  function for download direct ####
+$1 download URL
+$2 local path 
+function down_load
+{
+    DOWN_FILE=`echo "$1" | awk -F "/" '{print $NF}'`
+    curl -OL $1
+    mkdir -p $2
+    tar -vxf ${DOWN_FILE} -C $2 --strip-components 1
+    rm -rf ${DOWN_FILE}
+}
+
+###  function for git clone specify branch ###
+$1 git repo URL
+$2 branch or tag
+$3 local path
+function git_clone
+{
+    git clone --depth=1 $1 -b $2 $3
+}
+
+
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
 PATH_OPENSSL=$PATH_LIB/openssl
@@ -22,8 +44,7 @@ fi
 
 #openssl
 if [ ! -d $PATH_OPENSSL ] ; then
-    cd $PATH_LIB && \
-    git clone --depth=1 -b OpenSSL_1_0_2p https://github.com/openssl/openssl.git
+    git_clone https://github.com/openssl/openssl.git OpenSSL_1_0_2p $PATH_OPENSSL
 fi
 if [ ! -d $PATH_OPENSSL/prefix ] ; then
     cd $PATH_OPENSSL && \
@@ -35,10 +56,7 @@ fi
 
 #nasm
 if [ ! -d $PATH_NASM ] ; then
-    cd $PATH_LIB && \
-    curl -OL https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.bz2 && \
-        mkdir ./nasm && tar -jvxf nasm-2.13.03.tar.bz2 -C ./nasm --strip-components 1 && \
-        rm -rf nasm-2.13.03.tar.bz2
+    down_load https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.bz2 ${PATH_NASM}
 fi
 if [ ! -d $PATH_NASM/prefix ] ; then
     cd $PATH_NASM && \
@@ -51,8 +69,7 @@ fi
 
 #fdk-aac
 if [ ! -d $PATH_FDKAAC ] ; then
-    cd $PATH_LIB && \
-        git clone --depth=1 -b v0.1.6 https://github.com/mstorsjo/fdk-aac.git
+        git_clone https://github.com/mstorsjo/fdk-aac.git v0.1.6 ${PATH_FDKAAC} 
 fi
 if [ ! -d $PATH_FDKAAC/prefix ] ; then
     cd $PATH_FDKAAC && \
@@ -67,7 +84,7 @@ fi
 #x264
 if [ ! -d $PATH_X264 ] ; then
     cd $PATH_LIB && \
-        git clone --depth=1 http://git.videolan.org/git/x264.git
+        git_clone http://git.videolan.org/git/x264.git master ${PATH_X264}
 fi
 if [ ! -d $PATH_X264/prefix ] ; then
 cd $PATH_X264 && \
@@ -82,9 +99,7 @@ fi
 #freetype
 if [ ! -d $PATH_FREETYPE ] ; then
     cd $PATH_LIB && \
-        curl -OL https://download.savannah.gnu.org/releases/freetype/freetype-2.9.1.tar.bz2 && \
-        mkdir ./freetype && tar -jvxf freetype-2.9.1.tar.bz2 -C ./freetype --strip-components 1 && \
-        rm -rf freetype-2.9.1.tar.bz2
+        down_load https://download.savannah.gnu.org/releases/freetype/freetype-2.9.1.tar.bz2 ${PATH_FREETYPE}
 fi
 if [ ! -d $PATH_FREETYPE/prefix ] ; then
 cd $PATH_FREETYPE && \
@@ -98,7 +113,7 @@ fi
 #ffmpeg
 if [ ! -d $PATH_FFMPEG ] ; then
     cd $PATH_LIB && \
-        git clone --depth=1 -b n3.4.4 https://github.com/ffmpeg/ffmpeg.git
+        git_clone https://github.com/ffmpeg/ffmpeg.git n3.4.4 ${PATH_FFMPEG}
 fi
 if [ ! -d $PATH_FFMPEG/prefix ] ; then
     export PKG_CONFIG_PATH=$PATH_X264/prefix/lib/pkgconfig:$PATH_FDKAAC/prefix/lib/pkgconfig:$PATH_FREETYPE/prefix/lib/pkgconfig:$PATH_OPENSSL/prefix/lib/pkgconfig:$PKG_CONFIG_PATH
