@@ -7,7 +7,7 @@
 # curl -OL http://pdi3zh561.bkt.clouddn.com/libs/freetype-2.9.1.tar.bz2
 # curl -OL http://pdi3zh561.bkt.clouddn.com/libs/ffmpeg-3.4.4.tar.bz2
 
-###  function for download direct ####
+###  function for download and extract to assign path ####
 $1 download URL
 $2 local path 
 function down_load
@@ -19,7 +19,7 @@ function down_load
     rm -rf ${DOWN_FILE}
 }
 
-###  function for git clone specify branch ###
+###  function for git clone specify branch to assign path ###
 $1 git repo URL
 $2 branch or tag
 $3 local path
