@@ -1,9 +1,5 @@
 # configure for ffmpeg compile
 #
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/openssl-1.0.2p.tar.gz
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/nasm-2.13.03.tar.bz2
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/fdk-aac-v0.1.6.tar.bz2
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/x264-snapshot-303c484ec828ed0d8bfe743500e70314d026c3bd.tar.bz2
 # curl -OL http://pdi3zh561.bkt.clouddn.com/libs/freetype-2.9.1.tar.bz2
 # curl -OL http://pdi3zh561.bkt.clouddn.com/libs/ffmpeg-3.4.4.tar.bz2
 
@@ -43,7 +39,8 @@ fi
 
 #openssl
 if [ ! -d $PATH_OPENSSL ] ; then
-    git_clone https://github.com/openssl/openssl.git OpenSSL_1_0_2p $PATH_OPENSSL
+    # git_clone https://github.com/openssl/openssl.git OpenSSL_1_0_2p ${PATH_OPENSSL}
+    down_load http://pdi3zh561.bkt.clouddn.com/libs/openssl-1.0.2p.tar.gz ${PATH_OPENSSL}
 fi
 if [ ! -d $PATH_OPENSSL/prefix ] ; then
     cd $PATH_OPENSSL && \
@@ -55,7 +52,8 @@ fi
 
 #nasm
 if [ ! -d $PATH_NASM ] ; then
-    down_load https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.bz2 ${PATH_NASM}
+    # down_load https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.bz2 ${PATH_NASM}
+    down_load http://pdi3zh561.bkt.clouddn.com/libs/nasm-2.13.03.tar.bz2 ${PATH_NASM}
 fi
 if [ ! -d $PATH_NASM/prefix ] ; then
     cd $PATH_NASM && \
@@ -68,7 +66,8 @@ fi
 
 #fdk-aac
 if [ ! -d $PATH_FDKAAC ] ; then
-        git_clone https://github.com/mstorsjo/fdk-aac.git v0.1.6 ${PATH_FDKAAC} 
+        # git_clone https://github.com/mstorsjo/fdk-aac.git v0.1.6 ${PATH_FDKAAC}
+        down_load http://pdi3zh561.bkt.clouddn.com/libs/fdk-aac-v0.1.6.tar.bz2 ${PATH_FDKAAC}
 fi
 if [ ! -d $PATH_FDKAAC/prefix ] ; then
     cd $PATH_FDKAAC && \
@@ -83,7 +82,8 @@ fi
 #x264
 if [ ! -d $PATH_X264 ] ; then
     cd $PATH_LIB && \
-        git_clone http://git.videolan.org/git/x264.git master ${PATH_X264}
+        # git_clone http://git.videolan.org/git/x264.git master ${PATH_X264}
+        down_load http://pdi3zh561.bkt.clouddn.com/libs/x264-snapshot-303c484ec828ed0d8bfe743500e70314d026c3bd.tar.bz2 ${PATH_X264}
 fi
 if [ ! -d $PATH_X264/prefix ] ; then
 cd $PATH_X264 && \
@@ -98,7 +98,8 @@ fi
 #freetype
 if [ ! -d $PATH_FREETYPE ] ; then
     cd $PATH_LIB && \
-        down_load https://download.savannah.gnu.org/releases/freetype/freetype-2.9.1.tar.bz2 ${PATH_FREETYPE}
+        # down_load https://download.savannah.gnu.org/releases/freetype/freetype-2.9.1.tar.bz2 ${PATH_FREETYPE}
+        down_load http://pdi3zh561.bkt.clouddn.com/libs/freetype-2.9.1.tar.bz2 ${PATH_FREETYPE}
 fi
 if [ ! -d $PATH_FREETYPE/prefix ] ; then
 cd $PATH_FREETYPE && \
@@ -112,7 +113,8 @@ fi
 #ffmpeg
 if [ ! -d $PATH_FFMPEG ] ; then
     cd $PATH_LIB && \
-        git_clone https://github.com/ffmpeg/ffmpeg.git n3.4.4 ${PATH_FFMPEG}
+        # git_clone https://github.com/ffmpeg/ffmpeg.git n3.4.4 ${PATH_FFMPEG}
+        http://pdi3zh561.bkt.clouddn.com/libs/ffmpeg-3.4.4.tar.bz2 ${PATH_FFMPEG}
 fi
 if [ ! -d $PATH_FFMPEG/prefix ] ; then
     export PKG_CONFIG_PATH=$PATH_X264/prefix/lib/pkgconfig:$PATH_FDKAAC/prefix/lib/pkgconfig:$PATH_FREETYPE/prefix/lib/pkgconfig:$PATH_OPENSSL/prefix/lib/pkgconfig:$PKG_CONFIG_PATH
