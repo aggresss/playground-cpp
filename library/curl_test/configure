@@ -1,7 +1,6 @@
 # configure for curl compile
-#
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/openssl-1.0.2p.tar.gz
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/curl-7.61.0.tar.bz2
+
+source ../env.sh
 
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
@@ -14,8 +13,8 @@ fi
 
 #openssl
 if [ ! -d $PATH_OPENSSL ] ; then
-    cd $PATH_LIB && \
-    git clone --depth=1 -b OpenSSL_1_0_2p https://github.com/openssl/openssl.git
+    # git clone --depth=1 -b OpenSSL_1_0_2p https://github.com/openssl/openssl.git
+    down_load ${BASE_URL}/openssl-1.0.2p.tar.gz ${PATH_OPENSSL}
 fi
 if [ ! -d $PATH_OPENSSL/prefix ] ; then
     cd $PATH_OPENSSL && \
@@ -28,11 +27,8 @@ fi
 
 #curl
 if [ ! -d $PATH_CURL ] ; then
-    cd $PATH_LIB && \
-        # git clone --depth=1 -b curl-7_61_0 https://github.com/curl/curl.git
-        curl -OL https://curl.haxx.se/download/curl-7.61.0.tar.bz2 && \
-        mkdir ./curl && tar -jvxf curl-7.61.0.tar.bz2 -C ./curl --strip-components 1 && \
-        rm -rf curl-7.61.0.tar.bz2
+    # git clone --depth=1 -b curl-7_61_0 https://github.com/curl/curl.git
+    down_load ${BASE_URL} curl-7.61.0.tar.bz2 ${PATH_CURL}
 fi
 
 if [ ! -d $PATH_CURL/prefix ] ; then

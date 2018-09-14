@@ -1,6 +1,6 @@
 # configure for pjsip compile
-#
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/pjproject-2.7.2.tar.bz2
+
+source ../env.sh
 
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
@@ -12,13 +12,9 @@ fi
 
 #pjsip
 if [ ! -d $PATH_PJSIP ] ; then
-    cd $PATH_LIB && \
-        #git clone --depth=1 -b 2.7.2 https://github.com/pjsip/pjproject.git pjproject-2.7.2
-        curl -OL http://www.pjsip.org/release/2.7.2/pjproject-2.7.2.tar.bz2
-        mkdir ./pjproject && tar -jvxf pjproject-2.7.2.tar.bz2 -C ./pjproject --strip-components 1 && \
-        rm -rf pjproject-2.7.2.tar.bz2
+    # git clone --depth=1 -b 2.7.2 https://github.com/pjsip/pjproject.git pjproject-2.7.2
+    down_load ${BASE_URL}/pjproject-2.7.2.tar.bz2 ${PATH_PJSIP}
 fi
-
 cd $PATH_PJSIP && \
     ./configure \
         --disable-shared \
@@ -32,4 +28,3 @@ cd $PATH_PJSIP && \
         --disable-libyuv \
         --prefix=`pwd`/prefix && \
     make && make install
-

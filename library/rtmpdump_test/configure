@@ -1,8 +1,6 @@
 # configure for rtmpdump compile
-#
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/zlib-1.2.11.tar.gz
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/openssl-1.0.2p.tar.gz
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/rtmpdump-snapshot-fa8646daeb19dfd12c181f7d19de708d623704c0.tar.bz2
+
+source ../env.sh
 
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
@@ -16,10 +14,8 @@ fi
 
 #zlib
 if [ ! -d $PATH_ZLIB ] ; then
-    cd $PATH_LIB && \
-    curl -OL http://www.zlib.net/zlib-1.2.11.tar.gz && \
-        mkdir ./zlib && tar -zvxf zlib-1.2.11.tar.gz -C ./zlib --strip-components 1 && \
-        rm -rf zlib-1.2.11.tar.gz
+    # down_load http://www.zlib.net/zlib-1.2.11.tar.gz ${PATH_ZLIB}
+    down_load ${BASE_URL}/zlib-1.2.11.tar.gz ${PATH_ZLIB}
 fi
 if [ ! -d $PATH_ZLIB/prefix ] ; then
     cd $PATH_ZLIB && \
@@ -34,8 +30,8 @@ export LIBRARY_PATH=$PATH_ZLIB/prefix/lib:$LIBRARY_PATH
 #openssl
 # rtmpdump only compatibility for openssl1.0.x
 if [ ! -d $PATH_OPENSSL ] ; then
-    cd $PATH_LIB && \
-    git clone --depth=1 -b OpenSSL_1_0_2p https://github.com/openssl/openssl.git
+    # git_clone https://github.com/openssl/openssl.git OpenSSL_1_0_2p ${PATH_OPENSSL}
+    down_load ${BASE_URL}/openssl-1.0.2p.tar.gz ${PATH_OPENSSL}
 fi
 if [ ! -d $PATH_OPENSSL/prefix ] ; then
     cd $PATH_OPENSSL && \
@@ -48,9 +44,9 @@ export C_INCLUDE_PATH=$PATH_OPENSSL/prefix/include:$C_INCLUDE_PATH
 export LIBRARY_PATH=$PATH_OPENSSL/prefix/include:$LIBRARY_PATH
 
 #rtmpdump
-if [ ! -d $PATH_RTMPDUMP ] ; then
-    cd $PATH_LIB && \
-        git clone git://git.ffmpeg.org/rtmpdump
+if [ ! -d $PATH_RTMPDUMP ] ; then\
+    # git_clone git://git.ffmpeg.org/rtmpdump master ${PATH_RTMPDUMP}
+    down_load ${BASE_URL}/rtmpdump-snapshot-fa8646daeb19dfd12c181f7d19de708d623704c0.tar.bz2 ${PATH_RTMPDUMP}
 fi
 if [ ! -d $PATH_RTMPDUMP/prefix ] ; then
     cd $PATH_RTMPDUMP/librtmp && \

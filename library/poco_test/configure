@@ -1,6 +1,6 @@
 # configure for poco compile
-#
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/poco-1.9.0-all.tar.bz2
+
+source ../env.sh
 
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
@@ -12,8 +12,8 @@ fi
 
 #poco
 if [ ! -d $PATH_POCO ] ; then
-    cd $PATH_LIB && \
-        git clone --depth=1 -b poco-1.9.0-release https://github.com/pocoproject/poco.git
+    # git_clone https://github.com/pocoproject/poco.git poco-1.9.0-release ${PATH_POCO}
+    down_load ${BASE_URL}/poco-1.9.0-all.tar.bz2 ${PATH_POCO}
 fi
 
 cd $PATH_POCO && \

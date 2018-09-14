@@ -1,6 +1,6 @@
 # configure for boost compile
-#
-# curl -OL http://pdi3zh561.bkt.clouddn.com/libs/boost_1_68_0.tar.bz2
+
+source ../env.sh
 
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
@@ -12,12 +12,9 @@ fi
 
 #boost
 if [ ! -d $PATH_BOOST ] ; then
-    cd $PATH_LIB && \
-        # git clone -b boost-1.68.0 https://github.com/boostorg/boost.git && \
-        # git submodule update --init --recursive
-        curl -OL https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.bz2 && \
-        mkdir ./boost && tar -jvxf boost_1_68_0.tar.bz2 -C ./boost --strip-components 1 && \
-        rm -rf boost_1_68_0.tar.bz2
+    # git clone https://github.com/boostorg/boost.git boost-1.68.0 ${PATH_BOOST}
+    # cd $PATH_LIB && git submodule update --init --recursive
+    down_load ${BASE_URL}/boost_1_68_0.tar.bz2 ${PATH_BOOST}
 fi
 
 if [ ! -d $PATH_BOOST/prefix ] ; then
