@@ -6,7 +6,7 @@ OBJS += $(patsubst %cpp, %o, $(wildcard *.cpp))
 HEADER = $(wildcard ../include/*.h)
 
 
-#Libs = -lavfilter -lpostproc -lavformat -lavdevice -lavcodec -lswscale -lavutil -lswresample -lx264 -lfdk-aac -lfreetype -lpthread
+#Libs = -lavfilter -lpostproc -lavformat -lavcodec -lswscale -lavutil -lswresample -lx264 -lfdk-aac -lfreetype -lpthread
 #Libs += -lz -lm -lbz2 -llzma
 #Libs +=  -ldl -lrt
 
@@ -16,10 +16,9 @@ PATH_FDKAAC=$(PATH_LIB)/fdk-aac
 PATH_X264=$(PATH_LIB)/x264
 PATH_FREETYPE=$(PATH_LIB)/freetype
 PATH_FFMPEG=$(PATH_LIB)/ffmpeg
-export PKG_CONFIG_PATH=$(PATH_X264)/prefix/lib/pkgconfig:$(PATH_FDKAAC)/prefix/lib/pkgconfig:$(PATH_FFMPEG)/prefix/lib/pkgconfig:$(PATH_FREETYPE)/prefix/lib/pkgconfig:$(PATH_OPENSSL)/prefix/lib/pkgconfig
 
-CFLAGS += `pkg-config --cflags libavfilter libavformat libavdevice libavcodec libswscale libavutil libswresample`
-LDFLAGS += `pkg-config --libs libavfilter libavformat libavdevice libavcodec libswscale libavutil libswresample`
+CFLAGS += `pkg-config --cflags libavfilter libavformat libavcodec libswscale libavutil libswresample`
+LDFLAGS += `pkg-config --libs libavfilter libavformat libavcodec libswscale libavutil libswresample`
 
 Target = ffmpeg_test.out
 
@@ -38,8 +37,8 @@ CXXFLAGS += -MMD -MP
 
 $(Target):$(OBJS)
 	echo ${PKG_CONFIG_PATH}
-	pkg-config --cflags libavfilter libavformat libavdevice libavcodec libswscale libavutil libswresample
-	pkg-config --libs libavfilter libavformat libavdevice libavcodec libswscale libavutil libswresample
+	pkg-config --cflags libavfilter libavformat libavcodec libswscale libavutil libswresample
+	pkg-config --libs libavfilter libavformat libavcodec libswscale libavutil libswresample
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 .PHONY:clean
