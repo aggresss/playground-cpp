@@ -1,6 +1,5 @@
 #include <functional>
 
-
 template <class T>
 class Singular
 {

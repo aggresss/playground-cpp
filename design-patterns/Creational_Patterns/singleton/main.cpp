@@ -26,10 +26,10 @@ private:
 
 int main()
 {
-    Server s(9);
+    auto s = std::make_unique<Server>(9);
     auto ss = Singular<Server>::Instance(8);
     auto sss = Singular<Server>::Instance(7);
-    s.out();
+    s->out();
     ss->out();
     sss->out();
 
