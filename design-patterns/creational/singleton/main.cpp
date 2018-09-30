@@ -1,5 +1,6 @@
-#include "singleton.hpp"
 #include <iostream>
+#include <memory>
+#include "singleton.hpp"
 
 class Server
 {

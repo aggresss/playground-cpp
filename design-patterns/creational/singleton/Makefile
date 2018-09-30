@@ -5,7 +5,7 @@ LDFLAGS =
 target = main.out
 srcs = $(wildcard *.cpp)
 objs = $(srcs:.cpp=.o)
-	headers = $(wildcard *.h)
+headers = $(wildcard *.h)
 
 .PHONY: all
 	all: $(target)
