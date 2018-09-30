@@ -2,20 +2,18 @@
 #define __XXXX_H__
 
 #include <iostream>
-#include <vector>
 #include <string>
+#include <memory>
 
 using std::cout;
-using std::cin;
 using std::endl;
-using std::vector;
 using std::string;
 
 class Product
 {
 public:
-    Product(){}
-    virtual ~Product(){}
+    Product(){cout<<"Product create"<<endl;}
+    virtual ~Product(){cout<<"Product destroy"<<endl;}
 
     virtual string name() = 0;
 };
@@ -23,10 +21,10 @@ public:
 class Creator
 {
 public:
-    Creator(){}
-    virtual ~Creator(){}
+    Creator(){cout<<"Creator create"<<endl;}
+    virtual ~Creator(){cout<<"Creator destroy"<<endl;}
 
-    virtual Product *createProduct() = 0;
+    virtual std::shared_ptr<Product> createProduct() = 0;
 };
 
 class ConcreteProduct1: public Product
@@ -59,9 +57,9 @@ public:
     ConcreteCreator1(){}
     ~ConcreteCreator1(){}
 
-    Product *createProduct()
+    std::shared_ptr<Product> createProduct()
     {
-        return new ConcreteProduct1;
+        return std::make_shared<ConcreteProduct2>();
     }
 };
 
@@ -71,9 +69,9 @@ public:
     ConcreteCreator2(){}
     ~ConcreteCreator2(){}
 
-    Product *createProduct()
+    std::shared_ptr<Product> createProduct()
     {
-        return new ConcreteProduct2;
+        return std::make_shared<ConcreteProduct2>();
     }
 };
 

@@ -5,15 +5,15 @@ LDFLAGS =
 target = main.out
 srcs = $(wildcard *.cpp)
 objs = $(srcs:.cpp=.o)
-headers = $(wildcard *.h)
+headers = $(wildcard *.hpp)
 
 .PHONY: all
 	all: $(target)
 
-$(target): $(objs) # $(headers) FORCE
+$(target): $(objs) $(headers) FORCE
 	$(CXX) -o $@ $(objs) $(LDFLAGS)
 
-$(objs):%.o:%.cpp
+$(objs):%.o:%.cpp FORCE
 	$(CXX) $(CFLAGS) -c $<
 
 .PHONY: FORCE
