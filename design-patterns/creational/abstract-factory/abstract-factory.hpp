@@ -8,6 +8,8 @@
 using std::cout;
 using std::endl;
 using std::string;
+using std::shared_ptr;
+using std::make_shared;
 
 class AbstractProductA
 {
@@ -67,14 +69,8 @@ public:
     ConcreteFactory1(){cout << "In factory 1" << endl;}
     ~ConcreteFactory1(){};
 
-    std::shared_ptr<AbstractProductA> createProductA()
-    {
-        return std::make_shared<ProductA1>();
-    }
-    std::shared_ptr<AbstractProductB> createProductB()
-    {
-        return std::make_shared<ProductB1>();
-    }
+    shared_ptr<AbstractProductA> createProductA(){return make_shared<ProductA1>();}
+    shared_ptr<AbstractProductB> createProductB(){return make_shared<ProductB1>();}
 };
 
 class ConcreteFactory2: public AbstractFactory
@@ -83,14 +79,8 @@ public:
     ConcreteFactory2(){cout << "In factory 2" << endl;}
     ~ConcreteFactory2(){};
 
-    std::shared_ptr<AbstractProductA> createProductA()
-    {
-        return std::make_shared<ProductA2>();
-    }
-    std::shared_ptr<AbstractProductB> createProductB()
-    {
-        return std::make_shared<ProductB2>();
-    }
+    shared_ptr<AbstractProductA> createProductA(){return make_shared<ProductA2>();}
+    shared_ptr<AbstractProductB> createProductB(){return make_shared<ProductB2>();}
 };
 
 #endif

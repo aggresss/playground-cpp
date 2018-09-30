@@ -13,7 +13,7 @@ int main()
 
     auto pa1 = factory1->createProductA();
     auto pb1 = factory1->createProductB();
-    cout << "  --[* *]--" << endl;
+    cout << " =[* *]= " << endl;
     auto factory2 = std::make_unique<ConcreteFactory2>();
     auto pa2 = factory2->createProductA();
     auto pb2 = factory2->createProductB();

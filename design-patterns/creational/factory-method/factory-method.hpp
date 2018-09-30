@@ -8,6 +8,8 @@
 using std::cout;
 using std::endl;
 using std::string;
+using std::shared_ptr;
+using std::make_shared;
 
 class Product
 {
@@ -51,10 +53,7 @@ public:
     ConcreteCreator1(){}
     ~ConcreteCreator1(){}
 
-    std::shared_ptr<Product> createProduct()
-    {
-        return std::make_shared<ConcreteProduct1>();
-    }
+    shared_ptr<Product> createProduct(){return make_shared<ConcreteProduct1>();}
 };
 
 class ConcreteCreator2: public Creator
@@ -63,10 +62,7 @@ public:
     ConcreteCreator2(){}
     ~ConcreteCreator2(){}
 
-    std::shared_ptr<Product> createProduct()
-    {
-        return std::make_shared<ConcreteProduct2>();
-    }
+    shared_ptr<Product> createProduct(){return make_shared<ConcreteProduct2>();}
 };
 
 #endif
