@@ -92,7 +92,5 @@ private:
     AbstractBuilder *builder;
 };
 
-
-
 #endif
 
