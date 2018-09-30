@@ -33,10 +33,7 @@ public:
     ConcreteProduct1(){}
     ~ConcreteProduct1(){}
 
-    string name()
-    {
-        return string("ConcreteProduct1");
-    }
+    string name(){return string("ConcreteProduct1");}
 };
 
 class ConcreteProduct2: public Product
@@ -45,10 +42,7 @@ public:
     ConcreteProduct2(){}
     ~ConcreteProduct2(){}
 
-    string name()
-    {
-        return string("ConcreteProduct2");
-    }
+    string name(){return string("ConcreteProduct2");}
 };
 
 class ConcreteCreator1: public Creator
@@ -59,7 +53,7 @@ public:
 
     std::shared_ptr<Product> createProduct()
     {
-        return std::make_shared<ConcreteProduct2>();
+        return std::make_shared<ConcreteProduct1>();
     }
 };
 
