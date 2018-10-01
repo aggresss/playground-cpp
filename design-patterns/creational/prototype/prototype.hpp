@@ -22,16 +22,16 @@ public:
     virtual shared_ptr<Prototype> clone() = 0;
 };
 
-class ConcretePrototype1: public Prototype
+class ConcretePrototype: public Prototype
 {
 public:
-    ConcretePrototype1(string n):myName_(n){}
-    ~ConcretePrototype1(){};
-    ConcretePrototype1(const ConcretePrototype1 &other):myName_(other.myName_){}
+    ConcretePrototype(string n):myName_(n){}
+    ~ConcretePrototype(){};
+    ConcretePrototype(const ConcretePrototype &other):myName_(other.myName_){}
 
     string name(){return myName_;}
     void setName(string newName){myName_ = newName;}
-    shared_ptr<Prototype> clone(){return make_shared<ConcretePrototype1>(*this);}
+    shared_ptr<Prototype> clone(){return make_shared<ConcretePrototype>(*this);}
 
 private:
     string myName_;

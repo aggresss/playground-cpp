@@ -10,7 +10,7 @@ using std::make_shared;
 
 int main()
 {
-    auto obj1 = make_shared<ConcretePrototype1>("obj1");
+    auto obj1 = make_shared<ConcretePrototype>("obj1");
     cout << obj1->name() << endl;
     
     auto obj2 = obj1->clone();
