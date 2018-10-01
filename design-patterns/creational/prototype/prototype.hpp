@@ -37,20 +37,5 @@ private:
     string myName_;
 };
 
-class ConcretePrototype2: public Prototype
-{
-public:
-    ConcretePrototype2(string n):myName_(n){}
-    ~ConcretePrototype2(){};
-    ConcretePrototype2(const ConcretePrototype2 &other):myName_(other.myName_){}
-
-    string name(){return myName_;}
-    void setName(string newName){myName_ = newName;}
-    shared_ptr<Prototype> clone(){return make_shared<ConcretePrototype2>(*this);}
-
-private:
-    string myName_;
-};
-
 #endif
 

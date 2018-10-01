@@ -44,30 +44,15 @@ public:
     virtual shared_ptr<Product> getProduct() = 0;
 };
 
-class ConcreteBuilder1: public AbstractBuilder
+class ConcreteBuilder: public AbstractBuilder
 {
 public:
-    ConcreteBuilder1(){product = make_shared<Product>();}
-    ~ConcreteBuilder1(){}
+    ConcreteBuilder(){product = make_shared<Product>();}
+    ~ConcreteBuilder(){}
 
-    void buildPartA(){product->addPart(string("PartA from builder1"));}
-    void buildPartB(){product->addPart(string("PartB from builder1"));}
-    void buildPartC(){product->addPart(string("PartC from builder1"));}
-    shared_ptr<Product> getProduct(){return product;}
-
-private:
-    shared_ptr<Product> product;
-};
-
-class ConcreteBuilder2: public AbstractBuilder
-{
-public:
-    ConcreteBuilder2(){product = make_shared<Product>();}
-    ~ConcreteBuilder2(){}
-
-    void buildPartA(){product->addPart(string("PartA from builder2"));}
-    void buildPartB(){product->addPart(string("PartB from builder2"));}
-    void buildPartC(){product->addPart(string("PartC from builder2"));}
+    void buildPartA(){product->addPart(string("PartA from builder"));}
+    void buildPartB(){product->addPart(string("PartB from builder"));}
+    void buildPartC(){product->addPart(string("PartC from builder"));}
     shared_ptr<Product> getProduct(){return product;}
 
 private:

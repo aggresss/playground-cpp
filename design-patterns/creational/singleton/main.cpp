@@ -1,28 +1,21 @@
+#include "singleton.hpp"
+
 #include <iostream>
 #include <memory>
-#include "singleton.hpp"
+
+using std::cout;
+using std::endl;
 
 class Server
 {
 public:
-    Server(int input)
-        : magic(input)
-    {
-        std::cout<<"server.construct "<<this->magic<<std::endl;
-        return;
-    }
-    ~Server()
-    {
-        std::cout<<"server.deconstruct "<<this->magic<<std::endl;
-        return;
-    }
+    Server(int input):nMagic_(input){cout<<"server create "<<nMagic_<<endl;}
+    ~Server(){cout<<"server destroy "<<nMagic_<<endl;}
+
     void out()
-    {
-        std::cout<<"server.out() "<<this->magic<<std::endl;
-        return;
-    }
+    {cout<<"server out() "<<nMagic_<<endl;}
 private:
-    int magic;
+    int nMagic_;
 };
 
 int main()

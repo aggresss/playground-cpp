@@ -18,11 +18,5 @@ int main()
     obj2->setName("obj2");
     cout << obj2->name() << endl;
 
-    auto obj3 = make_shared<ConcretePrototype2>("special obj2");
-    cout << obj3->name() << endl;
-
-    auto obj4 = obj3->clone();
-    cout << obj4->name() << endl;
-
     return 0;
 }

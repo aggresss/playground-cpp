@@ -25,32 +25,18 @@ public:
     virtual ~AbstractProductB(){};
 };
 
-class ProductA1: public AbstractProductA
+class ProductA: public AbstractProductA
 {
 public:
-    ProductA1(){cout << "I am ProductA1" << endl;}
-    ~ProductA1(){};
+    ProductA(){cout << "I am ProductA" << endl;}
+    ~ProductA(){};
 };
 
-class ProductA2: public AbstractProductA
+class ProductB: public AbstractProductB
 {
 public:
-    ProductA2(){cout << "I am ProductA2" << endl;}
-    ~ProductA2(){};
-};
-
-class ProductB1: public AbstractProductB
-{
-public:
-    ProductB1(){cout << "I am ProductB1" << endl;}
-    ~ProductB1(){};
-};
-
-class ProductB2: public AbstractProductB
-{
-public:
-    ProductB2(){cout << "I am ProductB2" << endl;}
-    ~ProductB2(){};
+    ProductB(){cout << "I am ProductB" << endl;}
+    ~ProductB(){};
 };
 
 class AbstractFactory
@@ -63,25 +49,17 @@ public:
     virtual std::shared_ptr<AbstractProductB> createProductB() = 0;
 };
 
-class ConcreteFactory1: public AbstractFactory
+class ConcreteFactory: public AbstractFactory
 {
 public:
-    ConcreteFactory1(){cout << "In factory 1" << endl;}
-    ~ConcreteFactory1(){};
+    ConcreteFactory(){cout << "In factory" << endl;}
+    ~ConcreteFactory(){};
 
-    shared_ptr<AbstractProductA> createProductA(){return make_shared<ProductA1>();}
-    shared_ptr<AbstractProductB> createProductB(){return make_shared<ProductB1>();}
+    shared_ptr<AbstractProductA> createProductA(){return make_shared<ProductA>();}
+    shared_ptr<AbstractProductB> createProductB(){return make_shared<ProductB>();}
 };
 
-class ConcreteFactory2: public AbstractFactory
-{
-public:
-    ConcreteFactory2(){cout << "In factory 2" << endl;}
-    ~ConcreteFactory2(){};
 
-    shared_ptr<AbstractProductA> createProductA(){return make_shared<ProductA2>();}
-    shared_ptr<AbstractProductB> createProductB(){return make_shared<ProductB2>();}
-};
 
 #endif
 

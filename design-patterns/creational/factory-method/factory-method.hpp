@@ -29,40 +29,22 @@ public:
     virtual std::shared_ptr<Product> createProduct() = 0;
 };
 
-class ConcreteProduct1: public Product
+class ConcreteProduct: public Product
 {
 public:
-    ConcreteProduct1(){}
-    ~ConcreteProduct1(){}
+    ConcreteProduct(){}
+    ~ConcreteProduct(){}
 
-    string name(){return string("ConcreteProduct1");}
+    string name(){return string("ConcreteProduct");}
 };
 
-class ConcreteProduct2: public Product
+class ConcreteCreator: public Creator
 {
 public:
-    ConcreteProduct2(){}
-    ~ConcreteProduct2(){}
+    ConcreteCreator(){}
+    ~ConcreteCreator(){}
 
-    string name(){return string("ConcreteProduct2");}
-};
-
-class ConcreteCreator1: public Creator
-{
-public:
-    ConcreteCreator1(){}
-    ~ConcreteCreator1(){}
-
-    shared_ptr<Product> createProduct(){return make_shared<ConcreteProduct1>();}
-};
-
-class ConcreteCreator2: public Creator
-{
-public:
-    ConcreteCreator2(){}
-    ~ConcreteCreator2(){}
-
-    shared_ptr<Product> createProduct(){return make_shared<ConcreteProduct2>();}
+    shared_ptr<Product> createProduct(){return make_shared<ConcreteProduct>();}
 };
 
 #endif
