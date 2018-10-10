@@ -98,4 +98,3 @@ void ConcreteState2::action1(Context *c)
 }
 
 #endif
-

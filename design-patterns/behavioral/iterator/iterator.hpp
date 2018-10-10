@@ -74,4 +74,3 @@ shared_ptr<Iterator> ConcreteAggregate::createIterator()
 
 
 #endif
-
