@@ -58,7 +58,7 @@ private:
 class ConcreteColleague1 : public Colleague
 {
 public:
-    ConcreteColleague1(): mediator(0){}
+    ConcreteColleague1(): mediator(nullptr){}
     ~ConcreteColleague1(){}
 
     void setMediator(Mediator *m){mediator = m;}
@@ -73,7 +73,7 @@ private:
 class ConcreteColleague2 : public Colleague
 {
 public:
-    ConcreteColleague2(): mediator(0){}
+    ConcreteColleague2(): mediator(nullptr){}
     ~ConcreteColleague2(){}
 
     void setMediator(Mediator *m){mediator = m;}
