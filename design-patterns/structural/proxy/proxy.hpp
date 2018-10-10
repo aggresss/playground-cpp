@@ -2,13 +2,9 @@
 #define __XXXX_H__
 
 #include <iostream>
-#include <map>
-#include <string>
-#include <memory>
 
 using std::cout;
 using std::endl;
-using std::string;
 
 
 class Subject
