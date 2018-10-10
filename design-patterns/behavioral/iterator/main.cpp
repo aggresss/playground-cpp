@@ -1,8 +1,11 @@
 #include "iterator.hpp"
 
 #include <memory>
+#include <iostream>
 
 using std::make_shared;
+using std::cout;
+using std::endl;
 
 int main()
 {
