@@ -7,7 +7,6 @@ using std::cout;
 using std::endl;
 
 
-
 class SubsystemA
 {
 public:
@@ -26,6 +25,7 @@ public:
     void operation(){cout << "Executing operation in SubsystemB" << endl;}
 };
 
+
 class Facade
 {
 public:
@@ -34,11 +34,12 @@ public:
 
     void operation()
     {
-        SubsystemA subA; subA.operation();
-        SubsystemB subB; subB.operation();
+        SubsystemA().operation();
+        SubsystemB().operation();
     }
 
 };
+
 
 #endif
 

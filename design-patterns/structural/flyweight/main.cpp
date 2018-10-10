@@ -8,10 +8,11 @@ using std::endl;
 
 int main()
 {
-    auto f1 = FlyweightFactory().getFlyweight("apple");
+    FlyweightFactory ff;
+    auto f1 = ff.getFlyweight("apple");
     f1->operation(1);
 
-    auto f2 = FlyweightFactory().getFlyweight("apple");
+    auto f2 = ff.getFlyweight("apple");
     f1->operation(2);
 
     cout << (void*)f1.get() << " " << (void*)f2.get() << endl;

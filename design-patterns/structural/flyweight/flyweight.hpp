@@ -23,6 +23,7 @@ public:
     virtual void operation(int extrinsicState) = 0;
 };
 
+
 class ConcreteFlyweight : public Flyweight
 {
 public:
@@ -35,6 +36,7 @@ public:
 private:
     string name;
 };
+
 
 class FlyweightFactory
 {
@@ -52,6 +54,7 @@ public:
 private:
     map<string, shared_ptr<Flyweight> > pool;
 };
+
 
 #endif
 
