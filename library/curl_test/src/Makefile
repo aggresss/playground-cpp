@@ -9,11 +9,15 @@ HEADER = $(wildcard ../include/*.h)
 PATH_LIB=$(shell cd ../lib && pwd)
 PATH_CURL_PREFIX=$(PATH_LIB)/curl/prefix
 PATH_OPENSSL_PREFIX=$(PATH_LIB)/openssl/prefix
+PATH_WOLFSSL_PREFIX=$(PATH_LIB)/wolfssl/prefix
+PATH_MBEDTLS_PREFIX=$(PATH_LIB)/mbedtls/prefix
 
 CFLAGS += -I$(PATH_CURL_PREFIX)/include -I$(PATH_OPENSSL_PREFIX)/include
 CXXFLAGS += -I$(PATH_CURL_PREFIX)/include -I$(PATH_OPENSSL_PREFIX)/include
 LDFLAGS += -L$(PATH_CURL_PREFIX)/lib -l:libcurl.a
 LDFLAGS += -L$(PATH_OPENSSL_PREFIX)/lib -l:libssl.a -l:libcrypto.a
+LDFLAGS += -L$(PATH_WOLFSSL_PREFIX)/lib -l:libwolfssl.a
+LDFLAGS += -L$(PATH_MBEDTLS_PREFIX)/lib -l:libmbedtls.a  -l:libmbedx509.a -l:libmbedcrypto.a
 LDFLAGS += -lpthread -ldl
 
 Target = curl_test.out

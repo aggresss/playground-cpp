@@ -55,6 +55,9 @@ fi
 # --with-ssl=$PATH_OPENSSL/prefix \
 # --with-wolfssl=$PATH_WOLFSSL/prefix \
 # --with-mbedtls=$PATH_MBEDTLS/prefix \
+# --without-ssl \
+# --without-wolfssl \
+# --without-mbedtls \
 
 if [ ! -d $PATH_CURL ] ; then
     # git clone --depth=1 -b curl-7_61_0 https://github.com/curl/curl.git
@@ -66,7 +69,7 @@ if [ ! -d $PATH_CURL/prefix ] ; then
     ./configure \
         --disable-shared \
         --enable-static \
-        --without-wolfssl \
+        --with-wolfssl=$PATH_WOLFSSL/prefix \
         --without-mbedtls \
         --without-ssl \
         --without-libidn \
