@@ -6,6 +6,8 @@ PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
 PATH_CURL=$PATH_LIB/curl
 PATH_OPENSSL=$PATH_LIB/openssl
+PATH_WOLFSSL=$PATH_LIB/wolfssl
+PATH_MBEDTLS=$PATH_LIB/mbedtls
 
 if [ ! -d $PATH_LIB ] ; then
     mkdir -p $PATH_LIB
@@ -25,10 +27,38 @@ if [ ! -d $PATH_OPENSSL/prefix ] ; then
         make && make install
 fi
 
+#wolfssl
+if [ ! -d $PATH_WOLFSSL ] ; then
+    # git_clone https://github.com/wolfSSL/wolfssl.git v3.15.3-stable ${PATH_WOLFSSL}
+    down_load ${BASE_URL}/wolfssl-3.15.3.tar.bz2 ${PATH_WOLFSSL}
+fi
+if [ ! -d $PATH_WOLFSSL/prefix ] ; then
+    cd $PATH_WOLFSSL && \
+        ./configure \
+            --enable-static \
+            --disable-shared \
+            --prefix=$PATH_WOLFSSL/prefix && \
+        make && make install
+fi
+
+#mbedtls
+if [ ! -d $PATH_MBEDTLS ] ; then
+    down_load ${BASE_URL}/mbedtls-2.13.1.tar.bz2 ${PATH_MBEDTLS}
+fi
+if [ ! -d $PATH_MBEDTLS/prefix ] ; then
+    cd $PATH_MBEDTLS && \
+        make && \
+        make install DESTDIR=$PATH_MBEDTLS/prefix
+fi
+
 #curl
+# --with-ssl=$PATH_OPENSSL/prefix \
+# --with-wolfssl=$PATH_WOLFSSL/prefix \
+# --with-mbedtls=$PATH_MBEDTLS/prefix \
+
 if [ ! -d $PATH_CURL ] ; then
     # git clone --depth=1 -b curl-7_61_0 https://github.com/curl/curl.git
-    down_load ${BASE_URL} curl-7.61.0.tar.bz2 ${PATH_CURL}
+    down_load ${BASE_URL}/curl-7.61.0.tar.bz2 ${PATH_CURL}
 fi
 
 if [ ! -d $PATH_CURL/prefix ] ; then
@@ -36,17 +66,35 @@ if [ ! -d $PATH_CURL/prefix ] ; then
     ./configure \
         --disable-shared \
         --enable-static \
+        --without-wolfssl \
+        --without-mbedtls \
+        --without-ssl \
         --without-libidn \
         --without-librtmp \
         --without-gnutls \
         --without-nss \
         --without-libssh2 \
         --without-zlib \
-        --without-winidn \
-        --disable-rtsp \
+        --enable-http \
+        --enable-ftp \
+        --enable-file \
         --disable-ldap \
         --disable-ldaps \
+        --disable-rtsp \
+        --enable-proxy \
+        --enable-dict \
+        --disable-telnet \
+        --disable-tftp \
+        --disable-pop3 \
+        --disable-imap \
+        --disable-smb \
+        --disable-smtp \
+        --disable-gopher \
+        --disable-manual \
         --disable-ipv6 \
         --prefix=$PATH_CURL/prefix && \
-    make && make install
+    make && make install && \
+    cd $PATH_CURL/prefix/bin && \
+    curl --remote-name --time-cond cacert.pem https://curl.haxx.se/ca/cacert.pem
 fi
+
