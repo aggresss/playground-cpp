@@ -1,0 +1,3 @@
+[submodule "compile/cmake_test/third_party/curl"]
+	path = compile/cmake_test/third_party/curl
+	url = https://github.com/curl/curl.git
