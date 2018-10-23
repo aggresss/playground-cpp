@@ -6,14 +6,10 @@ message("CMAKE_HOME_DIRECTORY is" ${CMAKE_HOME_DIRECTORY})
 
 add_custom_target(clean
         COMMAND echo "CLEAN CURL"
-        COMMAND make -C ${CMAKE_HOME_DIRECTORY}/third_party/curl clean
-        COMMAND rm -rf ${CMAKE_HOME_DIRECTORY}/third_party/curl/output
-        COMMAND cd ${CMAKE_HOME_DIRECTORY}/third_party/curl && git reset --hard
+        COMMAND cd ${CMAKE_HOME_DIRECTORY}/third_party/curl && git clean -dxf
 
         COMMAND echo "CLEAN WOLFSSL"
-        COMMAND make -C ${CMAKE_HOME_DIRECTORY}/third_party/wolfssl clean
-        COMMAND rm -rf ${CMAKE_HOME_DIRECTORY}/third_party/wolfssl/output
-        COMMAND cd ${CMAKE_HOME_DIRECTORY}/third_party/wolfssl && git reset --hard
+        COMMAND cd ${CMAKE_HOME_DIRECTORY}/third_party/wolfssl && git clean -dxf
         )
 
 add_subdirectory(third_party)
