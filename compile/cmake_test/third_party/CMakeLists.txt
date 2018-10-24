@@ -6,6 +6,8 @@ ExternalProject_Add(external-wolfssl
             ./configure
             --enable-static
             --disable-shared
+            --enable-opensslextra
+            --disable-debug
             --prefix=${CMAKE_CURRENT_SOURCE_DIR}/wolfssl/output/${HOST}
         BUILD_COMMAND make
         BUILD_IN_SOURCE 1
