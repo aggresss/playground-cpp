@@ -37,6 +37,8 @@ if [ ! -d $PATH_WOLFSSL/prefix ] ; then
         ./configure \
             --enable-static \
             --disable-shared \
+            --enable-opensslextra \
+            --disable-debug \
             --prefix=$PATH_WOLFSSL/prefix && \
         make && make install
 fi
