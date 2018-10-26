@@ -6,7 +6,7 @@ BASE_URL="http://pdi3zh561.bkt.clouddn.com/libs"
 
 ###  function for download and extract to assign path ####
 # $1 download URL
-# $2 local path 
+# $2 local path
 function down_load
 {
     DOWN_FILE=`echo "$1" | awk -F "/" '{print $NF}'`
