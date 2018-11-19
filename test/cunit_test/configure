@@ -16,3 +16,13 @@ if [ ! -d $PATH_CUNIT ] ; then
     down_load ${BASE_URL}/CUnit-2.1-3.tar.bz2 ${PATH_CUNIT}
 fi
 
+if [ ! -d $PATH_CUNIT/prefix ] ; then
+cd $PATH_CUNIT && \
+    ./bootstrap && \
+    ./configure \
+        --enable-curses \
+        --enable-examples \
+        --disable-silent-rules \
+        --prefix=`pwd`/prefix && \
+    make && make install
+fi

@@ -17,6 +17,7 @@ if [ ! -d $PATH_POCO ] ; then
     down_load ${BASE_URL}/poco-1.9.0-all.tar.bz2 ${PATH_POCO}
 fi
 
+if [ ! -d $PATH_POCO/prefix ] ; then
 cd $PATH_POCO && \
     ./configure \
     --minimal \
@@ -25,4 +26,5 @@ cd $PATH_POCO && \
     --no-samples \
     --prefix=`pwd`/prefix && \
     make && make install
+fi
 
