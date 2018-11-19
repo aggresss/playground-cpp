@@ -11,7 +11,7 @@ if [ ! -d $PATH_LIB ] ; then
     mkdir -p $PATH_LIB
 fi
 
-#CUnit
+# CUnit
 if [ ! -d $PATH_CUNIT ] ; then
     down_load ${BASE_URL}/CUnit-2.1-3.tar.bz2 ${PATH_CUNIT}
 fi

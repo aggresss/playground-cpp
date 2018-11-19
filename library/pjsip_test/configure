@@ -11,7 +11,7 @@ if [ ! -d $PATH_LIB ] ; then
     mkdir -p $PATH_LIB
 fi
 
-#pjsip
+# pjsip
 if [ ! -d $PATH_PJSIP ] ; then
     # git clone --depth=1 -b 2.7.2 https://github.com/pjsip/pjproject.git pjproject-2.7.2
     down_load ${BASE_URL}/pjproject-2.7.2.tar.bz2 ${PATH_PJSIP}

@@ -16,7 +16,7 @@ if [ ! -d $PATH_LIB ] ; then
     mkdir -p $PATH_LIB
 fi
 
-#openssl
+# openssl
 if [ ! -d $PATH_OPENSSL ] ; then
     # git_clone https://github.com/openssl/openssl.git OpenSSL_1_0_2p ${PATH_OPENSSL}
     down_load ${BASE_URL}/openssl-1.0.2p.tar.gz ${PATH_OPENSSL}
@@ -29,7 +29,7 @@ if [ ! -d $PATH_OPENSSL/prefix ] ; then
         make && make install
 fi
 
-#nasm
+# nasm
 if [ ! -d $PATH_NASM ] ; then
     # down_load https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.bz2 ${PATH_NASM}
     down_load ${BASE_URL}/nasm-2.13.03.tar.bz2 ${PATH_NASM}
@@ -43,7 +43,7 @@ if [ ! -d $PATH_NASM/prefix ] ; then
     PATH="$PATH_NASM/bin:$PATH"
 fi
 
-#fdk-aac
+# fdk-aac
 if [ ! -d $PATH_FDKAAC ] ; then
         # git_clone https://github.com/mstorsjo/fdk-aac.git v0.1.6 ${PATH_FDKAAC}
         down_load ${BASE_URL}/fdk-aac-v0.1.6.tar.bz2 ${PATH_FDKAAC}
@@ -58,7 +58,7 @@ if [ ! -d $PATH_FDKAAC/prefix ] ; then
         make && make install
 fi
 
-#x264
+# x264
 if [ ! -d $PATH_X264 ] ; then
     cd $PATH_LIB && \
         # git_clone http://git.videolan.org/git/x264.git master ${PATH_X264}
@@ -74,7 +74,7 @@ cd $PATH_X264 && \
     make && make install
 fi
 
-#freetype
+# freetype
 if [ ! -d $PATH_FREETYPE ] ; then
     cd $PATH_LIB && \
         # down_load https://download.savannah.gnu.org/releases/freetype/freetype-2.9.1.tar.bz2 ${PATH_FREETYPE}
@@ -89,7 +89,7 @@ cd $PATH_FREETYPE && \
     make && make install
 fi
 
-#ffmpeg
+# ffmpeg
 if [ ! -d $PATH_FFMPEG ] ; then
     cd $PATH_LIB && \
         # git_clone https://github.com/ffmpeg/ffmpeg.git n3.4.4 ${PATH_FFMPEG}

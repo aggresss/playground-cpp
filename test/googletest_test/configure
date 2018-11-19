@@ -11,8 +11,14 @@ if [ ! -d $PATH_LIB ] ; then
     mkdir -p $PATH_LIB
 fi
 
-#CUnit
+# googletest
 if [ ! -d $PATH_GOOGLETEST ] ; then
     down_load ${BASE_URL}/googletest-release-1.8.1.tar.bz2 ${PATH_GOOGLETEST}
 fi
 
+if [ ! -d $PATH_GOOGLETEST/build ] ; then
+cd $PATH_GOOGLETEST && \
+    mkdir build && cd build && \
+    cmake .. && \
+    make
+fi

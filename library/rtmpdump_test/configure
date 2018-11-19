@@ -13,7 +13,7 @@ if [ ! -d $PATH_LIB ] ; then
     mkdir -p $PATH_LIB
 fi
 
-#zlib
+# zlib
 if [ ! -d $PATH_ZLIB ] ; then
     # down_load http://www.zlib.net/zlib-1.2.11.tar.gz ${PATH_ZLIB}
     down_load ${BASE_URL}/zlib-1.2.11.tar.gz ${PATH_ZLIB}
@@ -28,7 +28,7 @@ fi
 export C_INCLUDE_PATH=$PATH_ZLIB/prefix/include:$C_INCLUDE_PATH
 export LIBRARY_PATH=$PATH_ZLIB/prefix/lib:$LIBRARY_PATH
 
-#openssl
+# openssl
 # rtmpdump only compatibility for openssl1.0.x
 if [ ! -d $PATH_OPENSSL ] ; then
     # git_clone https://github.com/openssl/openssl.git OpenSSL_1_0_2p ${PATH_OPENSSL}
@@ -44,7 +44,7 @@ fi
 export C_INCLUDE_PATH=$PATH_OPENSSL/prefix/include:$C_INCLUDE_PATH
 export LIBRARY_PATH=$PATH_OPENSSL/prefix/include:$LIBRARY_PATH
 
-#rtmpdump
+# rtmpdump
 if [ ! -d $PATH_RTMPDUMP ] ; then\
     # git_clone git://git.ffmpeg.org/rtmpdump master ${PATH_RTMPDUMP}
     down_load ${BASE_URL}/rtmpdump-snapshot-fa8646daeb19dfd12c181f7d19de708d623704c0.tar.bz2 ${PATH_RTMPDUMP}

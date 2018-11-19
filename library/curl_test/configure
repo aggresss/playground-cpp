@@ -14,7 +14,7 @@ if [ ! -d $PATH_LIB ] ; then
     mkdir -p $PATH_LIB
 fi
 
-#openssl
+# openssl
 if [ ! -d $PATH_OPENSSL ] ; then
     # git clone --depth=1 -b OpenSSL_1_0_2p https://github.com/openssl/openssl.git
     down_load ${BASE_URL}/openssl-1.0.2p.tar.gz ${PATH_OPENSSL}
@@ -28,7 +28,7 @@ if [ ! -d $PATH_OPENSSL/prefix ] ; then
         make && make install
 fi
 
-#wolfssl
+# wolfssl
 if [ ! -d $PATH_WOLFSSL ] ; then
     # git_clone https://github.com/wolfSSL/wolfssl.git v3.15.3-stable ${PATH_WOLFSSL}
     down_load ${BASE_URL}/wolfssl-3.15.3.tar.bz2 ${PATH_WOLFSSL}
@@ -44,7 +44,7 @@ if [ ! -d $PATH_WOLFSSL/prefix ] ; then
         make && make install
 fi
 
-#mbedtls
+# mbedtls
 if [ ! -d $PATH_MBEDTLS ] ; then
     down_load ${BASE_URL}/mbedtls-2.13.1.tar.bz2 ${PATH_MBEDTLS}
 fi
@@ -54,7 +54,7 @@ if [ ! -d $PATH_MBEDTLS/prefix ] ; then
         make install DESTDIR=$PATH_MBEDTLS/prefix
 fi
 
-#curl
+# curl
 # --with-ssl=$PATH_OPENSSL/prefix \
 # --with-wolfssl=$PATH_WOLFSSL/prefix \
 # --with-mbedtls=$PATH_MBEDTLS/prefix \

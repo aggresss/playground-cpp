@@ -11,7 +11,7 @@ if [ ! -d $PATH_LIB ] ; then
     mkdir -p $PATH_LIB
 fi
 
-#boost
+# boost
 if [ ! -d $PATH_BOOST ] ; then
     # git clone https://github.com/boostorg/boost.git boost-1.68.0 ${PATH_BOOST}
     # cd $PATH_LIB && git submodule update --init --recursive
