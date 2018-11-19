@@ -1,6 +1,7 @@
 # configure for poco compile
 
-source ../env.sh
+PATH_REPO=`git rev-parse --show-toplevel`
+source ${PATH_REPO}/env.sh
 
 PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
