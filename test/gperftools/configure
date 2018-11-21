@@ -1,0 +1,47 @@
+# configure for boost compile
+# gperftools:
+#   TCMalloc
+#   heap-checker
+#   heap-profiler
+#   cpu-profiler
+
+PATH_REPO=`git rev-parse --show-toplevel`
+source ${PATH_REPO}/env.sh
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_LIBUNWIND=$PATH_LIB/libunwind
+PATH_GPERFTOOLS=$PATH_LIB/gperftools
+
+if [ ! -d $PATH_LIB ] ; then
+    mkdir -p $PATH_LIB
+fi
+
+# libunwind
+if [ ! -d $PATH_LIBUNWIND ] ; then
+    # https://www.nongnu.org/libunwind/index.html
+    down_load ${BASE_URL}/libunwind-1.2.1.tar.gz ${PATH_LIBUNWIND}
+fi
+
+# gperftools
+if [ ! -d $PATH_GPERFTOOLS ] ; then
+    # https://github.com/gperftools/gperftools
+    down_load ${BASE_URL}/gperftools-2.7.tar.gz ${PATH_GPERFTOOLS}
+fi
+
+if [ ! -d $PATH_LIBUNWIND/prefix ] ; then
+    cd $PATH_LIBUNWIND && \
+    ./configure \
+        --prefix=${PATH_LIBUNWIND}/prefix && \
+    make && \
+    make install
+fi
+
+#if [ ! -d $PATH_GPERFTOOLS/prefix ] ; then
+#    cd $PATH_GPERFTOOLS && \
+#    ./configure  \
+#        --prefix
+#    make && \
+#    make install
+#fi
+
