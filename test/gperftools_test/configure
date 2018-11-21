@@ -32,16 +32,25 @@ fi
 if [ ! -d $PATH_LIBUNWIND/prefix ] ; then
     cd $PATH_LIBUNWIND && \
     ./configure \
+        --enable-shared=no \
         --prefix=${PATH_LIBUNWIND}/prefix && \
     make && \
     make install
 fi
 
-#if [ ! -d $PATH_GPERFTOOLS/prefix ] ; then
-#    cd $PATH_GPERFTOOLS && \
-#    ./configure  \
-#        --prefix
-#    make && \
-#    make install
-#fi
+if [ ! -d $PATH_GPERFTOOLS/prefix ] ; then
+    cd $PATH_GPERFTOOLS && \
+    ./configure  \
+        --enable-cpu-profiler \
+        --enable-heap-profiler \
+        --enable-heap-checker \
+        --enable-debugalloc \
+        --enable-shared=no \
+        --enable-libunwind \
+        --prefix=${PATH_GPERFTOOLS}/prefix \
+        LT_SYS_LIBRARY_PATH=$PATH_LIBUNWIND/prefix \
+        && \
+    make && \
+    make install
+fi
 
