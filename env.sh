@@ -1,6 +1,6 @@
 #!/bin/bash
 # environment file for create third-part library
-set -ux
+set -uvx
 
 # viriable for build
 BASE_URL="http://repo.router7.com/libs"
