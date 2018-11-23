@@ -1,5 +1,6 @@
 #!/bin/bash
-# environment file for create third-part library 
+# environment file for create third-part library
+set -ux
 
 # viriable for build
 BASE_URL="http://repo.router7.com/libs"
@@ -9,11 +10,14 @@ BASE_URL="http://repo.router7.com/libs"
 # $2 local path
 function down_load
 {
-    DOWN_FILE=`echo "$1" | awk -F "/" '{print $NF}'`
+    local down_file=`echo "$1" | awk -F "/" '{print $NF}'`
+    local file_ext=${down_file##*.}
     curl -OL $1
     mkdir -p $2
-    tar -vxf ${DOWN_FILE} -C $2 --strip-components 1
-    rm -rf ${DOWN_FILE}
+    if [ $file_ext = "gz" -o $file_ext = "bz2" ]; then
+        tar -vxf ${down_file} -C $2 --strip-components 1
+        rm -rf ${down_file}
+    fi
 }
 
 ###  function for git clone specify branch to assign path ###
