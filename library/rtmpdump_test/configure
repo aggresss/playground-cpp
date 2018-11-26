@@ -21,8 +21,8 @@ if [ ! -d $PATH_ZLIB/prefix ] ; then
         --static && \
     make && make install
 fi
-export C_INCLUDE_PATH=$PATH_ZLIB/prefix/include:$C_INCLUDE_PATH
-export LIBRARY_PATH=$PATH_ZLIB/prefix/lib:$LIBRARY_PATH
+export C_INCLUDE_PATH=$PATH_ZLIB/prefix/include:${C_INCLUDE_PATH:+:}${C_INCLUDE_PATH-}
+export LIBRARY_PATH=$PATH_ZLIB/prefix/lib:${LIBRARY_PATH:+:}${LIBRARY_PATH-}
 
 # openssl
 # rtmpdump only compatibility for openssl1.0.x
@@ -37,8 +37,8 @@ if [ ! -d $PATH_OPENSSL/prefix ] ; then
             no-shared && \
         make && make install
 fi
-export C_INCLUDE_PATH=$PATH_OPENSSL/prefix/include:$C_INCLUDE_PATH
-export LIBRARY_PATH=$PATH_OPENSSL/prefix/include:$LIBRARY_PATH
+export C_INCLUDE_PATH=$PATH_OPENSSL/prefix/include${C_INCLUDE_PATH:+:}${C_INCLUDE_PATH-}
+export LIBRARY_PATH=$PATH_OPENSSL/prefix/include:${LIBRARY_PATH:+:}${LIBRARY_PATH-}
 
 # rtmpdump
 if [ ! -d $PATH_RTMPDUMP ] ; then\
