@@ -1,6 +1,6 @@
 #!/bin/bash
 # environment file for create third-part library
-set -uvx
+set -uv
 
 # viriable for build
 BASE_URL="http://repo.router7.com/libs"
@@ -13,7 +13,9 @@ function down_load
     local down_file=`echo "$1" | awk -F "/" '{print $NF}'`
     local file_ext=${down_file##*.}
     curl -OL $1
-    mkdir -p $2
+    if [ ! -d $2 ]; then
+        mkdir -p $2
+    fi
     if [ $file_ext = "gz" -o $file_ext = "bz2" ]; then
         tar -vxf ${down_file} -C $2 --strip-components 1
         rm -rf ${down_file}
