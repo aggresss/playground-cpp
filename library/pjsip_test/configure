@@ -7,10 +7,6 @@ PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
 PATH_PJSIP=$PATH_LIB/pjproject
 
-if [ ! -d $PATH_LIB ] ; then
-    mkdir -p $PATH_LIB
-fi
-
 # pjsip
 if [ ! -d $PATH_PJSIP ] ; then
     # git clone --depth=1 -b 2.7.2 https://github.com/pjsip/pjproject.git pjproject-2.7.2
@@ -29,3 +25,4 @@ cd $PATH_PJSIP && \
         --disable-libyuv \
         --prefix=`pwd`/prefix && \
     make && make install
+

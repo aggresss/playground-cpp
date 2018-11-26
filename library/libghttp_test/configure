@@ -1,0 +1,35 @@
+# configure for libghttp compile
+
+PATH_REPO=`git rev-parse --show-toplevel`
+source ${PATH_REPO}/env.sh
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_LIBGHTTP=$PATH_LIB/libghttp
+PATH_WOLFSSL=$PATH_LIB/wolfssl
+
+
+# libghttp
+if [ ! -d $PATH_LIBGHTTP ]; then
+    down_load ${BASE_URL}/libghttp-1.0.9.tar.gz ${PATH_LIBGHTTP}
+fi
+#if [ ! -d $PATH_LIBGHTTP/prefix ] ; then
+#    cd $PATH_LIBGHTTP && \
+#fi
+
+# wolfssl
+if [ ! -d $PATH_WOLFSSL ] ; then
+    # git_clone https://github.com/wolfSSL/wolfssl.git v3.15.3-stable ${PATH_WOLFSSL}
+    down_load ${BASE_URL}/wolfssl-3.15.3.tar.bz2 ${PATH_WOLFSSL}
+fi
+if [ ! -d $PATH_WOLFSSL/prefix ]; then
+    cd $PATH_WOLFSSL && \
+        ./configure \
+            --enable-static \
+            --disable-shared \
+            --enable-opensslextra \
+            --disable-debug \
+            --prefix=$PATH_WOLFSSL/prefix && \
+        make && make install
+fi
+

@@ -13,10 +13,6 @@ PATH_LIB=$PATH_CUR/lib
 PATH_LIBUNWIND=$PATH_LIB/libunwind
 PATH_GPERFTOOLS=$PATH_LIB/gperftools
 
-if [ ! -d $PATH_LIB ] ; then
-    mkdir -p $PATH_LIB
-fi
-
 # libunwind
 if [ ! -d $PATH_LIBUNWIND ] ; then
     # https://www.nongnu.org/libunwind/index.html

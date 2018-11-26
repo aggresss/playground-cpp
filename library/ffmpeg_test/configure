@@ -12,10 +12,6 @@ PATH_X264=$PATH_LIB/x264
 PATH_FREETYPE=$PATH_LIB/freetype
 PATH_FFMPEG=$PATH_LIB/ffmpeg
 
-if [ ! -d $PATH_LIB ] ; then
-    mkdir -p $PATH_LIB
-fi
-
 # openssl
 if [ ! -d $PATH_OPENSSL ] ; then
     # git_clone https://github.com/openssl/openssl.git OpenSSL_1_0_2p ${PATH_OPENSSL}

@@ -10,10 +10,6 @@ PATH_OPENSSL=$PATH_LIB/openssl
 PATH_WOLFSSL=$PATH_LIB/wolfssl
 PATH_MBEDTLS=$PATH_LIB/mbedtls
 
-if [ ! -d $PATH_LIB ] ; then
-    mkdir -p $PATH_LIB
-fi
-
 # openssl
 if [ ! -d $PATH_OPENSSL ] ; then
     # git clone --depth=1 -b OpenSSL_1_0_2p https://github.com/openssl/openssl.git

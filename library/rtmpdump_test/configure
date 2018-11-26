@@ -9,10 +9,6 @@ PATH_OPENSSL=$PATH_LIB/openssl
 PATH_ZLIB=$PATH_LIB/zlib
 PATH_RTMPDUMP=$PATH_LIB/rtmpdump
 
-if [ ! -d $PATH_LIB ] ; then
-    mkdir -p $PATH_LIB
-fi
-
 # zlib
 if [ ! -d $PATH_ZLIB ] ; then
     # down_load http://www.zlib.net/zlib-1.2.11.tar.gz ${PATH_ZLIB}

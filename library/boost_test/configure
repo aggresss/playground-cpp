@@ -7,10 +7,6 @@ PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
 PATH_BOOST=$PATH_LIB/boost
 
-if [ ! -d $PATH_LIB ] ; then
-    mkdir -p $PATH_LIB
-fi
-
 # boost
 if [ ! -d $PATH_BOOST ] ; then
     # git clone https://github.com/boostorg/boost.git boost-1.68.0 ${PATH_BOOST}
@@ -24,3 +20,4 @@ if [ ! -d $PATH_BOOST/prefix ] ; then
         ./b2 install variant=release link=static threading=multi runtime-link=shared \
             --prefix=$PATH_BOOST/prefix
 fi
+

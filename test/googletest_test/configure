@@ -7,10 +7,6 @@ PATH_CUR=`pwd`
 PATH_LIB=$PATH_CUR/lib
 PATH_GOOGLETEST=$PATH_LIB/googletest
 
-if [ ! -d $PATH_LIB ] ; then
-    mkdir -p $PATH_LIB
-fi
-
 # googletest
 if [ ! -d $PATH_GOOGLETEST ] ; then
     down_load ${BASE_URL}/googletest-release-1.8.1.tar.bz2 ${PATH_GOOGLETEST}
@@ -22,3 +18,4 @@ cd $PATH_GOOGLETEST && \
     cmake .. && \
     make
 fi
+
