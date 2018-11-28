@@ -1,0 +1,23 @@
+# configure for apr compile
+
+PATH_REPO=`git rev-parse --show-toplevel`
+source ${PATH_REPO}/env.sh
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_APR=$PATH_LIB/apr
+
+# apr
+if [ ! -d $PATH_APR ]; then
+    #https://apr.apache.org/download.cgi
+    down_load ${BASE_URL}/apr-1.6.5.tar.bz2 ${PATH_APR}
+fi
+if [ ! -d $PATH_APR/prefix ]; then
+    cd $PATH_APR && \
+        ./configure \
+            --enable-static \
+            --disable-shared \
+            --prefix=$PATH_APR/prefix && \
+        make && make install
+fi
+
