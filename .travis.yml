@@ -1,0 +1,14 @@
+language: c
+compiler: gcc
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-6
+install:
+  ./configre && make && make install
+script:
+  - echo "script one"
+  - echo "seript two"
+
