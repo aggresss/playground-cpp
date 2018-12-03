@@ -11,8 +11,8 @@ install:
 script:
   - echo "script begin"
   - if [ -f ci/travis/hello-release ]; then
-        ci/travis/hello-release;
+        exit 0;
+    else
+        exit 127;
     fi
-  - ls
-  - pwd
   - echo "script finish"
