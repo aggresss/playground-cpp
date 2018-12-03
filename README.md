@@ -1,7 +1,7 @@
 # playground-cpp
 
 [![Build Status](https://www.travis-ci.org/aggresss/playground-cpp.svg?branch=master)](https://www.travis-ci.org/aggresss/playground-cpp)
-[![Lisence](https://img.shields.io/apm/l/:package.svg)]
+[![GitHub license](https://img.shields.io/github/license/aggresss/playground-cpp.svg)](https://github.com/aggresss/playground-cpp/blob/master/LICENSE)
 
 
 CFLAGS
