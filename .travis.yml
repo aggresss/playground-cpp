@@ -14,7 +14,7 @@ install:
 
 before_script:
   - cd -
-  - before_script
+  - pip install --user cpp-coveralls
 
 script:
   - cd ci/coveralls/test
