@@ -10,7 +10,8 @@ install:
   cd ci/travis && ./configure && make && make install
 script:
   - echo "script begin"
-  - if [ ! -f ci/travis/hello-release ]; then
+  - if [ ! -f hello-release ]; then
         exit 127;
     fi
   - echo "script finish"
+
