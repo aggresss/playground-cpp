@@ -7,8 +7,8 @@ addons:
     packages:
       - g++-6
 install:
-  ./configre && make && make install
+  cd ci/travis && ./configure && make && make install
 script:
   - echo "script one"
-  - echo "seript two"
+  - echo "script two"
 
