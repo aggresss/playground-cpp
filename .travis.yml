@@ -11,6 +11,6 @@ install:
 script:
   - echo "script begin"
   - if [ -f ci/travis/hello-release ]; then
-        ci/travis/hello-release
+        ci/travis/hello-release;
     fi
   - echo "script finish"
