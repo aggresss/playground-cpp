@@ -1,5 +1,7 @@
 # playground-cpp
 
+[![Build Status](https://www.travis-ci.org/aggresss/playground-cpp.svg?branch=master)](https://www.travis-ci.org/aggresss/playground-cpp)
+
 CFLAGS
   1. -D macro => current directory => -I path
   2. Environment Variables => CPATH / C_INCLUDE_PATH / CPLUS_INCLUDE_PATH / OBJC_INCLUDE_PATH
