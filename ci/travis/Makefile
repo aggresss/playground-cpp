@@ -1,9 +1,9 @@
 all:
 	echo "make"
-	gcc hello.c -o hello
+	gcc hello.c -o hello.out
 install:
 	echo "make install"
-	cp hello hello-release
+	cp hello.out hello-release.out
 clean:
 	echo "make clean"
-	rm -rf hello.o hello hello-release
+	rm -rf hello.o *.out
