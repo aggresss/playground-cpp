@@ -1,11 +1,11 @@
 language: c
 compiler: gcc
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-6
+#addons:
+#  apt:
+#    sources:
+#      - ubuntu-toolchain-r-test
+#    packages:
+#      - g++-6
 install:
   cd ci/travis && ./configure && make && make install
 script:
@@ -13,4 +13,5 @@ script:
   - if [ -f ci/travis/hello-release ]; then
         ci/travis/hello-release;
     fi
+  - hello-release
   - echo "script finish"
