@@ -13,5 +13,6 @@ script:
   - if [ -f ci/travis/hello-release ]; then
         ci/travis/hello-release;
     fi
-  - ci/travis/hello-release
+  - ls
+  - pwd
   - echo "script finish"
