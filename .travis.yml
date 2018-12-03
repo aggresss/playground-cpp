@@ -12,8 +12,11 @@ compiler: gcc
 install:
   cd ci/travis && ./configure && make && make install
 
-script:
+before_script:
   - cd -
+  - before_script
+
+script:
   - cd ci/coveralls/test
   - make
   - ./test_all.out
