@@ -1,6 +1,8 @@
 # playground-cpp
 
 [![Build Status](https://www.travis-ci.org/aggresss/playground-cpp.svg?branch=master)](https://www.travis-ci.org/aggresss/playground-cpp)
+[![Lisence](https://img.shields.io/apm/l/:package.svg)]
+
 
 CFLAGS
   1. -D macro => current directory => -I path
