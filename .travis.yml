@@ -1,17 +1,22 @@
 language: c
+
 compiler: gcc
+
 #addons:
 #  apt:
 #    sources:
 #      - ubuntu-toolchain-r-test
 #    packages:
 #      - g++-6
+
 install:
   cd ci/travis && ./configure && make && make install
-script:
-  - echo "script begin"
-  - if [ ! -f hello-release.out ]; then
-        exit 127;
-    fi
-  - echo "script finish"
 
+script:
+  - cd -
+  - cd ci/coveralls/test
+  - make
+  - ./test_all.out
+
+after_success:
+  - coveralls --include ../src/ --gcov-options '\-lp'
