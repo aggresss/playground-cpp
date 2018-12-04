@@ -10,7 +10,7 @@ HEADER = $(wildcard ../include/*.h)
 
 PATH_REPO=$(shell git rev-parse --show-toplevel)
 PATH_PWD=$(shell pwd)
-PATH_LIB=$($(PATH_PWD)../lib)
+PATH_LIB=$(PATH_PWD)/../lib
 PATH_XXXX=$(PATH_LIB)/xxxx
 PATH_XXXX_PREFIX=$(PATH_XXXX)/prefix
 
