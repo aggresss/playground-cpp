@@ -22,8 +22,9 @@ before_script:
   - pip install --user cpp-coveralls
 
 script:
+  - cd ci/coveralls
   - make
   - ./test_all.out
 
 after_success:
-  - coveralls --include ci/coveralls/src/  --gcov-options '\-lp'
+  - coveralls --exclude test/  --gcov-options '\-lp'
