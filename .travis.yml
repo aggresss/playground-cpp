@@ -20,6 +20,7 @@ script:
   - cd ci/coveralls/test
   - make
   - ./test_all.out
+  - cd -
 
 after_success:
-  - coveralls --include ../src/ --gcov-options '\-lp'
+  - coveralls --include ci/travis/src/ --gcov-options '\-lp'
