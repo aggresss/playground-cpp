@@ -1,6 +1,6 @@
 os: linux
 
-dist: trusty
+dist: xenail
 
 language: c
 
