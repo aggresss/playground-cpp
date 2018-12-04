@@ -27,6 +27,7 @@ script:
   - ./test_all.out
 
 after_success:
-# note: coveralls.io need current path in repo top directory
+    # note 1: Set COVERALLS_REPO_TOKEN environments in travis portal
+    # note 2: coveralls.io need current path in repo top directory
   - cd -
   - coveralls --include ci/coveralls/src/  --gcov-options '\-lp'
