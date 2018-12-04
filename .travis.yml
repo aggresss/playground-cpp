@@ -23,4 +23,4 @@ script:
   - cd -
 
 after_success:
-  - coveralls --include ci/travis/src/ --gcov-options '\-lp'
+  - coveralls --exclude ci/travis/test/ --include ci/travis/src/ --gcov-options '\-lp'
