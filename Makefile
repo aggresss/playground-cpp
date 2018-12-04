@@ -3,8 +3,9 @@ CC = gcc
 CXX = g++
 CFLAGS = -O0 -g -fno-inline
 CXXFLAGS = -O0 -g -fno-inline -std=c++14
-OBJS = $(patsubst %c, %o, $(wildcard ci/coveralls/src/*.c))
-OBJS += $(patsubst %c, %o, $(wildcard ci/coveralls/test/*.c))
+PATH_PWD=$(shell pwd)
+OBJS = $(patsubst %c, %o, $(wildcard $(PATH_PWD)/ci/coveralls/src/*.c))
+OBJS += $(patsubst %c, %o, $(wildcard $(PATH_PWD)/ci/coveralls/test/*.c))
 
 CFLAGS += -fprofile-arcs -ftest-coverage
 CXXFLAGS += -fprofile-arcs -ftest-coverage
