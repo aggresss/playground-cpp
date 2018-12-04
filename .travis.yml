@@ -26,4 +26,4 @@ script:
   - ./test_all.out
 
 after_success:
-  - coveralls --include ci/coveralls/src/  --gcov-options '\-lp'
+  - coveralls --root ${PWD} --include ci/coveralls/src/  --gcov-options '\-lp'
