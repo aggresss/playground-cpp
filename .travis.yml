@@ -27,5 +27,6 @@ script:
   - ./test_all.out
 
 after_success:
+# note: coveralls.io need current path in repo top directory
   - cd -
   - coveralls --include ci/coveralls/src/  --gcov-options '\-lp'
