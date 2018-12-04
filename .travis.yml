@@ -28,4 +28,4 @@ script:
   - cd -
 
 after_success:
-  - coveralls --root ci/coveralls/test/ --exclude ci/coveralls/test/ --include ci/coveralls/src/  --gcov-options '\-lp'
+  - coveralls --root ci/coveralls/test/ --exclude ./ --include ../src/  --gcov-options '\-lp'
