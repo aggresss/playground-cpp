@@ -1,13 +1,18 @@
+os: linux
+
+dist: trusty
+
 language: c
 
 compiler: gcc
 
-#addons:
-#  apt:
-#    sources:
-#      - ubuntu-toolchain-r-test
-#    packages:
-#      - g++-6
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-6
+      - g++-6
 
 install:
   cd ci/travis && ./configure && make && make install
@@ -23,4 +28,4 @@ script:
   - cd -
 
 after_success:
-  - coveralls --exclude ci/coveralls/test/ --gcov-options '\-lp'
+  - coveralls --root ci/coveralls/test/ --exclude ci/coveralls/test/ --include ci/coveralls/src/  --gcov-options '\-lp'
