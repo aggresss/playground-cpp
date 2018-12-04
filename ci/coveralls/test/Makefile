@@ -1,8 +1,8 @@
 # Makefile for coveralls test
 CC = gcc
 CXX = g++
-CFLAGS = -g
-CXXFLAGS = -g -std=c++14
+CFLAGS = -O0 -g -fno-inline
+CXXFLAGS = -O0 -g -fno-inline -std=c++14
 OBJS = $(patsubst %c, %o, $(wildcard ../src/*.c))
 OBJS += $(patsubst %c, %o, $(wildcard *.c))
 HEADER = $(wildcard ../include/*.h)
