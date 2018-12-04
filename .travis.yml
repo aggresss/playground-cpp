@@ -1,6 +1,6 @@
 os: linux
 
-dist: xenail
+dist: xenial
 
 language: c
 
@@ -27,4 +27,4 @@ script:
   - ./test_all.out
 
 after_success:
-  - coveralls --exclude test/  --gcov-options '\-lp'
+  - coveralls --include src/  --gcov-options '\-lp'
