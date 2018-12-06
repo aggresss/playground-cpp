@@ -1,5 +1,15 @@
+# lib directory
+lib/
+
 # Prerequisites
 *.d
+
+# media file
+*.mp4
+*.flv
+*.mov
+*.ts
+*.m3u8
 
 # Compiled Object files
 *.slo
@@ -35,3 +45,5 @@
 *.gcov
 *.gcno
 *.gcda
+*.prof
+
