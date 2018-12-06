@@ -1,0 +1,26 @@
+# configure for cpputest compile
+reference: https://www.cnblogs.com/wang_yb/p/3999701.html#commentform
+
+PATH_REPO=`git rev-parse --show-toplevel`
+source ${PATH_REPO}/env.sh
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_CPPUTEST=$PATH_LIB/cpputest
+
+# cpputest
+if [ ! -d $PATH_CPPUTEST ]; then
+    #
+    down_load ${BASE_URL}/cpputest-3.8.tar.gz ${PATH_CPPUTEST}
+fi
+if [ ! -d $PATH_CPPUTEST/prefix ]; then
+    cd $PATH_CPPUTEST && \
+        ./autogen.sh && \
+        ./configure \
+            --enable-static \
+            --disable-shared \
+            --prefix=$PATH_CPPUTEST/prefix && \
+        make && make install
+fi
+
+
