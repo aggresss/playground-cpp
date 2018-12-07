@@ -27,3 +27,11 @@
  * @attention
  *
  */
+
+
+/** @brief 授权模式 */
+typedef enum _ENUM_TYPE {
+    ENUM_TYPE_1 = 0x0,       /**< note_xx */
+    ENUM_TYPE_2 = 0x1,       /**< note_yy */
+} ENUM_TYPE;
+
