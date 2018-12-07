@@ -6,8 +6,6 @@
  */
 
 
-
-
 /**
  * @brief function brief
  *
@@ -35,3 +33,9 @@ typedef enum _ENUM_TYPE {
     ENUM_TYPE_2 = 0x1,       /**< note_yy */
 } ENUM_TYPE;
 
+
+/** @name block_name */
+/**@{*/
+#define xxx  /**< note_xxx */
+#define yyy  /**< note_yyy */
+/**@}*/
