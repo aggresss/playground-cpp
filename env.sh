@@ -20,9 +20,12 @@ function down_load
         echo "Download $1 failed."
         return 2
     fi
-    if [ ! -d $2 ]; then
-        mkdir -p $2
+
+    if [ -d $2 ]; then
+        rm -rf $2
     fi
+    mkdir -p $2
+
     if [ $file_ext = "gz" -o $file_ext = "bz2" ]; then
         tar -vxf ${down_file} -C $2 --strip-components 1
         rm -rf ${down_file}
