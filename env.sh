@@ -12,7 +12,14 @@ function down_load
 {
     local down_file=`echo "$1" | awk -F "/" '{print $NF}'`
     local file_ext=${down_file##*.}
-    curl -OL $1
+    if [ $(curl -I -o /dev/null -s -w %{http_code} $1) != 200 ]; then
+        echo "Query $1 not exist."
+        return 1
+    fi
+    if ! curl -OL $1; then
+        echo "Download $1 failed."
+        return 2
+    fi
     if [ ! -d $2 ]; then
         mkdir -p $2
     fi
