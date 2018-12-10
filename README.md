@@ -26,6 +26,20 @@ load and run
 
 ---
 
+Some influential environment variables:
+ - CC          C compiler command
+ - CFLAGS      C compiler flags
+ - LDFLAGS     linker flags, e.g. -L\<lib dir\> if you have libraries in a<br>
+              nonstandard directory \<lib dir\>
+ - LIBS        libraries to pass to the linker, e.g. -l\<library\>
+ - CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I\<include dir\> if<br>
+              you have headers in a nonstandard directory <include dir>
+ - CPP         C preprocessor
+ - CXX         C++ compiler command
+ - CXXFLAGS    C++ compiler flags
+
+---
+
 apt-file list libc++-dev >> ~/temp.txt && vim ~/temp.txt => :%g!/.a$/d
 - libc++-dev: /usr/lib/x86_64-linux-gnu/libc++.a
 - libc++-dev: /usr/lib/x86_64-linux-gnu/libc++experimental.a
