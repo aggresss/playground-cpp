@@ -1,3 +1,5 @@
+<img src="icon.png" align="right" height="110"/>
+
 # playground-cpp
 
 [![GitHub license](https://img.shields.io/github/license/aggresss/playground-cpp.svg)](https://github.com/aggresss/playground-cpp/blob/master/LICENSE)
