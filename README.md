@@ -2,6 +2,7 @@
 
 # playground-cpp
 
+[![GitHub version](https://badge.fury.io/gh/aggresss%2Fplayground-cpp.svg)](https://badge.fury.io/gh/aggresss%2Fplayground-cpp)
 [![GitHub license](https://img.shields.io/github/license/aggresss/playground-cpp.svg)](https://github.com/aggresss/playground-cpp/blob/master/LICENSE)
 [![Build Status](https://www.travis-ci.org/aggresss/playground-cpp.svg?branch=master)](https://www.travis-ci.org/aggresss/playground-cpp)
 [![Coverage Status](https://coveralls.io/repos/github/aggresss/playground-cpp/badge.svg?branch=master)](https://coveralls.io/github/aggresss/playground-cpp?branch=master)
