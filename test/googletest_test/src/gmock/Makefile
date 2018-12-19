@@ -7,7 +7,7 @@ OBJS = $(patsubst %c, %o, $(wildcard *.c))
 OBJS += $(patsubst %cpp, %o, $(wildcard *.cpp))
 HEADER = $(wildcard ../include/*.h)
 
-PATH_LIB=$(shell cd ../lib && pwd)
+PATH_LIB=$(shell cd ../../lib && pwd)
 PATH_GOOGLETEST=$(PATH_LIB)/googletest
 PATH_GOOGLETEST_BUILD=$(PATH_GOOGLETEST)/build
 
@@ -20,7 +20,7 @@ LDFLAGS += -L$(PATH_GOOGLETEST_BUILD)/googlemock -l:libgmock.a
 LDFLAGS += -L$(PATH_GOOGLETEST_BUILD)/googlemock/gtest -l:libgtest.a
 LDFLAGS += -lpthread -ldl
 
-Target = googletest_test.out
+Target = gmock_test.out
 
 all: $(Target)
 
@@ -40,4 +40,4 @@ $(Target):$(OBJS)
 
 .PHONY:clean
 clean:
-	rm -rf *.o $(DEPS) $(Target)
+	rm -rf *.o *.out $(DEPS) $(Target)
