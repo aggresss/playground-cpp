@@ -7,14 +7,14 @@ OBJS = $(patsubst %c, %o, $(wildcard *.c))
 OBJS += $(patsubst %cpp, %o, $(wildcard *.cpp))
 HEADER = $(wildcard ../include/*.h)
 
-PATH_LIB=$(shell cd ../lib && pwd)
+PATH_LIB=$(shell cd ../../lib && pwd)
 PATH_GPERFTOOLS=$(PATH_LIB)/gperftools
 PATH_GPERFTOOLS_PREFIX=$(PATH_GPERFTOOLS)/prefix
 
 CFLAGS += -I$(PATH_GPERFTOOLS_PREFIX)/include
 CXXFLAGS += -I$(PATH_GPERFTOOLS_PREFIX)/include
 
-LDFLAGS += -L$(PATH_GPERFTOOLS_PREFIX)/lib -l:libprofiler.a
+LDFLAGS += -L$(PATH_GPERFTOOLS_PREFIX)/lib -l:libprofiler.a -l:libtcmalloc.a
 LDFLAGS += -lpthread -ldl
 
 Target = gperftools_test.out
@@ -37,4 +37,4 @@ $(Target):$(OBJS)
 
 .PHONY:clean
 clean:
-	rm -rf *.o $(DEPS) $(Target)
+	rm -rf *.o *.prof $(DEPS) $(Target)
