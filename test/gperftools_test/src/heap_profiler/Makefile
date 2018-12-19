@@ -17,7 +17,7 @@ CXXFLAGS += -I$(PATH_GPERFTOOLS_PREFIX)/include
 LDFLAGS += -L$(PATH_GPERFTOOLS_PREFIX)/lib -l:libprofiler.a -l:libtcmalloc.a
 LDFLAGS += -lpthread -ldl
 
-Target = gperftools_test.out
+Target = heap_profiler_test.out
 
 all: $(Target)
 
