@@ -39,5 +39,5 @@ $(Target):$(OBJS)
 
 .PHONY:clean
 clean:
-	rm -rf *.o *.out $(Target)
+	rm -rf *.o *.out $(Target) $(DEPS)
 

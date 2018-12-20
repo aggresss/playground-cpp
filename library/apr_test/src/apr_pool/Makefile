@@ -1,4 +1,4 @@
-# Makefile for xxxx
+# Makefile for apr
 CC = gcc
 CXX = g++
 CFLAGS = -g
@@ -10,16 +10,16 @@ HEADER = $(wildcard ../include/*.h)
 
 PATH_REPO=$(shell git rev-parse --show-toplevel)
 PATH_PWD=$(shell pwd)
-PATH_LIB=$(PATH_PWD)/../lib
-PATH_XXXX=$(PATH_LIB)/xxxx
-PATH_XXXX_PREFIX=$(PATH_XXXX)/prefix
+PATH_LIB=$(PATH_PWD)/../../lib
+PATH_APR=$(PATH_LIB)/apr
+PATH_APR_PREFIX=$(PATH_APR)/prefix
 
-CFLAGS += -I$(PATH_XXXX_PREFIX)/include
-CXXFLAGS += -I$(PATH_XXXX_PREFIX)/include
-LDFLAGS += -L$(PATH_XXXX_PREFIX)/lib -lxxxx
+CFLAGS += -I$(PATH_APR_PREFIX)/include/apr-1
+CXXFLAGS += -I$(PATH_APR_PREFIX)/include/apr-1
+LDFLAGS += -L$(PATH_APR_PREFIX)/lib -l:libapr-1.a
 LDFLAGS += -lpthread -ldl -lrt
 
-Target = xxxx_test.out
+Target = apr_pool_test.out
 
 all: $(Target)
 
@@ -39,5 +39,5 @@ $(Target):$(OBJS)
 
 .PHONY:clean
 clean:
-	rm -rf *.o $(Target)
+	rm -rf *.o *.out $(Target) $(DEPS)
 
