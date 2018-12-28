@@ -1,0 +1,40 @@
+# configure for wolfssl wolfMQTT compile
+
+PATH_REPO=`git rev-parse --show-toplevel`
+source ${PATH_REPO}/env.sh
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_WOLFSSL=$PATH_LIB/wolfssl
+PATH_WOLFMQTT=$PATH_LIB/wolfMQTT
+
+# wolfssl
+if [ ! -d $PATH_WOLFSSL ]; then
+    #
+    down_load ${BASE_URL}/wolfssl-3.15.3.tar.bz2 ${PATH_WOLFSSL}
+fi
+if [ ! -d $PATH_WOLFSSL/prefix ]; then
+    cd $PATH_WOLFSSL && \
+        ./configure \
+            --enable-static \
+            --disable-shared \
+            --prefix=$PATH_WOLFSSL/prefix && \
+        make && make install
+fi
+
+# wolfMQTT
+if [ ! -d $PATH_WOLFMQTT ]; then
+    #
+    down_load ${BASE_URL}/wolfMQTT-1.2.tar.bz2 ${PATH_WOLFMQTT}
+fi
+if [ ! -d $PATH_WOLFMQTT/prefix ]; then
+    cd $PATH_WOLFMQTT && \
+        ./configure \
+            --enable-static \
+            --disable-shared \
+            --prefix=$PATH_WOLFMQTT/prefix \
+            --with-lib-prefix=$PATH_WOLFSSL/prefix \
+    && \
+        make && make install
+fi
+
