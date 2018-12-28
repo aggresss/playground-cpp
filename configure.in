@@ -18,7 +18,8 @@ if [ ! -d $PATH_XXXX/prefix ]; then
         ./configure \
             --enable-static \
             --disable-shared \
-            --prefix=$PATH_XXXX/prefix && \
+            --prefix=$PATH_XXXX/prefix \
+            && \
         make && make install
 fi
 
@@ -32,7 +33,8 @@ if [ ! -d $PATH_YYYY/prefix ]; then
         ./configure \
             --enable-static \
             --disable-shared \
-            --prefix=$PATH_YYYY/prefix && \
+            --prefix=$PATH_YYYY/prefix \
+            && \
         make && make install
 fi
 
