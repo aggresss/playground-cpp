@@ -1,4 +1,4 @@
-# configure for wolfssl wolfMQTT compile
+# configure for wolfMQTT compile
 
 PATH_REPO=`git rev-parse --show-toplevel`
 source ${PATH_REPO}/env.sh
