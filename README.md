@@ -21,11 +21,15 @@ ref: https://gcc.gnu.org/onlinedocs/gcc/Environment-Variables.html
 
 pkg-config
   - PKG_CONFIG_PATH
-  
+
 ref: https://linux.die.net/man/1/pkg-config
 
 load and run
-- LD_LIBRARY_PATH
+
+  - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable during execution
+  - add LIBDIR to the 'LD_RUN_PATH' environment variable during linking
+  - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+  - have your system administrator add LIBDIR to '/etc/ld.so.conf'
 
 ---
 
