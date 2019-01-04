@@ -29,6 +29,7 @@ if [ ! -d $PATH_WOLFMQTT ]; then
 fi
 if [ ! -d $PATH_WOLFMQTT/prefix ]; then
     cd $PATH_WOLFMQTT && \
+        ./autogen.sh && \
         ./configure \
             --enable-static \
             --disable-shared \
