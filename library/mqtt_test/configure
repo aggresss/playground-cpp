@@ -25,7 +25,7 @@ fi
 # wolfMQTT
 if [ ! -d $PATH_WOLFMQTT ]; then
     #
-    down_load ${BASE_URL}/wolfMQTT-1.2.tar.bz2 ${PATH_WOLFMQTT}
+    down_load ${BASE_URL}/wolfMQTT-1.2.tar.gz ${PATH_WOLFMQTT}
 fi
 if [ ! -d $PATH_WOLFMQTT/prefix ]; then
     cd $PATH_WOLFMQTT && \
