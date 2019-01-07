@@ -36,6 +36,7 @@
 #define LOG_SUCCESS       0
 #define LOG_FAIL         -1
 
+#define LOG_LABEL "LABEL"
 #define LOG_OUTPUT_LVL LOG_LVL_DEBUG
 /**@}*/
 
@@ -44,7 +45,7 @@ void log_bin(size_t length, void *bin);
 
 #if LOG_OUTPUT_LVL >= LOG_LVL_ERROR
 #define log_error(fmt, args...) { \
-    fprintf(stdout, "[ LOG ][%ld][ERROR] FUNCTION:[%s] LINE:[%d] "fmt"\n", (long)time(NULL), __func__, __LINE__, ##args); \
+    fprintf(stdout, "[ %s ][%ld][ERROR] FUNCTION:[%s] LINE:[%d] "fmt"\n", LOG_LABEL, (long)time(NULL), __func__, __LINE__, ##args); \
 }
 #else
 #define log_error(fmt, args...) ((void)0)
@@ -52,21 +53,21 @@ void log_bin(size_t length, void *bin);
 
 #if LOG_OUTPUT_LVL >= LOG_LVL_WARN
 #define log_warn(fmt, args...) \
-    fprintf(stdout, "[ LOG ][%ld][WARN] "fmt"\n", (long)time(NULL), ##args);
+    fprintf(stdout, "[ %s ][%ld][WARN] "fmt"\n", LOG_LABEL, (long)time(NULL), ##args);
 #else
 #define log_warn(fmt, args...) ((void)0)
 #endif /* LOG_OUTPUT_LVL >= LOG_LVL_WARN */
 
 #if LOG_OUTPUT_LVL >= LOG_LVL_INFO
 #define log_info(fmt, args...) \
-    fprintf(stdout, "[ LOG ][%ld][INFO] "fmt"\n", (long)time(NULL), ##args);
+    fprintf(stdout, "[ %s ][%ld][INFO] "fmt"\n", LOG_LABEL, (long)time(NULL), ##args);
 #else
 #define log_info(fmt, args...) ((void)0)
 #endif /* LOG_OUTPUT_LVL >= LOG_LVL_INFO */
 
 #if LOG_OUTPUT_LVL >= LOG_LVL_DEBUG
 #define log_debug(fmt, args...) \
-    fprintf(stdout, "[ LOG ][%ld][DEBUG] FUNCTION:[%s] LINE:[%d] "fmt"\n", (long)time(NULL), __func__, __LINE__, ##args);
+    fprintf(stdout, "[ %s ][%ld][DEBUG] FUNCTION:[%s] LINE:[%d] "fmt"\n", LOG_LABEL, (long)time(NULL), __func__, __LINE__, ##args);
 #else
 #define log_debug(fmt, args...) ((void)0)
 #endif /* LOG_OUTPUT_LVL >= LOG_LVL_DEBUG */
