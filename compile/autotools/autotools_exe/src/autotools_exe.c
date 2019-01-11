@@ -1,6 +1,6 @@
 /*
  ============================================================================
- Name        : autotools_explore.c
+ Name        : autotools_exe.c
  Author      : Jagger Yu
  Version     :
  Copyright   : Your copyright notice
