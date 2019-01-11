@@ -89,3 +89,9 @@ musl-1.1.19 => ./configure --disable-shared
 - libxnet.a
 - musl-gcc.specs
 
+---
+
+autogen.sh
+bootstrap
+buildconf
+
