@@ -40,9 +40,6 @@
 #define LOG_OUTPUT_LVL LOG_LVL_DEBUG
 /**@}*/
 
-/* bin format print log */
-void log_bin(size_t length, void *bin);
-
 #if LOG_OUTPUT_LVL >= LOG_LVL_ERROR
 #define log_error(fmt, args...) { \
     fprintf(stdout, "[ %s ][%ld][ERROR] FUNCTION:[%s] LINE:[%d] "fmt"\n", LOG_LABEL, (long)time(NULL), __func__, __LINE__, ##args); \
@@ -81,20 +78,7 @@ void log_bin(size_t length, void *bin);
  * @param bin
  * @return void
  */
-void log_bin(size_t length, void *bin)
-{
-    unsigned char *temp = bin;
-    size_t i;
-    printf("length:%ld, bin: ", length);
-    for (i = 0; i < length; i++) {
-        if ((i % 8) == 0) {
-            printf("\n LINE%02ld: ", (i / 8));
-        }
-        printf("0x%02X ", *temp);
-        temp++;
-    }
-    printf("\n");
-}
+void log_bin(size_t length, void *bin);
 
 #endif /* __LOGGING_H__ */
 
