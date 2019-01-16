@@ -19,6 +19,6 @@ LT_INIT
 
 AC_CONFIG_FILES(Makefile
                 exampleProgram/Makefile
-                test/Makefile
+                libacamlttest/Makefile
                 include/Makefile)
 AC_OUTPUT

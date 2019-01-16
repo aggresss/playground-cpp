@@ -1,2 +1,2 @@
-SUBDIRS=test include exampleProgram
+SUBDIRS=libacamlttest include exampleProgram
 ACLOCAL_AMFLAGS=-I m4

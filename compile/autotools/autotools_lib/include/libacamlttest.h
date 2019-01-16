@@ -1,5 +1,5 @@
-#ifndef test_H
-#define test_H
+#ifndef libacamlttest_H
+#define libacamlttest_H
 
 #include "stdio.h"
 

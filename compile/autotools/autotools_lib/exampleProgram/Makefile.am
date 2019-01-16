@@ -21,10 +21,10 @@ ACLOCAL_AMFLAGS=-I ../m4
 exampleProgram_SOURCES= exampleProgram.c
 
 # Libraries for a.out
-exampleProgram_LDADD = $(top_srcdir)/test/test.la
+exampleProgram_LDADD = $(top_srcdir)/libacamlttest/libacamlttest.la
 
 # Linker options for a.out
-exampleProgram_LDFLAGS = -rpath `cd $(top_srcdir);pwd`/test/.libs
+exampleProgram_LDFLAGS = -rpath `cd $(top_srcdir);pwd`/libacamlttest/.libs
 
 # Compiler options for a.out
 exampleProgram_CPPFLAGS = -I$(top_srcdir)/include
