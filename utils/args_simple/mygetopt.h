@@ -6,7 +6,7 @@
  * Similar to getopt
  *
  * */
-int mygetopt(int argc, char** argv, const char* optstring);
+int mygetopt(int argc, const char** argv, const char* optstring);
 
 
 #endif

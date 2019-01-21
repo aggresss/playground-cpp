@@ -38,7 +38,7 @@ void my_show_usage(Ctx* ctx)
     printf("-i          Info" "\n");
 }
 
-int my_parse_args(Ctx* ctx, int argc, char** argv)
+int my_parse_args(Ctx* ctx, int argc, const char** argv)
 {
     int rc;
     char myoptstring[] = "?h:p:u:w:di";
@@ -86,7 +86,7 @@ int my_parse_args(Ctx* ctx, int argc, char** argv)
     return 0;
 }
 
-int main(int argc, char * argv[])
+int main(int argc, const char * argv[])
 {
     Ctx ctx;
     init_ctx(&ctx);
