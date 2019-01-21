@@ -10,10 +10,10 @@ extern int myoptind;
 extern char* myoptarg;
 
 typedef struct _Ctx {
-    char appname[MAX_ARG_LEN];
-    char username[MAX_ARG_LEN];
-    char password[MAX_ARG_LEN];
-    char host[MAX_ARG_LEN];
+    const char* appname;
+    const char* username;
+    const char* password;
+    const char* host;
     int port;
     bool info;
     bool debug;
@@ -49,7 +49,7 @@ int my_parse_args(Ctx* ctx, int argc, const char** argv)
             return -1;
 
         case 'h' :
-            strncpy(ctx->host, myoptarg, MAX_ARG_LEN);
+            ctx->host = myoptarg;
             break;
 
         case 'p' :
@@ -61,11 +61,11 @@ int my_parse_args(Ctx* ctx, int argc, const char** argv)
             break;
 
         case 'u':
-            strncpy(ctx->username, myoptarg, MAX_ARG_LEN);
+            ctx->username = myoptarg;
             break;
 
         case 'w':
-            strncpy(ctx->password, myoptarg, MAX_ARG_LEN);
+            ctx->password = myoptarg;
             break;
 
         case 'd':
@@ -90,7 +90,7 @@ int main(int argc, const char * argv[])
 {
     Ctx ctx;
     init_ctx(&ctx);
-    strncpy(ctx.appname, argv[0], MAX_ARG_LEN);
+    ctx.appname = argv[0];
     my_parse_args(&ctx, argc, argv);
     printf("==============================" "\n");
     printf("\n host: %s \n port: %d \n username: %s \n password: %s \n\n",
