@@ -8,7 +8,8 @@ ExternalProject_Add(external-wolfssl
             --disable-shared
             --enable-opensslextra
             --disable-debug
-            --prefix=${CMAKE_CURRENT_SOURCE_DIR}/wolfssl/output/${HOST}
+            --host=${TOOLCHAIN_PREFIX}
+            --prefix=${CMAKE_CURRENT_SOURCE_DIR}/wolfssl/output/${TOOLCHAIN_PREFIX}
         BUILD_COMMAND make
         BUILD_IN_SOURCE 1
         INSTALL_COMMAND make install
@@ -18,7 +19,9 @@ ExternalProject_Add(external-curl
         SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/curl
         CONFIGURE_COMMAND ./buildconf &&
             ./configure
-            --prefix=${CMAKE_CURRENT_SOURCE_DIR}/curl/output/${HOST}
+            --host=${TOOLCHAIN_PREFIX}
+            --prefix=${CMAKE_CURRENT_SOURCE_DIR}/curl/output/${TOOLCHAIN_PREFIX}
+            --with-wolfssl=${CMAKE_CURRENT_SOURCE_DIR}/wolfssl/output/${TOOLCHAIN_PREFIX}
             --enable-shared=no
             --without-zlib
             --without-libidn2
@@ -48,9 +51,7 @@ ExternalProject_Add(external-curl
             --disable-cookies
             --disable-crypto-auth
             --disable-tls-srp
-            --with-wolfssl=${CMAKE_CURRENT_SOURCE_DIR}/wolfssl/output/${HOST}
             --without-ssl
-            --host=${HOST}
         BUILD_COMMAND make
         BUILD_IN_SOURCE 1
         INSTALL_COMMAND make install
