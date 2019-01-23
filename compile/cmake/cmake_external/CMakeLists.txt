@@ -4,12 +4,13 @@ project (cmake_test)
 
 message("CMAKE_HOME_DIRECTORY is" ${CMAKE_HOME_DIRECTORY})
 
+execute_process(COMMAND ${CMAKE_C_COMPILER} -dumpmachine
+                OUTPUT_VARIABLE TOOLCHAIN_TRIPLET
+                OUTPUT_STRIP_TRAILING_WHITESPACE)
+
 add_custom_target(clean
         COMMAND echo "CLEAN CURL"
-        COMMAND cd ${CMAKE_HOME_DIRECTORY}/third_party/curl && git clean -dxf
-
         COMMAND echo "CLEAN WOLFSSL"
-        COMMAND cd ${CMAKE_HOME_DIRECTORY}/third_party/wolfssl && git clean -dxf
         )
 
 add_subdirectory(third_party)
