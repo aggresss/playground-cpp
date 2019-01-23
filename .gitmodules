@@ -1,8 +1,5 @@
 [submodule "dotfiles"]
 	path = third_party/dotfiles
 	url = https://github.com/aggresss/dotfiles.git
-	ignore = dirty
-[submodule "third_party/dotfiles"]
-	path = third_party/dotfiles
-	url = https://github.com/aggresss/dotfiles.git
 	branch = master
+	ignore = dirty
