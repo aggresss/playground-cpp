@@ -91,8 +91,3 @@ musl-1.1.19 => ./configure --disable-shared
 
 ---
 
-normal autotools bootstrap script name
-- autogen.sh
-- bootstrap
-- buildconf
-
