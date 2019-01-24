@@ -1,0 +1,4 @@
+
+# project(test)
+
+MESSAGE(STATUS "====> PROJECT_SOURCE_DIR dir: ${PROJECT_SOURCE_DIR}")
