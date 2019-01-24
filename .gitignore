@@ -1,6 +1,7 @@
 # lib directory
 lib/
 build*/
+output*/
 
 # Prerequisites
 *.d
