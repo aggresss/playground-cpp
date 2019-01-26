@@ -1,12 +1,25 @@
-dnl Process this file with autoconf to produce a configure script.
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
 
-AC_PREREQ(2.59)
-AC_INIT(autotools_exe, 1.0)
+AC_PREREQ([2.69])
+AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
 
+AM_INIT_AUTOMAKE()
 
-AC_CANONICAL_SYSTEM
+AC_CONFIG_SRCDIR([hello.c])
+AC_CONFIG_HEADERS([config.h])
 
+# Checks for programs.
 AC_PROG_CC
 
-AC_OUTPUT
+# Checks for libraries.
 
+# Checks for header files.
+
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
+
+AC_CONFIG_FILES([Makefile])
+
+AC_OUTPUT
