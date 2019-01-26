@@ -6,9 +6,6 @@ AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
 
 AM_INIT_AUTOMAKE()
 
-AC_CONFIG_SRCDIR([hello.c])
-AC_CONFIG_HEADERS([config.h])
-
 # Checks for programs.
 AC_PROG_CC
 
@@ -20,6 +17,9 @@ AC_PROG_CC
 
 # Checks for library functions.
 
+
+AC_CONFIG_SRCDIR([hello.c])
+AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile])
 
 AC_OUTPUT
