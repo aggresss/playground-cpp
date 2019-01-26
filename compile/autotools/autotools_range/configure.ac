@@ -18,8 +18,6 @@ AC_PROG_CC
 # Checks for library functions.
 
 
-AC_CONFIG_SRCDIR([hello.c])
-AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile])
 
 AC_OUTPUT
