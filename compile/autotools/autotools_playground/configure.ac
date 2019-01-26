@@ -23,9 +23,20 @@ AC_PROG_CC
 
 # Checks for library functions.
 
+# with arg test
+AC_ARG_WITH([argtest001],
+    [AS_HELP_STRING([--with-argtest001],
+        [Enable arg_test 001])],
+    [argtest001="yes"],
+    [])
+
+if test "x$argtest001" = "xyes"; then
+    AC_DEFINE(ARG_TEST001, 1, [Enable arg test 001])
+fi
+
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
 
 
 echo "======== see me ========"
-echo "# test on configure.ac" >> config.h
+
