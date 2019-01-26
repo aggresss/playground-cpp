@@ -9,6 +9,9 @@ AM_INIT_AUTOMAKE()
 AC_CONFIG_SRCDIR([hello.c])
 AC_CONFIG_HEADERS([config.h])
 
+AC_SUBST(VERSION_STRING, [v0.0.1])
+AC_CONFIG_FILES([version.h])
+
 # Checks for programs.
 AC_PROG_CC
 

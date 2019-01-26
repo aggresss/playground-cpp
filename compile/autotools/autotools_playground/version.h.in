@@ -1,0 +1,12 @@
+#pragma once
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define TEST_VERSION_STRING "@VERSION_STRING@"
+
+#ifdef __cplusplus
+}
+#endif
+
