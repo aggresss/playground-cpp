@@ -25,3 +25,7 @@ AC_PROG_CC
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
+
+
+echo "======== see me ========"
+echo "# test on configure.ac" >> config.h
