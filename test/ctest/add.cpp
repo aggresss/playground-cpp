@@ -4,7 +4,7 @@ int main(int argc, char *argv[])
 {
     if (argc != 3) {
         std::cout << "parameter error" << std::endl;
-        return -1;
+        return -2;
     }
 
     int a, b;
