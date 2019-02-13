@@ -24,7 +24,7 @@ void SetLogCallback(LogFunc f);
 void Log(int nLevel, char * pFmt, ...);
 
 #ifndef __FILE_NAME__
-#define __FILE_NAME__ __FILE__
+#define __FILE_NAME__ __BASE_FILE__
 #endif
 
 #define LogTrace(fmt,...) \
