@@ -23,20 +23,24 @@ void SetLogLevel(int nLevel);
 void SetLogCallback(LogFunc f);
 void Log(int nLevel, char * pFmt, ...);
 
+#ifndef __PROJECT__
+#define __PROJECT__
+#endif
+
 #ifndef __FILE_NAME__
 #define __FILE_NAME__ __BASE_FILE__
 #endif
 
 #define LogTrace(fmt,...) \
-        Log(LOG_LEVEL_TRACE, __FILE_NAME__ ":" __STR_LINE__ "[T]: " fmt "\n", ##__VA_ARGS__)
+        Log(LOG_LEVEL_TRACE, __PROJECT__ " [T] " __FILE_NAME__ ":" __STR_LINE__ " " fmt "\n", ##__VA_ARGS__)
 #define LogDebug(fmt,...) \
-        Log(LOG_LEVEL_DEBUG, __FILE_NAME__ ":" __STR_LINE__ "[D]: " fmt "\n", ##__VA_ARGS__)
+        Log(LOG_LEVEL_DEBUG, __PROJECT__ " [D] " __FILE_NAME__ ":" __STR_LINE__ " " fmt "\n", ##__VA_ARGS__)
 #define LogInfo(fmt,...) \
-        Log(LOG_LEVEL_INFO,  __FILE_NAME__ ":" __STR_LINE__ "[I]: " fmt "\n", ##__VA_ARGS__)
+        Log(LOG_LEVEL_INFO, __PROJECT__  " [I] " __FILE_NAME__ ":" __STR_LINE__ " " fmt "\n", ##__VA_ARGS__)
 #define LogWarn(fmt,...) \
-        Log(LOG_LEVEL_WARN,  __FILE_NAME__ ":" __STR_LINE__ "[W]: " fmt "\n", ##__VA_ARGS__)
+        Log(LOG_LEVEL_WARN, __PROJECT__  " [W] " __FILE_NAME__ ":" __STR_LINE__ " " fmt "\n", ##__VA_ARGS__)
 #define LogError(fmt,...) \
-        Log(LOG_LEVEL_ERROR, __FILE_NAME__ ":" __STR_LINE__ "[E]: " fmt "\n", ##__VA_ARGS__)
+        Log(LOG_LEVEL_ERROR, __PROJECT__ " [E] " __FILE_NAME__ ":" __STR_LINE__ " " fmt "\n", ##__VA_ARGS__)
 
 
 #endif
