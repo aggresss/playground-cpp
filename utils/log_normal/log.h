@@ -28,7 +28,7 @@ void Log(int nLevel, char * pFmt, ...);
 #endif
 
 #ifndef __FILE_NAME__
-#define __FILE_NAME__ __BASE_FILE__
+#define __FILE_NAME__ __FILE__
 #endif
 
 #define LogTrace(fmt,...) \
