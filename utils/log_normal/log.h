@@ -16,6 +16,10 @@
 
 #define MAX_LOG_LENGTH 512
 
+#ifndef DEFAULT_LOG_LEVEL
+#define DEFAULT_LOG_LEVEL LOG_LEVEL_TRACE
+#endif
+
 extern int nLogLevel;
 typedef void (*LogFunc)(int nLevel, char * pLog);
 

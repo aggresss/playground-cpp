@@ -1,6 +1,6 @@
 #include "log.h"
 
-int nLogLevel = LOG_LEVEL_INFO;
+int nLogLevel = DEFAULT_LOG_LEVEL;
 LogFunc logFunc = NULL;
 
 void SetLogCallback(LogFunc f)

@@ -3,7 +3,7 @@
 
 int main()
 {
-    SetLogLevel(LOG_LEVEL_TRACE);
+    //SetLogLevel(LOG_LEVEL_TRACE);
     LogTrace("test trace");
     LogDebug("test debug");
     LogInfo("test info :%s", "args_test");
