@@ -12,6 +12,9 @@ if (VALGRIND)
     message(STATUS "valgrind: ${VALGRIND}")
 endif()
 
+set(CURRENT_HOME $ENV{HOME})
+message(STATUS "HOME: ${CURRENT_HOME}")
+
 add_custom_target(custom
     COMMAND echo "TEST CUSTOM TARGET"
     )
@@ -19,7 +22,7 @@ add_custom_target(custom
 option(WITH_OPTION "TEST OPTION" ON)
 
 if (DEFINED $ENV{HOME})
-    message("WITH_OPTION equ ON")
+    message(STATUS "WITH_OPTION equ ON")
 endif()
 
 add_subdirectory(test)
