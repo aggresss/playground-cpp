@@ -25,7 +25,7 @@ all : $(TARGET)
 
 objs : $(OBJS)
 
-rebuild: veryclean all
+rebuild: clean all
 
 clean :
 	rm -fr *.so
