@@ -1,0 +1,25 @@
+# configure for glibc compile
+
+PATH_REPO=`git rev-parse --show-toplevel`
+source ${PATH_REPO}/env.sh
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_GLIBC=$PATH_LIB/glibc
+
+
+# libghttp
+if [ ! -d $PATH_GLIBC ]; then
+    # http://ftp.gnu.org/gnu/libc/glibc-2.28.tar.gz
+    down_load ${BASE_URL}/glibc-2.28.tar.bz2 ${PATH_GLIBC}
+fi
+if [ ! -d $PATH_GLIBC/build/prefix ]; then
+    cd $PATH_GLIBC
+    mkdir -p build && cd build && \
+        ../configure \
+            --enable-static-nss \
+            --disable-sanity-checks \
+            --prefix=`pwd`/prefix && \
+        make && make install
+fi
+
