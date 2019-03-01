@@ -1,5 +1,4 @@
-// generate by command: gcc -v -E - < /dev/null
-
+// gcc -v -E - < /dev/null
 Using built-in specs.
 COLLECT_GCC=gcc
 OFFLOAD_TARGET_NAMES=nvptx-none
