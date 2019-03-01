@@ -1,0 +1,347 @@
+            <macro><name>__SSP_STRONG__</name><value>3</value></macro>
+            <macro><name>__DBL_MIN_EXP__</name><value>(-1021)</value></macro>
+            <macro><name>__FLT32X_MAX_EXP__</name><value>1024</value></macro>
+            <macro><name>__UINT_LEAST16_MAX__</name><value>0xffff</value></macro>
+            <macro><name>__ATOMIC_ACQUIRE</name><value>2</value></macro>
+            <macro><name>__FLT128_MAX_10_EXP__</name><value>4932</value></macro>
+            <macro><name>__FLT_MIN__</name><value>1.17549435082228750796873653722224568e-38F</value></macro>
+            <macro><name>__GCC_IEC_559_COMPLEX</name><value>2</value></macro>
+            <macro><name>__UINT_LEAST8_TYPE__</name><value>unsigned char</value></macro>
+            <macro><name>__SIZEOF_FLOAT80__</name><value>16</value></macro>
+            <macro><name>__INTMAX_C(c)</name><value>c ## L</value></macro>
+            <macro><name>__CHAR_BIT__</name><value>8</value></macro>
+            <macro><name>__UINT8_MAX__</name><value>0xff</value></macro>
+            <macro><name>__WINT_MAX__</name><value>0xffffffffU</value></macro>
+            <macro><name>__FLT32_MIN_EXP__</name><value>(-125)</value></macro>
+            <macro><name>__ORDER_LITTLE_ENDIAN__</name><value>1234</value></macro>
+            <macro><name>__SIZE_MAX__</name><value>0xffffffffffffffffUL</value></macro>
+            <macro><name>__WCHAR_MAX__</name><value>0x7fffffff</value></macro>
+            <macro><name>__GCC_HAVE_SYNC_COMPARE_AND_SWAP_1</name><value>1</value></macro>
+            <macro><name>__GCC_HAVE_SYNC_COMPARE_AND_SWAP_2</name><value>1</value></macro>
+            <macro><name>__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4</name><value>1</value></macro>
+            <macro><name>__DBL_DENORM_MIN__</name><value>((double)4.94065645841246544176568792868221372e-324L)</value></macro>
+            <macro><name>__GCC_HAVE_SYNC_COMPARE_AND_SWAP_8</name><value>1</value></macro>
+            <macro><name>__GCC_ATOMIC_CHAR_LOCK_FREE</name><value>2</value></macro>
+            <macro><name>__GCC_IEC_559</name><value>2</value></macro>
+            <macro><name>__FLT32X_DECIMAL_DIG__</name><value>17</value></macro>
+            <macro><name>__FLT_EVAL_METHOD__</name><value>0</value></macro>
+            <macro><name>__unix__</name><value>1</value></macro>
+            <macro><name>__FLT64_DECIMAL_DIG__</name><value>17</value></macro>
+            <macro><name>__GCC_ATOMIC_CHAR32_T_LOCK_FREE</name><value>2</value></macro>
+            <macro><name>__x86_64</name><value>1</value></macro>
+            <macro><name>__UINT_FAST64_MAX__</name><value>0xffffffffffffffffUL</value></macro>
+            <macro><name>__SIG_ATOMIC_TYPE__</name><value>int</value></macro>
+            <macro><name>__DBL_MIN_10_EXP__</name><value>(-307)</value></macro>
+            <macro><name>__FINITE_MATH_ONLY__</name><value>0</value></macro>
+            <macro><name>__GNUC_PATCHLEVEL__</name><value>0</value></macro>
+            <macro><name>__FLT32_HAS_DENORM__</name><value>1</value></macro>
+            <macro><name>__UINT_FAST8_MAX__</name><value>0xff</value></macro>
+            <macro><name>__has_include(STR)</name><value>__has_include__(STR)</value></macro>
+            <macro><name>__DEC64_MAX_EXP__</name><value>385</value></macro>
+            <macro><name>__INT8_C(c)</name><value>c</value></macro>
+            <macro><name>__INT_LEAST8_WIDTH__</name><value>8</value></macro>
+            <macro><name>__UINT_LEAST64_MAX__</name><value>0xffffffffffffffffUL</value></macro>
+            <macro><name>__SHRT_MAX__</name><value>0x7fff</value></macro>
+            <macro><name>__LDBL_MAX__</name><value>1.18973149535723176502126385303097021e+4932L</value></macro>
+            <macro><name>__FLT64X_MAX_10_EXP__</name><value>4932</value></macro>
+            <macro><name>__UINT_LEAST8_MAX__</name><value>0xff</value></macro>
+            <macro><name>__GCC_ATOMIC_BOOL_LOCK_FREE</name><value>2</value></macro>
+            <macro><name>__FLT128_DENORM_MIN__</name><value>6.47517511943802511092443895822764655e-4966F128</value></macro>
+            <macro><name>__UINTMAX_TYPE__</name><value>long unsigned int</value></macro>
+            <macro><name>__linux</name><value>1</value></macro>
+            <macro><name>__DEC32_EPSILON__</name><value>1E-6DF</value></macro>
+            <macro><name>__FLT_EVAL_METHOD_TS_18661_3__</name><value>0</value></macro>
+            <macro><name>__unix</name><value>1</value></macro>
+            <macro><name>__UINT32_MAX__</name><value>0xffffffffU</value></macro>
+            <macro><name>__LDBL_MAX_EXP__</name><value>16384</value></macro>
+            <macro><name>__FLT128_MIN_EXP__</name><value>(-16381)</value></macro>
+            <macro><name>__WINT_MIN__</name><value>0U</value></macro>
+            <macro><name>__linux__</name><value>1</value></macro>
+            <macro><name>__FLT128_MIN_10_EXP__</name><value>(-4931)</value></macro>
+            <macro><name>__INT_LEAST16_WIDTH__</name><value>16</value></macro>
+            <macro><name>__SCHAR_MAX__</name><value>0x7f</value></macro>
+            <macro><name>__FLT128_MANT_DIG__</name><value>113</value></macro>
+            <macro><name>__WCHAR_MIN__</name><value>(-__WCHAR_MAX__ - 1)</value></macro>
+            <macro><name>__INT64_C(c)</name><value>c ## L</value></macro>
+            <macro><name>__DBL_DIG__</name><value>15</value></macro>
+            <macro><name>__GCC_ATOMIC_POINTER_LOCK_FREE</name><value>2</value></macro>
+            <macro><name>__FLT64X_MANT_DIG__</name><value>64</value></macro>
+            <macro><name>__SIZEOF_INT__</name><value>4</value></macro>
+            <macro><name>__SIZEOF_POINTER__</name><value>8</value></macro>
+            <macro><name>__USER_LABEL_PREFIX__</name><value></value></macro>
+            <macro><name>__FLT64X_EPSILON__</name><value>1.08420217248550443400745280086994171e-19F64x</value></macro>
+            <macro><name>__STDC_HOSTED__</name><value>1</value></macro>
+            <macro><name>__LDBL_HAS_INFINITY__</name><value>1</value></macro>
+            <macro><name>__FLT32_DIG__</name><value>6</value></macro>
+            <macro><name>__FLT_EPSILON__</name><value>1.19209289550781250000000000000000000e-7F</value></macro>
+            <macro><name>__SHRT_WIDTH__</name><value>16</value></macro>
+            <macro><name>__LDBL_MIN__</name><value>3.36210314311209350626267781732175260e-4932L</value></macro>
+            <macro><name>__STDC_UTF_16__</name><value>1</value></macro>
+            <macro><name>__DEC32_MAX__</name><value>9.999999E96DF</value></macro>
+            <macro><name>__FLT64X_DENORM_MIN__</name><value>3.64519953188247460252840593361941982e-4951F64x</value></macro>
+            <macro><name>__FLT32X_HAS_INFINITY__</name><value>1</value></macro>
+            <macro><name>__INT32_MAX__</name><value>0x7fffffff</value></macro>
+            <macro><name>__INT_WIDTH__</name><value>32</value></macro>
+            <macro><name>__SIZEOF_LONG__</name><value>8</value></macro>
+            <macro><name>__STDC_IEC_559__</name><value>1</value></macro>
+            <macro><name>__STDC_ISO_10646__</name><value>201706L</value></macro>
+            <macro><name>__UINT16_C(c)</name><value>c</value></macro>
+            <macro><name>__PTRDIFF_WIDTH__</name><value>64</value></macro>
+            <macro><name>__DECIMAL_DIG__</name><value>21</value></macro>
+            <macro><name>__FLT64_EPSILON__</name><value>2.22044604925031308084726333618164062e-16F64</value></macro>
+            <macro><name>__gnu_linux__</name><value>1</value></macro>
+            <macro><name>__INTMAX_WIDTH__</name><value>64</value></macro>
+            <macro><name>__has_include_next(STR)</name><value>__has_include_next__(STR)</value></macro>
+            <macro><name>__FLT64X_MIN_10_EXP__</name><value>(-4931)</value></macro>
+            <macro><name>__LDBL_HAS_QUIET_NAN__</name><value>1</value></macro>
+            <macro><name>__FLT64_MANT_DIG__</name><value>53</value></macro>
+            <macro><name>__GNUC__</name><value>7</value></macro>
+            <macro><name>__pie__</name><value>2</value></macro>
+            <macro><name>__MMX__</name><value>1</value></macro>
+            <macro><name>__FLT_HAS_DENORM__</name><value>1</value></macro>
+            <macro><name>__SIZEOF_LONG_DOUBLE__</name><value>16</value></macro>
+            <macro><name>__BIGGEST_ALIGNMENT__</name><value>16</value></macro>
+            <macro><name>__FLT64_MAX_10_EXP__</name><value>308</value></macro>
+            <macro><name>__DBL_MAX__</name><value>((double)1.79769313486231570814527423731704357e+308L)</value></macro>
+            <macro><name>__INT_FAST32_MAX__</name><value>0x7fffffffffffffffL</value></macro>
+            <macro><name>__DBL_HAS_INFINITY__</name><value>1</value></macro>
+            <macro><name>__DEC32_MIN_EXP__</name><value>(-94)</value></macro>
+            <macro><name>__INTPTR_WIDTH__</name><value>64</value></macro>
+            <macro><name>__FLT32X_HAS_DENORM__</name><value>1</value></macro>
+            <macro><name>__INT_FAST16_TYPE__</name><value>long int</value></macro>
+            <macro><name>__LDBL_HAS_DENORM__</name><value>1</value></macro>
+            <macro><name>__FLT128_HAS_INFINITY__</name><value>1</value></macro>
+            <macro><name>__DEC128_MAX__</name><value>9.999999999999999999999999999999999E6144DL</value></macro>
+            <macro><name>__INT_LEAST32_MAX__</name><value>0x7fffffff</value></macro>
+            <macro><name>__DEC32_MIN__</name><value>1E-95DF</value></macro>
+            <macro><name>__DBL_MAX_EXP__</name><value>1024</value></macro>
+            <macro><name>__WCHAR_WIDTH__</name><value>32</value></macro>
+            <macro><name>__FLT32_MAX__</name><value>3.40282346638528859811704183484516925e+38F32</value></macro>
+            <macro><name>__DEC128_EPSILON__</name><value>1E-33DL</value></macro>
+            <macro><name>__SSE2_MATH__</name><value>1</value></macro>
+            <macro><name>__ATOMIC_HLE_RELEASE</name><value>131072</value></macro>
+            <macro><name>__PTRDIFF_MAX__</name><value>0x7fffffffffffffffL</value></macro>
+            <macro><name>__amd64</name><value>1</value></macro>
+            <macro><name>__STDC_NO_THREADS__</name><value>1</value></macro>
+            <macro><name>__ATOMIC_HLE_ACQUIRE</name><value>65536</value></macro>
+            <macro><name>__FLT32_HAS_QUIET_NAN__</name><value>1</value></macro>
+            <macro><name>__LONG_LONG_MAX__</name><value>0x7fffffffffffffffLL</value></macro>
+            <macro><name>__SIZEOF_SIZE_T__</name><value>8</value></macro>
+            <macro><name>__FLT64X_MIN_EXP__</name><value>(-16381)</value></macro>
+            <macro><name>__SIZEOF_WINT_T__</name><value>4</value></macro>
+            <macro><name>__LONG_LONG_WIDTH__</name><value>64</value></macro>
+            <macro><name>__FLT32_MAX_EXP__</name><value>128</value></macro>
+            <macro><name>__GCC_HAVE_DWARF2_CFI_ASM</name><value>1</value></macro>
+            <macro><name>__GXX_ABI_VERSION</name><value>1011</value></macro>
+            <macro><name>__FLT_MIN_EXP__</name><value>(-125)</value></macro>
+            <macro><name>__FLT64X_HAS_QUIET_NAN__</name><value>1</value></macro>
+            <macro><name>__INT_FAST64_TYPE__</name><value>long int</value></macro>
+            <macro><name>__FLT64_DENORM_MIN__</name><value>4.94065645841246544176568792868221372e-324F64</value></macro>
+            <macro><name>__DBL_MIN__</name><value>((double)2.22507385850720138309023271733240406e-308L)</value></macro>
+            <macro><name>__PIE__</name><value>2</value></macro>
+            <macro><name>__LP64__</name><value>1</value></macro>
+            <macro><name>__FLT32X_EPSILON__</name><value>2.22044604925031308084726333618164062e-16F32x</value></macro>
+            <macro><name>__DECIMAL_BID_FORMAT__</name><value>1</value></macro>
+            <macro><name>__FLT64_MIN_EXP__</name><value>(-1021)</value></macro>
+            <macro><name>__FLT64_MIN_10_EXP__</name><value>(-307)</value></macro>
+            <macro><name>__FLT64X_DECIMAL_DIG__</name><value>21</value></macro>
+            <macro><name>__DEC128_MIN__</name><value>1E-6143DL</value></macro>
+            <macro><name>__REGISTER_PREFIX__</name><value></value></macro>
+            <macro><name>__UINT16_MAX__</name><value>0xffff</value></macro>
+            <macro><name>__DBL_HAS_DENORM__</name><value>1</value></macro>
+            <macro><name>__FLT32_MIN__</name><value>1.17549435082228750796873653722224568e-38F32</value></macro>
+            <macro><name>__UINT8_TYPE__</name><value>unsigned char</value></macro>
+            <macro><name>__NO_INLINE__</name><value>1</value></macro>
+            <macro><name>__FLT_MANT_DIG__</name><value>24</value></macro>
+            <macro><name>__LDBL_DECIMAL_DIG__</name><value>21</value></macro>
+            <macro><name>__VERSION__</name><value>"7.3.0"</value></macro>
+            <macro><name>__UINT64_C(c)</name><value>c ## UL</value></macro>
+            <macro><name>_STDC_PREDEF_H</name><value>1</value></macro>
+            <macro><name>__GCC_ATOMIC_INT_LOCK_FREE</name><value>2</value></macro>
+            <macro><name>__FLT128_MAX_EXP__</name><value>16384</value></macro>
+            <macro><name>__FLT32_MANT_DIG__</name><value>24</value></macro>
+            <macro><name>__FLOAT_WORD_ORDER__</name><value>__ORDER_LITTLE_ENDIAN__</value></macro>
+            <macro><name>__STDC_IEC_559_COMPLEX__</name><value>1</value></macro>
+            <macro><name>__FLT128_HAS_DENORM__</name><value>1</value></macro>
+            <macro><name>__FLT128_DIG__</name><value>33</value></macro>
+            <macro><name>__SCHAR_WIDTH__</name><value>8</value></macro>
+            <macro><name>__INT32_C(c)</name><value>c</value></macro>
+            <macro><name>__DEC64_EPSILON__</name><value>1E-15DD</value></macro>
+            <macro><name>__ORDER_PDP_ENDIAN__</name><value>3412</value></macro>
+            <macro><name>__DEC128_MIN_EXP__</name><value>(-6142)</value></macro>
+            <macro><name>__FLT32_MAX_10_EXP__</name><value>38</value></macro>
+            <macro><name>__INT_FAST32_TYPE__</name><value>long int</value></macro>
+            <macro><name>__UINT_LEAST16_TYPE__</name><value>short unsigned int</value></macro>
+            <macro><name>__FLT64X_HAS_INFINITY__</name><value>1</value></macro>
+            <macro><name>unix</name><value>1</value></macro>
+            <macro><name>__INT16_MAX__</name><value>0x7fff</value></macro>
+            <macro><name>__SIZE_TYPE__</name><value>long unsigned int</value></macro>
+            <macro><name>__UINT64_MAX__</name><value>0xffffffffffffffffUL</value></macro>
+            <macro><name>__FLT64X_DIG__</name><value>18</value></macro>
+            <macro><name>__INT8_TYPE__</name><value>signed char</value></macro>
+            <macro><name>__ELF__</name><value>1</value></macro>
+            <macro><name>__GCC_ASM_FLAG_OUTPUTS__</name><value>1</value></macro>
+            <macro><name>__FLT_RADIX__</name><value>2</value></macro>
+            <macro><name>__INT_LEAST16_TYPE__</name><value>short int</value></macro>
+            <macro><name>__LDBL_EPSILON__</name><value>1.08420217248550443400745280086994171e-19L</value></macro>
+            <macro><name>__UINTMAX_C(c)</name><value>c ## UL</value></macro>
+            <macro><name>__SSE_MATH__</name><value>1</value></macro>
+            <macro><name>__k8</name><value>1</value></macro>
+            <macro><name>__SIG_ATOMIC_MAX__</name><value>0x7fffffff</value></macro>
+            <macro><name>__GCC_ATOMIC_WCHAR_T_LOCK_FREE</name><value>2</value></macro>
+            <macro><name>__SIZEOF_PTRDIFF_T__</name><value>8</value></macro>
+            <macro><name>__FLT32X_MANT_DIG__</name><value>53</value></macro>
+            <macro><name>__x86_64__</name><value>1</value></macro>
+            <macro><name>__FLT32X_MIN_EXP__</name><value>(-1021)</value></macro>
+            <macro><name>__DEC32_SUBNORMAL_MIN__</name><value>0.000001E-95DF</value></macro>
+            <macro><name>__INT_FAST16_MAX__</name><value>0x7fffffffffffffffL</value></macro>
+            <macro><name>__FLT64_DIG__</name><value>15</value></macro>
+            <macro><name>__UINT_FAST32_MAX__</name><value>0xffffffffffffffffUL</value></macro>
+            <macro><name>__UINT_LEAST64_TYPE__</name><value>long unsigned int</value></macro>
+            <macro><name>__FLT_HAS_QUIET_NAN__</name><value>1</value></macro>
+            <macro><name>__FLT_MAX_10_EXP__</name><value>38</value></macro>
+            <macro><name>__LONG_MAX__</name><value>0x7fffffffffffffffL</value></macro>
+            <macro><name>__FLT64X_HAS_DENORM__</name><value>1</value></macro>
+            <macro><name>__DEC128_SUBNORMAL_MIN__</name><value>0.000000000000000000000000000000001E-6143DL</value></macro>
+            <macro><name>__FLT_HAS_INFINITY__</name><value>1</value></macro>
+            <macro><name>__UINT_FAST16_TYPE__</name><value>long unsigned int</value></macro>
+            <macro><name>__DEC64_MAX__</name><value>9.999999999999999E384DD</value></macro>
+            <macro><name>__INT_FAST32_WIDTH__</name><value>64</value></macro>
+            <macro><name>__CHAR16_TYPE__</name><value>short unsigned int</value></macro>
+            <macro><name>__PRAGMA_REDEFINE_EXTNAME</name><value>1</value></macro>
+            <macro><name>__SIZE_WIDTH__</name><value>64</value></macro>
+            <macro><name>__SEG_FS</name><value>1</value></macro>
+            <macro><name>__INT_LEAST16_MAX__</name><value>0x7fff</value></macro>
+            <macro><name>__DEC64_MANT_DIG__</name><value>16</value></macro>
+            <macro><name>__INT64_MAX__</name><value>0x7fffffffffffffffL</value></macro>
+            <macro><name>__UINT_LEAST32_MAX__</name><value>0xffffffffU</value></macro>
+            <macro><name>__SEG_GS</name><value>1</value></macro>
+            <macro><name>__FLT32_DENORM_MIN__</name><value>1.40129846432481707092372958328991613e-45F32</value></macro>
+            <macro><name>__GCC_ATOMIC_LONG_LOCK_FREE</name><value>2</value></macro>
+            <macro><name>__SIG_ATOMIC_WIDTH__</name><value>32</value></macro>
+            <macro><name>__INT_LEAST64_TYPE__</name><value>long int</value></macro>
+            <macro><name>__INT16_TYPE__</name><value>short int</value></macro>
+            <macro><name>__INT_LEAST8_TYPE__</name><value>signed char</value></macro>
+            <macro><name>__STDC_VERSION__</name><value>201112L</value></macro>
+            <macro><name>__DEC32_MAX_EXP__</name><value>97</value></macro>
+            <macro><name>__INT_FAST8_MAX__</name><value>0x7f</value></macro>
+            <macro><name>__FLT128_MAX__</name><value>1.18973149535723176508575932662800702e+4932F128</value></macro>
+            <macro><name>__INTPTR_MAX__</name><value>0x7fffffffffffffffL</value></macro>
+            <macro><name>linux</name><value>1</value></macro>
+            <macro><name>__FLT64_HAS_QUIET_NAN__</name><value>1</value></macro>
+            <macro><name>__FLT32_MIN_10_EXP__</name><value>(-37)</value></macro>
+            <macro><name>__SSE2__</name><value>1</value></macro>
+            <macro><name>__FLT32X_DIG__</name><value>15</value></macro>
+            <macro><name>__LDBL_MANT_DIG__</name><value>64</value></macro>
+            <macro><name>__DBL_HAS_QUIET_NAN__</name><value>1</value></macro>
+            <macro><name>__FLT64_HAS_INFINITY__</name><value>1</value></macro>
+            <macro><name>__FLT64X_MAX__</name><value>1.18973149535723176502126385303097021e+4932F64x</value></macro>
+            <macro><name>__SIG_ATOMIC_MIN__</name><value>(-__SIG_ATOMIC_MAX__ - 1)</value></macro>
+            <macro><name>__code_model_small__</name><value>1</value></macro>
+            <macro><name>__k8__</name><value>1</value></macro>
+            <macro><name>__INTPTR_TYPE__</name><value>long int</value></macro>
+            <macro><name>__UINT16_TYPE__</name><value>short unsigned int</value></macro>
+            <macro><name>__WCHAR_TYPE__</name><value>int</value></macro>
+            <macro><name>__SIZEOF_FLOAT__</name><value>4</value></macro>
+            <macro><name>__pic__</name><value>2</value></macro>
+            <macro><name>__UINTPTR_MAX__</name><value>0xffffffffffffffffUL</value></macro>
+            <macro><name>__INT_FAST64_WIDTH__</name><value>64</value></macro>
+            <macro><name>__DEC64_MIN_EXP__</name><value>(-382)</value></macro>
+            <macro><name>__FLT32_DECIMAL_DIG__</name><value>9</value></macro>
+            <macro><name>__INT_FAST64_MAX__</name><value>0x7fffffffffffffffL</value></macro>
+            <macro><name>__GCC_ATOMIC_TEST_AND_SET_TRUEVAL</name><value>1</value></macro>
+            <macro><name>__FLT_DIG__</name><value>6</value></macro>
+            <macro><name>__FLT32_HAS_INFINITY__</name><value>1</value></macro>
+            <macro><name>__FLT64X_MAX_EXP__</name><value>16384</value></macro>
+            <macro><name>__UINT_FAST64_TYPE__</name><value>long unsigned int</value></macro>
+            <macro><name>__INT_MAX__</name><value>0x7fffffff</value></macro>
+            <macro><name>__amd64__</name><value>1</value></macro>
+            <macro><name>__INT64_TYPE__</name><value>long int</value></macro>
+            <macro><name>__FLT_MAX_EXP__</name><value>128</value></macro>
+            <macro><name>__ORDER_BIG_ENDIAN__</name><value>4321</value></macro>
+            <macro><name>__DBL_MANT_DIG__</name><value>53</value></macro>
+            <macro><name>__SIZEOF_FLOAT128__</name><value>16</value></macro>
+            <macro><name>__INT_LEAST64_MAX__</name><value>0x7fffffffffffffffL</value></macro>
+            <macro><name>__GCC_ATOMIC_CHAR16_T_LOCK_FREE</name><value>2</value></macro>
+            <macro><name>__DEC64_MIN__</name><value>1E-383DD</value></macro>
+            <macro><name>__WINT_TYPE__</name><value>unsigned int</value></macro>
+            <macro><name>__UINT_LEAST32_TYPE__</name><value>unsigned int</value></macro>
+            <macro><name>__SIZEOF_SHORT__</name><value>2</value></macro>
+            <macro><name>__SSE__</name><value>1</value></macro>
+            <macro><name>__LDBL_MIN_EXP__</name><value>(-16381)</value></macro>
+            <macro><name>__FLT64_MAX__</name><value>1.79769313486231570814527423731704357e+308F64</value></macro>
+            <macro><name>__WINT_WIDTH__</name><value>32</value></macro>
+            <macro><name>__INT_LEAST8_MAX__</name><value>0x7f</value></macro>
+            <macro><name>__FLT32X_MAX_10_EXP__</name><value>308</value></macro>
+            <macro><name>__SIZEOF_INT128__</name><value>16</value></macro>
+            <macro><name>__LDBL_MAX_10_EXP__</name><value>4932</value></macro>
+            <macro><name>__ATOMIC_RELAXED</name><value>0</value></macro>
+            <macro><name>__DBL_EPSILON__</name><value>((double)2.22044604925031308084726333618164062e-16L)</value></macro>
+            <macro><name>__FLT128_MIN__</name><value>3.36210314311209350626267781732175260e-4932F128</value></macro>
+            <macro><name>_LP64</name><value>1</value></macro>
+            <macro><name>__UINT8_C(c)</name><value>c</value></macro>
+            <macro><name>__FLT64_MAX_EXP__</name><value>1024</value></macro>
+            <macro><name>__INT_LEAST32_TYPE__</name><value>int</value></macro>
+            <macro><name>__SIZEOF_WCHAR_T__</name><value>4</value></macro>
+            <macro><name>__UINT64_TYPE__</name><value>long unsigned int</value></macro>
+            <macro><name>__FLT128_HAS_QUIET_NAN__</name><value>1</value></macro>
+            <macro><name>__INT_FAST8_TYPE__</name><value>signed char</value></macro>
+            <macro><name>__FLT64X_MIN__</name><value>3.36210314311209350626267781732175260e-4932F64x</value></macro>
+            <macro><name>__GNUC_STDC_INLINE__</name><value>1</value></macro>
+            <macro><name>__FLT64_HAS_DENORM__</name><value>1</value></macro>
+            <macro><name>__FLT32_EPSILON__</name><value>1.19209289550781250000000000000000000e-7F32</value></macro>
+            <macro><name>__DBL_DECIMAL_DIG__</name><value>17</value></macro>
+            <macro><name>__STDC_UTF_32__</name><value>1</value></macro>
+            <macro><name>__INT_FAST8_WIDTH__</name><value>8</value></macro>
+            <macro><name>__FXSR__</name><value>1</value></macro>
+            <macro><name>__DEC_EVAL_METHOD__</name><value>2</value></macro>
+            <macro><name>__FLT32X_MAX__</name><value>1.79769313486231570814527423731704357e+308F32x</value></macro>
+            <macro><name>__UINT32_C(c)</name><value>c ## U</value></macro>
+            <macro><name>__INTMAX_MAX__</name><value>0x7fffffffffffffffL</value></macro>
+            <macro><name>__BYTE_ORDER__</name><value>__ORDER_LITTLE_ENDIAN__</value></macro>
+            <macro><name>__FLT_DENORM_MIN__</name><value>1.40129846432481707092372958328991613e-45F</value></macro>
+            <macro><name>__INT8_MAX__</name><value>0x7f</value></macro>
+            <macro><name>__LONG_WIDTH__</name><value>64</value></macro>
+            <macro><name>__PIC__</name><value>2</value></macro>
+            <macro><name>__UINT_FAST32_TYPE__</name><value>long unsigned int</value></macro>
+            <macro><name>__CHAR32_TYPE__</name><value>unsigned int</value></macro>
+            <macro><name>__FLT_MAX__</name><value>3.40282346638528859811704183484516925e+38F</value></macro>
+            <macro><name>__INT32_TYPE__</name><value>int</value></macro>
+            <macro><name>__SIZEOF_DOUBLE__</name><value>8</value></macro>
+            <macro><name>__FLT_MIN_10_EXP__</name><value>(-37)</value></macro>
+            <macro><name>__FLT64_MIN__</name><value>2.22507385850720138309023271733240406e-308F64</value></macro>
+            <macro><name>__INT_LEAST32_WIDTH__</name><value>32</value></macro>
+            <macro><name>__INTMAX_TYPE__</name><value>long int</value></macro>
+            <macro><name>__DEC128_MAX_EXP__</name><value>6145</value></macro>
+            <macro><name>__FLT32X_HAS_QUIET_NAN__</name><value>1</value></macro>
+            <macro><name>__ATOMIC_CONSUME</name><value>1</value></macro>
+            <macro><name>__GNUC_MINOR__</name><value>3</value></macro>
+            <macro><name>__INT_FAST16_WIDTH__</name><value>64</value></macro>
+            <macro><name>__UINTMAX_MAX__</name><value>0xffffffffffffffffUL</value></macro>
+            <macro><name>__DEC32_MANT_DIG__</name><value>7</value></macro>
+            <macro><name>__FLT32X_DENORM_MIN__</name><value>4.94065645841246544176568792868221372e-324F32x</value></macro>
+            <macro><name>__DBL_MAX_10_EXP__</name><value>308</value></macro>
+            <macro><name>__LDBL_DENORM_MIN__</name><value>3.64519953188247460252840593361941982e-4951L</value></macro>
+            <macro><name>__INT16_C(c)</name><value>c</value></macro>
+            <macro><name>__STDC__</name><value>1</value></macro>
+            <macro><name>__PTRDIFF_TYPE__</name><value>long int</value></macro>
+            <macro><name>__ATOMIC_SEQ_CST</name><value>5</value></macro>
+            <macro><name>__UINT32_TYPE__</name><value>unsigned int</value></macro>
+            <macro><name>__FLT32X_MIN_10_EXP__</name><value>(-307)</value></macro>
+            <macro><name>__UINTPTR_TYPE__</name><value>long unsigned int</value></macro>
+            <macro><name>__DEC64_SUBNORMAL_MIN__</name><value>0.000000000000001E-383DD</value></macro>
+            <macro><name>__DEC128_MANT_DIG__</name><value>34</value></macro>
+            <macro><name>__LDBL_MIN_10_EXP__</name><value>(-4931)</value></macro>
+            <macro><name>__FLT128_EPSILON__</name><value>1.92592994438723585305597794258492732e-34F128</value></macro>
+            <macro><name>__SIZEOF_LONG_LONG__</name><value>8</value></macro>
+            <macro><name>__FLT128_DECIMAL_DIG__</name><value>36</value></macro>
+            <macro><name>__GCC_ATOMIC_LLONG_LOCK_FREE</name><value>2</value></macro>
+            <macro><name>__FLT32X_MIN__</name><value>2.22507385850720138309023271733240406e-308F32x</value></macro>
+            <macro><name>__LDBL_DIG__</name><value>18</value></macro>
+            <macro><name>__FLT_DECIMAL_DIG__</name><value>9</value></macro>
+            <macro><name>__UINT_FAST16_MAX__</name><value>0xffffffffffffffffUL</value></macro>
+            <macro><name>__GCC_ATOMIC_SHORT_LOCK_FREE</name><value>2</value></macro>
+            <macro><name>__INT_LEAST64_WIDTH__</name><value>64</value></macro>
+            <macro><name>__UINT_FAST8_TYPE__</name><value>unsigned char</value></macro>
+            <macro><name>__ATOMIC_ACQ_REL</name><value>4</value></macro>
+            <macro><name>__ATOMIC_RELEASE</name><value>3</value></macro>
