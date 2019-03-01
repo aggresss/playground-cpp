@@ -11,7 +11,6 @@ BASE_URL="http://repo.router7.com/libs"
 function down_load
 {
     local down_file=`echo "$1" | awk -F "/" '{print $NF}'`
-    local file_ext=${down_file##*.}
     if [ $(curl -I -o /dev/null -s -w %{http_code} $1) != 200 ]; then
         echo "Query $1 not exist."
         return 1
@@ -26,10 +25,15 @@ function down_load
     fi
     mkdir -p $2
 
-    if [ $file_ext = "gz" -o $file_ext = "bz2" ]; then
-        tar -vxf ${down_file} -C $2 --strip-components 1
-        rm -rf ${down_file}
+    if [[ $down_file =~ .*\.tar.gz$ || $down_file =~ .*\.tgz$ ]]; then
+        tar -zvxf ${down_file} -C $2 --strip-components 1
+    elif [[ $down_file =~ .*\.tar.bz2$ ]]; then
+        tar -jvxf ${down_file} -C $2 --strip-components 1
+    elif [[ $down_file =~ .*\.tar.xz$ ]]; then
+        tar -Jvxf ${down_file} -C $2 --strip-components 1
     fi
+    rm -rf ${down_file}
+
 }
 
 ###  function for git clone specify branch to assign path ###

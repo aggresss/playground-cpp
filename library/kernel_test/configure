@@ -1,0 +1,23 @@
+# configure for linux kernel compile
+
+PATH_REPO=`git rev-parse --show-toplevel`
+source ${PATH_REPO}/env.sh
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_LINUX=$PATH_LIB/linux
+
+
+# libghttp
+if [ ! -d $PATH_LINUX ]; then
+    # https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.18.136.tar.xz
+    down_load ${BASE_URL}/linux-3.18.136.tar.xz ${PATH_LINUX}
+fi
+
+
+make x86_64_defconfig
+
+export INSTALL_PATH=$PWD/prefix
+
+make headers_install
+
