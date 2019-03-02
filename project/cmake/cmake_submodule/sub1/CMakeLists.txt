@@ -19,3 +19,4 @@ if(${SUBMODULE} OR BUILD_ALL)
     add_test(NAME ${SUBMODULE}_${test_case} COMMAND ${SUBMODULE}_${test_case})
   endforeach()
 endif()
+
