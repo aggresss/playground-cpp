@@ -26,6 +26,7 @@ ref: https://linux.die.net/man/1/pkg-config
 
 load and run
 
+  - add LIBRARY to the 'LD_PRELOAD' enrironment variable when need preload
   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable during execution
   - add LIBDIR to the 'LD_RUN_PATH' environment variable during linking
   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
