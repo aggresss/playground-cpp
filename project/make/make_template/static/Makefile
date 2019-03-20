@@ -37,6 +37,6 @@ distclean : clean
 	rm -fr $(TARGET)
 
 $(TARGET) : $(OBJS)
-	$(AR) rc $(TARGET) $(OBJS)
+	$(AR) crD $(TARGET) $(OBJS)
 	$(RANLIB) $(TARGET)
 
