@@ -8,7 +8,7 @@
 #include <sys/epoll.h>
 #include <arpa/inet.h>
 
-#define PORT 3456
+#define PORT 34561
 #define SERVER "127.0.0.1"
 #define MAXBUF 1024
 #define MAX_EPOLL_EVENTS 64
@@ -21,7 +21,7 @@ int main() {
     int i, num_ready;
 
     /*---Open socket for streaming---*/
-    if ( (sockfd = socket(AF_INET, SOCK_STREAM|SOCK_NONBLOCK, 0)) < 0 ) {
+    if ( (sockfd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0)) < 0 ) {
         perror("Socket");
         exit(errno);
     }
@@ -29,7 +29,7 @@ int main() {
     /*---Add socket to epoll---*/
     int epfd = epoll_create(1);
     struct epoll_event event;
-    event.events = EPOLLIN; // Cann append "|EPOLLOUT" for write events as well
+    event.events = EPOLLIN | EPOLLOUT | EPOLLERR; // Can append "|EPOLLOUT" for write events as well
     event.data.fd = sockfd;
     epoll_ctl(epfd, EPOLL_CTL_ADD, sockfd, &event);
 
@@ -53,21 +53,22 @@ int main() {
     /*---Wait for socket connect to complete---*/
     num_ready = epoll_wait(epfd, events, MAX_EPOLL_EVENTS, -1/*timeout*/);
     for(i = 0; i < num_ready; i++) {
-        if(events[i].events & EPOLLIN) {
-            printf("Socket %d connected\n", events[i].data.fd);
-        }
+        printf("Socket %d : event %x\n", events[i].data.fd, events[i].events);
     }
 
     /*---Wait for data---*/
-    num_ready = epoll_wait(epfd, events, MAX_EPOLL_EVENTS, -1/*timeout*/);
-    for(i = 0; i < num_ready; i++) {
-        if(events[i].events & EPOLLIN) {
-            printf("Socket %d got some data\n", events[i].data.fd);
-            bzero(buffer, MAXBUF);
-            recv(sockfd, buffer, sizeof(buffer), 0);
-            printf("Received: %s\n", buffer);
+    //for(;;) {
+        num_ready = epoll_wait(epfd, events, MAX_EPOLL_EVENTS, -1/*timeout*/);
+        for(i = 0; i < num_ready; i++) {
+            printf("Socket %d : event %d\n", events[i].data.fd, events[i].events);
+            if(events[i].events & EPOLLIN) {
+                printf("Socket %d got some data\n", events[i].data.fd);
+                bzero(buffer, MAXBUF);
+                recv(sockfd, buffer, sizeof(buffer), 0);
+                printf("Received: %s\n", buffer);
+            }
         }
-    }
+    //}
 
     close(sockfd);
     return 0;
