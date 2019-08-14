@@ -427,19 +427,22 @@ int Heap_initialize(void)
  */
 void Heap_terminate(void)
 {
+    int mem_leak = 0;
     Thread_lock_mutex(heap_mutex);
     if (gHeapInitialized) {
         Log("Maximum heap use was %d bytes", (int)state.max_size);
-        if (state.current_size > 20) /* One log list is freed after this function is called */
-        {
+        if (state.current_size > 0) {
             Log("Some memory not freed at shutdown, possible memory leak");
-            HeapScan();
+            mem_leak = 1;
         }
         gHeapInitialized = 0;
     } else {
         Log("Heap no initialization.");
     }
     Thread_unlock_mutex(heap_mutex);
+    if (mem_leak) {
+        HeapScan();
+    }
 }
 
 
