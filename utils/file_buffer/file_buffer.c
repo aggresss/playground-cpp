@@ -57,3 +57,24 @@ exit:
     return ret;
 }
 
+int main(int argc, const char *argv[])
+{
+    int rc = 0;
+    unsigned char *buff = NULL;
+    size_t buff_len = 0;
+
+    rc = put_buf_to_file("test.txt", (unsigned char *)"test", 4);
+    if (rc != 0) {
+        printf("put_buf_to_file error.");
+        return rc;
+    }
+
+    read_file_to_buf("test.txt", &buff, &buff_len);
+    if (buff && buff_len) {
+        printf("buff: %s\n", buff);
+        free(buff);
+        buff = NULL;
+    }
+
+    return 0;
+}
