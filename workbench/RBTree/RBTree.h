@@ -10,7 +10,7 @@ typedef struct NodeStruct {
     struct NodeStruct *parent;   /**< pointer to parent tree node, in case we need it */
     struct NodeStruct *child[2]; /**< pointers to child tree nodes 0 = left, 1 = right */
     void* content;               /**< pointer to element content */
-    size_t size;                     /**< size of content */
+    size_t size;                 /**< size of content */
     unsigned int red : 1;
 } Node;
 
