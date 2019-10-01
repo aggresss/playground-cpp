@@ -44,7 +44,7 @@ Tree* TreeInitialize(int (*compare)(void*, void*, int))
 #if defined(UNIT_TESTS)
     Tree* newt = malloc(sizeof(Tree));
 #else
-    Tree* newt = mymalloc(__FILE__, __LINE__, sizeof(Tree));
+    Tree* newt = malloc(sizeof(Tree));
 #endif
     TreeInitializeNoMalloc(newt, compare);
     return newt;

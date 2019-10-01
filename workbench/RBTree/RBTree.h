@@ -19,33 +19,21 @@ typedef struct NodeStruct {
  * Structure to hold all data for one tree
  */
 typedef struct {
-    struct {
-        Node *root;     /**< root node pointer */
-        int (*compare)(void*, void*, int);  /**< comparison function */
-    } index[2];
-    int indexes;        /**< no of indexes into tree */
-    int count;          /**< no of items */
-    size_t size;        /**< heap storage used */
+    Node *root;                     /**< root node pointer */
+    int (*compare)(void*, void*);   /**< comparison function */
+    int count;                      /**< no of items */
+    size_t size;                    /**< heap storage used */
 } Tree;
 
 
 Tree* TreeInitialize(int(*compare)(void*, void*, int));
-void TreeInitializeNoMalloc(Tree* aTree, int(*compare)(void*, void*, int));
-void TreeAddIndex(Tree* aTree, int(*compare)(void*, void*, int));
+void TreeFree(Tree* aTree);
 
 void* TreeAdd(Tree* aTree, void* content, size_t size);
 
 void* TreeRemove(Tree* aTree, void* content);
 
-void* TreeRemoveKey(Tree* aTree, void* key);
-void* TreeRemoveKeyIndex(Tree* aTree, void* key, int index);
-
-void* TreeRemoveNodeIndex(Tree* aTree, Node* aNode, int index);
-
-void TreeFree(Tree* aTree);
-
 Node* TreeFind(Tree* aTree, void* key);
-Node* TreeFindIndex(Tree* aTree, void* key, int index);
 
 Node* TreeNextElement(Tree* aTree, Node* curnode);
 
