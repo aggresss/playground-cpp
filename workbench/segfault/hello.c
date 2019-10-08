@@ -4,6 +4,6 @@
 int main(int argc, const char* argv[])
 {
     puts("Hello World!");
-    char *test = strdup((char *)0x01);
+    char *test = strdup((char *)0x04);
     return 0;
 }
