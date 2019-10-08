@@ -118,17 +118,20 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
         for (i = 0; i < bt_size; i++) {
             printf("\t%s\n", bt_strings[i]);
         }
+        printf ("\n");
 
         free(bt_strings);
         bt_strings = NULL;
-    } else {
-        int current_stack_depth = threads[current_thread_index].stack_depth;
-        printf("Function instrument %d stack frames.\n", current_stack_depth);
-        for (i = current_stack_depth - 1; i >= 0; i--) {
-            printf("\t%p\n", threads[current_thread_index].func_addr[i]);
-        }
-        printf("Use \"addr2line -e execute_program address\" to parse function stack.\n");
     }
+
+    int current_stack_depth = threads[current_thread_index].stack_depth;
+    printf("Function instrument %d stack frames.\n", current_stack_depth);
+    for (i = current_stack_depth - 1; i >= 0; i--) {
+        printf("\t%p\n", threads[current_thread_index].func_addr[i]);
+    }
+    printf("Use \"objdump -d execute_program\" to view function offset.\n");
+    printf("Use \"addr2line -e execute_program address\" to parse function stack.\n");
+
     printf ("\n");
 
     exit(EXIT_FAILURE);
