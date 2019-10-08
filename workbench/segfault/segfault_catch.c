@@ -4,6 +4,8 @@
 #include <string.h>
 #include <execinfo.h>
 #include <pthread.h>
+#include <ucontext.h>
+
 
 #define MAX_THREADS 255
 #define MAX_STACK_DEPTH 64
@@ -66,19 +68,46 @@ __cyg_profile_func_exit(void *this_func, void *call_site)
 }
 
 
-static void SignalSegFaultHandler(int sig)
+static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
 {
-    void *array[16];
+    void *array[MAX_STACK_DEPTH];
     size_t bt_size;
     char **bt_strings;
     int i;
+    ucontext_t *triger_context = (ucontext_t*)ctx;
 
     printf("Segmentfault signal captured.\n");
+    printf("Segfault at address: %p\n", si->si_addr);
 
-    bt_size = backtrace(array, 16);
+    FILE *mapfd = fopen("/proc/self/maps", "r");
+    if (mapfd != NULL) {
+        printf("\n/proc/self/maps:\n");
+
+        char buf[256];
+        int n;
+        while ((n = fread(buf, 1, sizeof(buf), mapfd))) {
+            printf("%.*s", n, buf);
+        }
+
+        fclose(mapfd);
+    }
+
+    if (ctx) {
+        void *reg_state_start = &(triger_context->uc_mcontext);
+        void *reg_state_end = &(triger_context->uc_sigmask);
+
+        printf("\nregister state:\n");
+        while(reg_state_start < reg_state_end) {
+            printf("\t0x%zx\n", *(size_t *)reg_state_start);
+            reg_state_start += sizeof(size_t);
+        }
+        printf ("\n");
+    }
+
+    bt_size = backtrace(array, MAX_STACK_DEPTH);
     bt_strings = backtrace_symbols(array, bt_size);
     if (NULL == bt_strings) {
-        perror("backtrace_synbols");
+        perror("backtrace_symbols");
         exit(EXIT_FAILURE);
     }
 
@@ -96,17 +125,32 @@ static void SignalSegFaultHandler(int sig)
         for (i = current_stack_depth - 1; i >= 0; i--) {
             printf("\t%p\n", threads[current_thread_index].func_addr[i]);
         }
+        printf("Use \"addr2line -e execute_program address\" to parse function stack.\n");
     }
+    printf ("\n");
 
     exit(EXIT_FAILURE);
 }
 
-
-int main()
+void __attribute__ ((constructor)) segfault_handler (void)
 {
-    signal(SIGSEGV, SignalSegFaultHandler);
-    puts("Hello World!");
-    char *test = strdup(NULL);
-    return 0;
+    struct sigaction sa;
+    stack_t ss;
+    void *stack_mem = malloc (2 * SIGSTKSZ);
+
+    sa.sa_sigaction = SignalSegFaultHandler;
+    sa.sa_flags = SA_SIGINFO;
+    sigemptyset (&sa.sa_mask);
+
+    if (stack_mem != NULL) {
+        ss.ss_sp = stack_mem;
+        ss.ss_flags = 0;
+        ss.ss_size = 2 * SIGSTKSZ;
+        if (sigaltstack (&ss, NULL) == 0) {
+            sa.sa_flags |= SA_ONSTACK;
+        }
+    }
+
+    sigaction (SIGSEGV, &sa, NULL);
 }
 
