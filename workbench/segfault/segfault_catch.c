@@ -85,7 +85,7 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
         while ((n = fread(buf, 1, sizeof(buf), mapfd))) {
             printf("%.*s", n, buf);
         }
-
+        printf ("\n");
         fclose(mapfd);
     }
 
