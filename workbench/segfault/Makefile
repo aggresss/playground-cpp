@@ -1,6 +1,6 @@
 all: hello.o
-	gcc -finstrument-functions -finstrument-functions segfault_hello.o -o segfault_hello
+	gcc -finstrument-functions -rdynamic segfault_hello.o -o segfault_hello.out
 hello.o:
-	gcc  -finstrument-functions  -c segfault_hello.c
+	gcc -O0 -g -finstrument-functions -c segfault_hello.c
 clean:
-	rm *.o hello -rf
+	rm *.o *.out -rf
