@@ -76,9 +76,6 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
     int i;
     ucontext_t *triger_context = (ucontext_t*)ctx;
 
-    printf("Segmentfault signal captured.\n");
-    printf("Segfault at address: %p\n", si->si_addr);
-
     FILE *mapfd = fopen("/proc/self/maps", "r");
     if (mapfd != NULL) {
         printf("\n/proc/self/maps:\n");
@@ -90,6 +87,11 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
         }
 
         fclose(mapfd);
+    }
+
+    printf("Segmentfault signal captured.\n");
+    if (si) {
+        printf("Segfault at address: %p\n", si->si_addr);
     }
 
     if (ctx) {
