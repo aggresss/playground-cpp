@@ -114,7 +114,7 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
     }
 
     if (bt_size > 0) {
-        printf("Obtained %zd stack frames.\n", bt_size);
+        printf("backtrace() obtained %zd stack frames.\n", bt_size);
         for (i = 0; i < bt_size; i++) {
             printf("\t%s\n", bt_strings[i]);
         }
@@ -125,7 +125,7 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
     }
 
     int current_stack_depth = threads[current_thread_index].stack_depth;
-    printf("Function instrument %d stack frames.\n", current_stack_depth);
+    printf("Function instrument obtained %d stack frames.\n", current_stack_depth);
     for (i = current_stack_depth - 1; i >= 0; i--) {
         printf("\t%p\n", threads[current_thread_index].func_addr[i]);
     }
