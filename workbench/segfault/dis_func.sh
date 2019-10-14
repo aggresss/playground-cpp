@@ -8,8 +8,8 @@ if [ -z "$routine" ]; then
     exit
 fi
 
-start=$(nm -n $routine | grep "\w\s$func" | awk '{print "0x"$1;exit}')
-end=$(nm -n $routine | grep -A1 "\w\s$func" | awk '{getline; print "0x"$1;exit}')
+start=$(nm -n $routine | grep "\w\s$func\$" | awk '{print "0x"$1;exit}')
+end=$(nm -n $routine | grep -A1 "\w\s$func\$" | awk '{getline; print "0x"$1;exit}')
 
 if [ -z "$func" ]; then
     objdump -d $routine
