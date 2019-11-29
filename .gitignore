@@ -6,7 +6,7 @@ output*/
 # Prerequisites
 *.d
 
-# media file
+# Media file
 *.mp4
 *.flv
 *.mov
