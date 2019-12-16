@@ -1,4 +1,6 @@
+CROSS_COMPILE?=arm-hisiv300-linux-gcc
+export CC:=$(CROSS_COMPILE)gcc
 all:
-	gcc -O0 -g -rdynamic -finstrument-functions -funwind-tables segfault_catch.c hello.c -lpthread -o segfault_hello.out
+	$(CC) $(CFLAGS) -O0 -g3 -rdynamic -finstrument-functions -funwind-tables segfault_catch.c hello.c -lpthread -o segfault_hello.out
 clean:
 	rm *.o *.out -rf

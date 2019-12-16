@@ -2,10 +2,12 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <string.h>
-#include <execinfo.h>
 #include <pthread.h>
 #include <ucontext.h>
 
+#ifdef USE_EXECINFO
+#include <execinfo.h>
+#endif
 
 #define MAX_THREADS 255
 #define MAX_STACK_DEPTH 64
@@ -106,6 +108,7 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
         printf ("\n");
     }
 
+#ifdef USE_EXECINFO
     bt_size = backtrace(array, MAX_STACK_DEPTH);
     bt_strings = backtrace_symbols(array, bt_size);
     if (NULL == bt_strings) {
@@ -123,6 +126,7 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
         free(bt_strings);
         bt_strings = NULL;
     }
+#endif
 
     int current_stack_depth = threads[current_thread_index].stack_depth;
     printf("Function instrument obtained %d stack frames.\n", current_stack_depth);
