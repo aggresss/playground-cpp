@@ -5,7 +5,7 @@
 #include <pthread.h>
 #include <ucontext.h>
 
-#ifdef USE_EXECINFO
+#ifdef __GLIBC__
 #include <execinfo.h>
 #endif
 
@@ -108,7 +108,7 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
         printf ("\n");
     }
 
-#ifdef USE_EXECINFO
+#ifdef __GLIBC__
     bt_size = backtrace(array, MAX_STACK_DEPTH);
     bt_strings = backtrace_symbols(array, bt_size);
     if (NULL == bt_strings) {
