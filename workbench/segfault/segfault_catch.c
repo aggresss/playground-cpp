@@ -40,7 +40,7 @@ __cyg_profile_func_enter(void *this_func, void *call_site)
         }
     }
 
-    if ((i == 0 || i == thread_count) && i < MAX_THREADS) {
+    if (i == thread_count && i < MAX_THREADS) {
         threads[i].thread_id = curr_thread;
         threads[i].stack_depth = 0;
         threads[i].func_addr[threads[i].stack_depth] = this_func;
