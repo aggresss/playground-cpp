@@ -33,7 +33,7 @@ static void * thread_2_do(void * arg)
 
 static void * thread_3_do(void * arg)
 {
-    //sleep(1);
+    sleep(1);
     segfault_trigger();
     return NULL;
 }
