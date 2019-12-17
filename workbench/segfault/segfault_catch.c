@@ -62,6 +62,7 @@ __cyg_profile_func_exit(void *this_func, void *call_site)
         if (curr_thread == threads[i].thread_id) {
             if (this_func == threads[i].func_addr[threads[i].stack_depth -1]) {
                 threads[i].stack_depth--;
+                current_thread_index = i;
             }
             break;
         }
