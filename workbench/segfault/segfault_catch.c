@@ -40,7 +40,7 @@ __cyg_profile_func_enter(void *this_func, void *call_site)
         }
     }
 
-    if (i == thread_count && i < MAX_THREADS) {
+    if ((i == 0 || i == thread_count) && i < MAX_THREADS) {
         threads[i].thread_id = curr_thread;
         threads[i].stack_depth = 0;
         threads[i].func_addr[threads[i].stack_depth] = this_func;
@@ -76,7 +76,7 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
     void *array[MAX_STACK_DEPTH];
     size_t bt_size;
     char **bt_strings;
-    int i;
+    int i, j;
     ucontext_t *triger_context = (ucontext_t*)ctx;
 
     FILE *mapfd = fopen("/proc/self/maps", "r");
@@ -130,9 +130,19 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
 #endif
 
     int current_stack_depth = threads[current_thread_index].stack_depth;
-    printf("Function instrument obtained %d stack frames.\n", current_stack_depth);
+    printf("Function instrument record %d threads.\n", thread_count);
+    printf("Function current thread %d obtained %d stack frames.\n", current_thread_index, current_stack_depth);
     for (i = current_stack_depth - 1; i >= 0; i--) {
         printf("\t%p\n", threads[current_thread_index].func_addr[i]);
+    }
+    printf("\n");
+
+    for (j = 0; j < thread_count; j++) {
+        printf("\tthread %d, id: %u\n", j, threads[j].thread_id);
+        for (i = threads[j].stack_depth - 1; i >= 0; i--) {
+            printf("\t\t%p\n", threads[current_thread_index].func_addr[i]);
+        }
+        printf("\n");
     }
     printf("Use \"objdump -d execute_program\" to view function offset.\n");
     printf("Use \"addr2line -e execute_program address\" to parse function stack.\n");
