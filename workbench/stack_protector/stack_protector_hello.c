@@ -1,22 +1,22 @@
 #include <stdio.h>
-#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
 
-static int interrupted = 0;
+struct no_chars {
+    unsigned int len;
+    unsigned int data;
+};
 
-static void handleInterrupt(int sig)
+int main(int argc, char * argv[])
 {
-    interrupted = 1;
-}
-
-int main(int argc, const char * argv[])
-{
-    (void)signal(SIGINT, handleInterrupt);
-    (void)signal(SIGTERM, handleInterrupt);
-    (void)signal(SIGKILL, handleInterrupt);
-
-    printf("Hello, World!\n");
-    while(!interrupted) {
+    struct no_chars info = { };
+    if (argc < 3) {
+        fprintf(stderr, "Usage: %s LENGTH DATA...\n", argv[0]);
+        return 1;
     }
+    info.len = atoi(argv[1]);
+    memcpy(&info.data, argv[2], info.len);
+
     return 0;
 }
 
