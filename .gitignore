@@ -49,3 +49,5 @@ output*/
 *.gcda
 *.prof
 
+# debug
+core
