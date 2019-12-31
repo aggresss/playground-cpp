@@ -5,7 +5,7 @@
 #include <pthread.h>
 #include <ucontext.h>
 
-#ifdef __GLIBC__
+#if defined(__GLIBC__) && !defined(__UCLIBC__)
 #include <execinfo.h>
 #endif
 
@@ -73,9 +73,6 @@ __cyg_profile_func_exit(void *this_func, void *call_site)
 
 static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
 {
-    void *array[MAX_STACK_DEPTH];
-    size_t bt_size;
-    char **bt_strings;
     int i, j;
     ucontext_t *triger_context = (ucontext_t*)ctx;
 
@@ -109,24 +106,31 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
         printf ("\n");
     }
 
-#ifdef __GLIBC__
-    bt_size = backtrace(array, MAX_STACK_DEPTH);
-    bt_strings = backtrace_symbols(array, bt_size);
-    if (NULL == bt_strings) {
-        perror("backtrace_symbols");
-        exit(EXIT_FAILURE);
-    }
+#if defined(__GLIBC__) && !defined(__UCLIBC__)
 
-    if (bt_size > 0) {
-        printf("backtrace() obtained %zd stack frames.\n", bt_size);
-        for (i = 0; i < bt_size; i++) {
-            printf("\t%s\n", bt_strings[i]);
+    if (1) {
+        void *array[MAX_STACK_DEPTH];
+        size_t bt_size;
+        char **bt_strings;
+        bt_size = backtrace(array, MAX_STACK_DEPTH);
+        bt_strings = backtrace_symbols(array, bt_size);
+        if (NULL == bt_strings) {
+            perror("backtrace_symbols");
+            exit(EXIT_FAILURE);
         }
-        printf ("\n");
 
-        free(bt_strings);
-        bt_strings = NULL;
+        if (bt_size > 0) {
+            printf("backtrace() obtained %zd stack frames.\n", bt_size);
+            for (i = 0; i < bt_size; i++) {
+                printf("\t%s\n", bt_strings[i]);
+            }
+            printf ("\n");
+
+            free(bt_strings);
+            bt_strings = NULL;
+        }
     }
+
 #endif
 
     int current_stack_depth = threads[current_thread_index].stack_depth;
