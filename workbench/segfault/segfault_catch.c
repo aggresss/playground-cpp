@@ -5,7 +5,7 @@
 #include <pthread.h>
 #include <ucontext.h>
 
-#if defined(__GLIBC__) && !defined(__UCLIBC__)
+#if defined(__GLIBC__) && !defined(__UCLIBC__) && !defined(__MUSL__)
 #include <execinfo.h>
 #endif
 
@@ -106,7 +106,7 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
         printf ("\n");
     }
 
-#if defined(__GLIBC__) && !defined(__UCLIBC__)
+#if defined(__GLIBC__) && !defined(__UCLIBC__) && !defined(__MUSL__)
 
     if (1) {
         void *array[MAX_STACK_DEPTH];
