@@ -5,10 +5,6 @@
 #include <pthread.h>
 #include <ucontext.h>
 
-#if defined(__GLIBC__) && !defined(__UCLIBC__) && !defined(__MUSL__)
-#include <execinfo.h>
-#endif
-
 #define MAX_THREADS 255
 #define MAX_STACK_DEPTH 64
 
@@ -107,7 +103,7 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
     }
 
 #if defined(__GLIBC__) && !defined(__UCLIBC__) && !defined(__MUSL__)
-
+#include <execinfo.h>
     if (1) {
         void *array[MAX_STACK_DEPTH];
         size_t bt_size;
@@ -130,7 +126,6 @@ static void SignalSegFaultHandler(int signal, siginfo_t *si, void *ctx)
             bt_strings = NULL;
         }
     }
-
 #endif
 
     int current_stack_depth = threads[current_thread_index].stack_depth;
