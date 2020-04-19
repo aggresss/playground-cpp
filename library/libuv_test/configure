@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# configure for libuv compile
+
+PATH_REPO=`git rev-parse --show-toplevel`
+source ${PATH_REPO}/env.sh
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_LIBUV=$PATH_LIB/libuv
+
+# libuv
+if [ ! -d $PATH_LIBUV ] ; then\
+    # git_clone https://github.com/libuv/libuv.git v1.x ${PATH_LIBUV}
+    down_load https://dist.libuv.org/dist/v1.36.0/libuv-v1.36.0.tar.gz ${PATH_LIBUV}
+fi
+if [ ! -d $PATH_LIBUV/prefix ] ; then
+    cd $PATH_LIBUV && \
+        ./autogen.sh && \
+        ./configure \
+            --disable-shared \
+            --enable-static \
+            --prefix=$PATH_LIBUV/prefix && \
+        make && make install
+fi
