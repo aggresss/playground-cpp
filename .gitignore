@@ -1,9 +1,10 @@
-# lib directory
+# build directory
 lib/
 build*/
 output*/
 out*/
 deps*/
+/tmp/
 
 # Prerequisites
 *.d
