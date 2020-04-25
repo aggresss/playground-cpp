@@ -3,8 +3,8 @@ lib/
 build*/
 output*/
 out*/
-deps*/
 /tmp/
+/project/gyp/deps/
 
 # Prerequisites
 *.d
