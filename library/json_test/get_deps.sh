@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -e
+set -x
 
 WORKER_PWD=${PWD}
 DEP=$1
@@ -36,7 +37,6 @@ function get_dep()
 
 	echo ">>> [INFO] adding dep source code to the repository ..."
 	rm -rf .git
-	git add .
 
 	echo ">>> [INFO] got dep '${DEP}'"
 
@@ -55,6 +55,12 @@ function get_jsoncpp()
 	cd ${DEST}
 	# IMPORTANT: avoid default 'dist/' directory since, somehow, it fails.
 	python amalgamate.py -s bundled/jsoncpp.cpp
+
+	cd ${WORKER_PWD}
+	echo ">>> [INFO] deleting large files and directories ..."
+	rm -rvf \
+		${DEST}/test/ \
+		${DEST}/makefiles
 }
 
 function get_json()
@@ -66,8 +72,8 @@ function get_json()
 	get_dep "${GIT_REPO}" "${GIT_TAG}" "${DEST}"
 
 	echo ">>> [INFO] deleting large files and directories ..."
-	rm -rf \
-        ${DEST}/third_party/
+	rm -rvf \
+		${DEST}/.github/ \
 		${DEST}/benchmarks/ \
 		${DEST}/doc/ \
 		${DEST}/test/ \
