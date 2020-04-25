@@ -59,13 +59,13 @@ if __name__ == '__main__':
     # On Mac/make it will crash if it doesn't get an absolute path.
     # NOTE ibc: Not sure that it requires absolute path in Mac/make...
     if sys.platform == 'win32':
-        args.append(os.path.join(root, 'mediasoup-worker.gyp'))
+        args.append(os.path.join(root, 'json_test.gyp'))
         common_fn  = os.path.join(root, 'common.gypi')
         # we force vs 2010 over 2008 which would otherwise be the default for gyp.
         if not os.environ.get('GYP_MSVS_VERSION'):
             os.environ['GYP_MSVS_VERSION'] = '2010'
     else:
-        args.append(os.path.join(os.path.abspath(root), 'mediasoup-worker.gyp'))
+        args.append(os.path.join(os.path.abspath(root), 'json_test.gyp'))
         common_fn  = os.path.join(os.path.abspath(root), 'common.gypi')
 
     if os.path.exists(common_fn):
@@ -91,18 +91,6 @@ if __name__ == '__main__':
 
     if not any(a.startswith('-Dtarget_arch=') for a in args):
         args.append('-Dtarget_arch=%s' % host_arch())
-
-    if any(a.startswith('-Dopenssl_fips=') for a in args):
-        fips_fn = os.path.join(os.path.abspath(root), 'fips.gypi')
-        args.extend(['-I', fips_fn])
-    else:
-        args.append('-Dopenssl_fips=')
-
-    if 'asan' in args:
-        args.append('-Dmediasoup_asan=true')
-        args = filter(lambda arg: arg != 'asan', args)
-    else:
-        args.append('-Dmediasoup_asan=false')
 
     args.append('-Dnode_byteorder=' + sys.byteorder)
 
