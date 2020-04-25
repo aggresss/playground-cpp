@@ -18,11 +18,11 @@ endif
 
 Release:
 	$(PYTHON) ./configure.py -R json_test
-	$(MAKE) BUILDTYPE=Release -C out
+	$(MAKE) V=1 BUILDTYPE=Release -C out
 
 Debug:
 	$(PYTHON) ./configure.py -R json_test
-	$(MAKE) BUILDTYPE=Debug -C out
+	$(MAKE) V=1 BUILDTYPE=Debug -C out
 
 xcode:
 	$(PYTHON) ./configure.py --format=xcode

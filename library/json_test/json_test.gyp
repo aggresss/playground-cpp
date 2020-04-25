@@ -24,5 +24,16 @@
         ]
       }]
     ]
-	}
+	},
+  'targets':
+  [
+    {
+      'target_name': 'json_test',
+      'sources':
+      [
+        # C++ source files
+        'src/main.cpp'
+      ]
+    }
+  ]
 }

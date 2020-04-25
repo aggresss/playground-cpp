@@ -1,16 +1,7 @@
 {
   'variables':
   {
-    # libuv variables:
-    'uv_library%': 'static_library',
-    # openssl variables:
-    'library%': 'static_library',
-    'openssl_fips%': '',
-    'openssl_no_asm%': 1, # Must be defined in OpenSSL >= 1.1.0g.
-    'libopenssl': '<(PRODUCT_DIR)/libopenssl.a',
-    # Others:
-    'clang%': 0,
-    'mediasoup_asan%': 'false'
+    'clang%': 0
   },
 
   'target_defaults':
@@ -21,12 +12,12 @@
     {
       'Release':
       {
-        'cflags': [ '-g' ]
+        'cflags': [ '-g', '-std=c++11' ]
       },
       'Debug':
       {
         'defines': [ 'DEBUG', 'MS_LOG_TRACE', 'MS_LOG_FILE_LINE' ],
-        'cflags': [ '-g', '-O0', '-fwrapv', '-Wno-parentheses-equality' ],
+        'cflags': [ '-g', '-O0', '-std=c++11', '-fwrapv', '-Wno-parentheses-equality' ],
         'xcode_settings':
         {
           'GCC_OPTIMIZATION_LEVEL': '0'

@@ -12,10 +12,10 @@ import sys
 
 CC = os.environ.get('CC', 'cc')
 script_dir = os.path.dirname(__file__)
-root = os.path.normpath(os.path.join(script_dir, '..'))
+root = os.path.normpath(script_dir)
 output_dir = os.path.join(os.path.abspath(root), 'out')
 
-sys.path.insert(0, os.path.join(root, 'deps', 'gyp', 'pylib'))
+sys.path.insert(0, os.path.join(root, '..', '..', 'deps', 'gyp', 'pylib'))
 try:
     import gyp
 except ImportError:
