@@ -1,9 +1,12 @@
+<img src="icon.png" align="right" height="110"/>
+#
+
 <h1 align="center">
   <br>
   playground-cpp
   <br>
 </h1>
-<img src="icon.png" align="right" height="110"/>
+
 <h4 align="center">A Playground for C++</h4>
 <p align="center">
   <a href="https://badge.fury.io/gh/aggresss%2Fplayground-cpp"><img src="https://badge.fury.io/gh/aggresss%2Fplayground-cpp.svg" alt="GitHub version"></a>
