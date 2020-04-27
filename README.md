@@ -1,11 +1,19 @@
 <img src="icon.png" align="right" height="110"/>
 
-# playground-cpp
+<h1 align="center">
+  <br>
+  playground-cpp
+  <br>
+</h1>
+<h4 align="center">A Playground for C++</h4>
 
-[![GitHub version](https://badge.fury.io/gh/aggresss%2Fplayground-cpp.svg)](https://badge.fury.io/gh/aggresss%2Fplayground-cpp)
-[![GitHub license](https://img.shields.io/github/license/aggresss/playground-cpp.svg)](https://github.com/aggresss/playground-cpp/blob/master/LICENSE)
-[![Build Status](https://www.travis-ci.org/aggresss/playground-cpp.svg?branch=master)](https://www.travis-ci.org/aggresss/playground-cpp)
-[![Coverage Status](https://coveralls.io/repos/github/aggresss/playground-cpp/badge.svg?branch=master)](https://coveralls.io/github/aggresss/playground-cpp?branch=master)
+<p align="center">
+  <a href="https://badge.fury.io/gh/aggresss%2Fplayground-cpp"><img src="https://badge.fury.io/gh/aggresss%2Fplayground-cpp.svg" alt="GitHub version"></a>
+  <a href="https://github.com/aggresss/playground-cpp/blob/master/LICENSE"><img src="https://img.shields.io/github/license/aggresss/playground-cpp.svg" alt="GitHub license"></a>
+  <a href="https://www.travis-ci.org/aggresss/playground-cpp"><img src="https://www.travis-ci.org/aggresss/playground-cpp.svg?branch=master" alt="Build Status"></a>
+  <a href="https://coveralls.io/github/aggresss/playground-cpp?branch=master"><img src="hhttps://coveralls.io/repos/github/aggresss/playground-cpp/badge.svg?branch=master" alt="Coverage Status"></a>
+</p>
+<br>
 
 CFLAGS
   1. -D macro => current directory => -I path
