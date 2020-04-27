@@ -1,17 +1,15 @@
-<img src="icon.png" align="right" height="110"/>
-
 <h1 align="center">
   <br>
   playground-cpp
   <br>
 </h1>
+<img src="icon.png" align="right" height="110"/>
 <h4 align="center">A Playground for C++</h4>
-
 <p align="center">
   <a href="https://badge.fury.io/gh/aggresss%2Fplayground-cpp"><img src="https://badge.fury.io/gh/aggresss%2Fplayground-cpp.svg" alt="GitHub version"></a>
   <a href="https://github.com/aggresss/playground-cpp/blob/master/LICENSE"><img src="https://img.shields.io/github/license/aggresss/playground-cpp.svg" alt="GitHub license"></a>
   <a href="https://www.travis-ci.org/aggresss/playground-cpp"><img src="https://www.travis-ci.org/aggresss/playground-cpp.svg?branch=master" alt="Build Status"></a>
-  <a href="https://coveralls.io/github/aggresss/playground-cpp?branch=master"><img src="hhttps://coveralls.io/repos/github/aggresss/playground-cpp/badge.svg?branch=master" alt="Coverage Status"></a>
+  <a href="https://coveralls.io/github/aggresss/playground-cpp?branch=master"><img src="https://coveralls.io/repos/github/aggresss/playground-cpp/badge.svg?branch=master" alt="Coverage Status"></a>
 </p>
 <br>
 
