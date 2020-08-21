@@ -21,4 +21,6 @@ any of the following operators:
 
 c++的两种类类型转化
 1）转换构造函数
+    当一个构造函数只有一个参数，而且该参数又不是本类的const引用时，这种构造函数称为转换构造函数。
 2）类型转换运算符
+    operator const char*() const
