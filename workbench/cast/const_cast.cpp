@@ -1,16 +1,14 @@
 #include <iostream>
 using namespace std;
 
-void Printer(int *val, string seperator = "\n")
-{
-    cout << val << seperator;
-}
+int main(void) {
+	int variable = 21;
+	const int* const_p = &variable;
+    int* modifier = const_p;
+	//int* modifier = const_cast<int *>(const_p);
 
-int main(void)
-{
-    const int consatant = 20;
-    //Printer(consatant);//Error: invalid conversion from 'int' to 'int*'
-    Printer(const_cast<int *>(&consatant));
+	*modifier = 7;
+	cout << "variable:" << variable << endl;
 
-    return 0;
+	return 0;
 }
