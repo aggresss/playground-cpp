@@ -90,7 +90,7 @@ const 指针作为函数参数，调用时可以是 const 或 非 const 指针�
 
 reinterpret_cast 和C风格的强转是一样的。
 
-格式：reinterpret_cast<type-id> (expression)
+格式：reinterpret_cast <type-id> (expression)
 1. type-id必须是一个指针、引用、算术类型、函数指针或者成员指针
 2. 它可以把一个指针转换成一个整数，也可以把一个整数转换成 一个指针
 3. 跟c风格的强制转换类似，没有安全性检查
