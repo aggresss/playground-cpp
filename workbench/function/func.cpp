@@ -32,13 +32,14 @@ public:
 int main()
 {
 	Admin::foo f;
+
     std::function<bool(bool)> fun = gFunc;
     f.cb = &fun;
     (*f.cb)(false);
 
     f.RunCb(gFunc);
 
-    auto lambdaFunc = new Admin::onTest([&](bool send){
+    auto lambdaFunc = new Admin::onTest([](bool send){
 	    std::cout << send << std::endl;
         return send;
     });
