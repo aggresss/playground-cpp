@@ -33,8 +33,12 @@ int main()
 {
 	Admin::foo f;
 
-    std::function<bool(bool)> fun = gFunc;
-    f.cb = &fun;
+    auto a = Admin::onTest(gFunc);
+    f.cb = &a;
+    (*f.cb)(false);
+
+    auto b = new Admin::onTest(gFunc);
+    f.cb = b;
     (*f.cb)(false);
 
     f.RunCb(gFunc);
