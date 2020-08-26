@@ -21,6 +21,11 @@ public:
         {
             cb(false);
         }
+
+        void RunCbPtr(onTest *cb)
+        {
+            (*cb)(false);
+        }
     };
 };
 
@@ -32,5 +37,12 @@ int main()
     (*f.cb)(false);
 
     f.RunCb(gFunc);
+
+    auto lambdaFunc = new Admin::onTest([&](bool send){
+	    std::cout << send << std::endl;
+        return send;
+    });
+    f.RunCbPtr(lambdaFunc);
+
 	return 0;
 }
