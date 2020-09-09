@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include "json/json.h"
+#include "../deps/json/single_include/nlohmann/json.hpp"
 
 using json = nlohmann::json;
 

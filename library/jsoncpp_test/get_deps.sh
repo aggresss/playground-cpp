@@ -43,33 +43,34 @@ function get_dep()
 	cd ${WORKER_PWD}
 }
 
-
-
-function get_json()
+function get_jsoncpp()
 {
-	GIT_REPO="https://github.com/nlohmann/json.git"
-	GIT_TAG="v3.7.3"
-	DEST="deps/json"
+	GIT_REPO="https://github.com/open-source-parsers/jsoncpp.git"
+	GIT_TAG="1.8.4"
+	DEST="deps/jsoncpp/jsoncpp"
 
 	get_dep "${GIT_REPO}" "${GIT_TAG}" "${DEST}"
 
+	echo ">>> [INFO] running 'python amalgamate.py' ..."
+	cd ${DEST}
+	# IMPORTANT: avoid default 'dist/' directory since, somehow, it fails.
+	python amalgamate.py -s bundled/jsoncpp.cpp
+
+	cd ${WORKER_PWD}
 	echo ">>> [INFO] deleting large files and directories ..."
 	rm -rvf \
-		${DEST}/.github/ \
-		${DEST}/benchmarks/ \
-		${DEST}/doc/ \
 		${DEST}/test/ \
-		${DEST}/third_party/
+		${DEST}/makefiles
 }
 
 case "${DEP}" in
 	'-h')
 		echo "Usage:"
-		echo "  ./$(basename $0) [json]"
+		echo "  ./$(basename $0) [jsoncpp]"
 		echo
 		;;
-	json)
-		get_json
+	jsoncpp)
+		get_jsoncpp
 		;;
 	*)
 		echo ">>> [ERROR] unknown dep '${DEP}'" >&2
