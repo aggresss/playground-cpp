@@ -26,9 +26,8 @@ int main()
     if (xIt != x.end() && xIt->is_binary()) {
         auto& dump = xIt->get_binary();
         std::cout << "length: " << dump.size() << std::endl;
-        for (auto& byte: dump) {
-            std::cout << byte << std::endl;
-        }
+        std::string str;
+        str.assign(dump.begin(), dump.end());
+        std::cout << str.c_str() << std::endl;
     }
-
 }
