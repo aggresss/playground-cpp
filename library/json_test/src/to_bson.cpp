@@ -9,10 +9,7 @@ int main()
     // create a JSON value
     json j = R"({"compact": true, "schema": 0})"_json;
 
-    json::binary_t binary = {{4, 5, 6}};
-
-    j["bin"] = binary;
-
+    j["bin"] = json::binary({1, 2, 3});
 
     // serialize it to BSON
     std::vector<uint8_t> v = json::to_bson(j);
