@@ -48,7 +48,7 @@ function get_dep()
 function get_json()
 {
 	GIT_REPO="https://github.com/nlohmann/json.git"
-	GIT_TAG="v3.7.3"
+	GIT_TAG="v3.9.1"
 	DEST="deps/json"
 
 	get_dep "${GIT_REPO}" "${GIT_TAG}" "${DEST}"
