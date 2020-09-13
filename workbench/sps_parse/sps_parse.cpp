@@ -3,10 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-typedef unsigned int UINT;
-typedef unsigned char BYTE;
-typedef unsigned long DWORD;
-
 void get_profile(int profile_idc, char *profile_str)
 {
     switch (profile_idc)
@@ -37,9 +33,9 @@ void get_profile(int profile_idc, char *profile_str)
     }
 }
 
-UINT Ue(BYTE *pBuff, UINT nLen, UINT &nStartBit)
+uint32_t Ue(uint8_t *pBuff, uint32_t nLen, uint32_t &nStartBit)
 {
-    UINT nZeroNum = 0;
+    uint32_t nZeroNum = 0;
     while (nStartBit < nLen * 8)
     {
         if (pBuff[nStartBit / 8] & (0x80 >> (nStartBit % 8)))
@@ -51,8 +47,8 @@ UINT Ue(BYTE *pBuff, UINT nLen, UINT &nStartBit)
     }
     nStartBit++;
 
-    DWORD dwRet = 0;
-    for (UINT i = 0; i < nZeroNum; i++)
+    uint32_t dwRet = 0;
+    for (uint32_t i = 0; i < nZeroNum; i++)
     {
         dwRet <<= 1;
         if (pBuff[nStartBit / 8] & (0x80 >> (nStartBit % 8)))
@@ -64,20 +60,23 @@ UINT Ue(BYTE *pBuff, UINT nLen, UINT &nStartBit)
     return (1 << nZeroNum) - 1 + dwRet;
 }
 
-int Se(BYTE *pBuff, UINT nLen, UINT &nStartBit)
+int32_t Se(uint8_t *pBuff, uint32_t nLen, uint32_t &nStartBit)
 {
-    int UeVal = Ue(pBuff, nLen, nStartBit);
-    double k = UeVal;
-    int nValue = ceil(k / 2);
-    if (UeVal % 2 == 0)
-        nValue = -nValue;
-    return nValue;
+    uint32_t UeVal = Ue(pBuff, nLen, nStartBit);
+    if (UeVal & 0x01)
+    {
+        return (UeVal + 1) / 2;
+    }
+    else
+    {
+        return -(UeVal / 2);
+    }
 }
 
-DWORD u(UINT BitCount, BYTE *buf, UINT &nStartBit)
+uint32_t u(uint32_t BitCount, uint8_t *buf, uint32_t &nStartBit)
 {
-    DWORD dwRet = 0;
-    for (UINT i = 0; i < BitCount; i++)
+    uint32_t dwRet = 0;
+    for (uint32_t i = 0; i < BitCount; i++)
     {
         dwRet <<= 1;
         if (buf[nStartBit / 8] & (0x80 >> (nStartBit % 8)))
@@ -89,36 +88,31 @@ DWORD u(UINT BitCount, BYTE *buf, UINT &nStartBit)
     return dwRet;
 }
 
-void de_emulation_prevention(BYTE *buf, unsigned int *buf_size)
+void de_emulation_prevention(uint8_t *buf, uint32_t &buf_size)
 {
-    int i = 0, j = 0;
-    BYTE *tmp_ptr = NULL;
-    unsigned int tmp_buf_size = 0;
-    int val = 0;
+    uint8_t *tmp_ptr = buf;
+    unsigned int tmp_buf_size = buf_size;
 
-    tmp_ptr = buf;
-    tmp_buf_size = *buf_size;
-    for (i = 0; i < (tmp_buf_size - 2); i++)
+    for (uint32_t i = 0; i < (tmp_buf_size - 2); i++)
     {
         //check for 0x000003
-        val = (tmp_ptr[i] ^ 0x00) + (tmp_ptr[i + 1] ^ 0x00) + (tmp_ptr[i + 2] ^ 0x03);
-        if (val == 0)
+        if (((tmp_ptr[i] ^ 0x00) + (tmp_ptr[i + 1] ^ 0x00) + (tmp_ptr[i + 2] ^ 0x03)) == 0)
         {
             //kick out 0x03
-            for (j = i + 2; j < tmp_buf_size - 1; j++)
+            for (uint32_t j = i + 2; j < tmp_buf_size - 1; j++)
                 tmp_ptr[j] = tmp_ptr[j + 1];
 
-            //and so we should devrease bufsize
-            (*buf_size)--;
+            //and so we should decrease bufsize
+            (buf_size)--;
         }
     }
 }
 
-bool h264_decode_sps(BYTE *buf, unsigned int nLen, int &width, int &height, int &fps)
+bool h264_decode_sps(uint8_t *buf, uint32_t nLen, int &width, int &height, int &fps)
 {
-    UINT StartBit = 0;
+    uint32_t StartBit = 0;
     fps = 0;
-    de_emulation_prevention(buf, &nLen);
+    de_emulation_prevention(buf, nLen);
 
     int timing_info_present_flag = 0;
     int forbidden_zero_bit = u(1, buf, StartBit);
@@ -127,10 +121,10 @@ bool h264_decode_sps(BYTE *buf, unsigned int nLen, int &width, int &height, int 
     if (nal_unit_type == 7)
     {
         int profile_idc = u(8, buf, StartBit);
-        int constraint_set0_flag = u(1, buf, StartBit); //(buf[1] & 0x80)>>7;
-        int constraint_set1_flag = u(1, buf, StartBit); //(buf[1] & 0x40)>>6;
-        int constraint_set2_flag = u(1, buf, StartBit); //(buf[1] & 0x20)>>5;
-        int constraint_set3_flag = u(1, buf, StartBit); //(buf[1] & 0x10)>>4;
+        int constraint_set0_flag = u(1, buf, StartBit);
+        int constraint_set1_flag = u(1, buf, StartBit);
+        int constraint_set2_flag = u(1, buf, StartBit);
+        int constraint_set3_flag = u(1, buf, StartBit);
         int reserved_zero_4bits = u(4, buf, StartBit);
         int level_idc = u(8, buf, StartBit);
 
