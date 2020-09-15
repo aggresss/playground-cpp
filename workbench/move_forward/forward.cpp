@@ -14,7 +14,7 @@ void bar(int&& x)
 template <typename T>
 void foo(T&& x)
 {
-  bar(x);
+  bar(x); // x 在 bar 函数内部由右值变成了左值
   bar(std::forward<T>(x));
 }
 
