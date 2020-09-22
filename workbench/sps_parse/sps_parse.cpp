@@ -148,11 +148,11 @@ bool h264_decode_sps(uint8_t *buf, uint32_t nLen, int &width, int &height, int &
             int mb_adaptive_frame_field_flag = u(1, buf, StartBit);
 
         int direct_8x8_inference_flag = u(1, buf, StartBit);
-        int frame_cropping_flag = u(1, buf, StartBit);
 
         width = (pic_width_in_mbs_minus1 + 1) * 16;
         height = (2 - frame_mbs_only_flag) * (pic_height_in_map_units_minus1 + 1) * 16;
 
+        int frame_cropping_flag = u(1, buf, StartBit);
         if (frame_cropping_flag)
         {
             int frame_crop_left_offset = Ue(buf, nLen, StartBit);
