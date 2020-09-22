@@ -25,7 +25,7 @@ void get_profile(int profile_idc, char *profile_str)
     case 122:
         strcpy(profile_str, "High4:2:2(FRExt)");
         break;
-    case 144:
+    case 244:
         strcpy(profile_str, "High4:4:4(FRExt)");
         break;
     default:
@@ -108,6 +108,7 @@ void de_emulation_prevention(uint8_t *buf, uint32_t &buf_size)
     }
 }
 
+// Reference to ISO/IEC 14496-10-2012 7.3.2.1.1 Sequence parameter set data syntax
 bool h264_decode_sps(uint8_t *buf, uint32_t nLen, int &width, int &height, int &fps)
 {
     uint32_t StartBit = 0;
@@ -129,9 +130,9 @@ bool h264_decode_sps(uint8_t *buf, uint32_t nLen, int &width, int &height, int &
         int level_idc = u(8, buf, StartBit);
 
         int seq_parameter_set_id = Ue(buf, nLen, StartBit);
-
-        if (profile_idc == 100 || profile_idc == 110 ||
-            profile_idc == 122 || profile_idc == 144)
+        if (profile_idc == 100 || profile_idc == 110 || profile_idc == 122 ||
+            profile_idc == 244 || profile_idc == 44 || profile_idc == 83 ||
+            profile_idc == 86 || profile_idc == 118 || profile_idc == 128)
         {
             int chroma_format_idc = Ue(buf, nLen, StartBit);
             if (chroma_format_idc == 3)
