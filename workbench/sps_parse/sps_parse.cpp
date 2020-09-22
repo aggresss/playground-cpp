@@ -98,7 +98,7 @@ bool h264_decode_sps(uint8_t *buf, uint32_t nLen, int &width, int &height, int &
         int constraint_set3_flag = u(1, buf, StartBit);
         int constraint_set4_flag = u(1, buf, StartBit);
         int constraint_set5_flag = u(1, buf, StartBit);
-        int reserved_zero_4bits = u(2, buf, StartBit);
+        int reserved_zero_2bits = u(2, buf, StartBit);
         int level_idc = u(8, buf, StartBit);
 
         int seq_parameter_set_id = Ue(buf, nLen, StartBit);
