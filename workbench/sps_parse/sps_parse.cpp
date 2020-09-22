@@ -3,36 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-void get_profile(int profile_idc, char *profile_str)
-{
-    switch (profile_idc)
-    {
-    case 66:
-        strcpy(profile_str, "Baseline");
-        break;
-    case 77:
-        strcpy(profile_str, "Main");
-        break;
-    case 88:
-        strcpy(profile_str, "Extended");
-        break;
-    case 100:
-        strcpy(profile_str, "High(FRExt)");
-        break;
-    case 110:
-        strcpy(profile_str, "High10(FRExt)");
-        break;
-    case 122:
-        strcpy(profile_str, "High4:2:2(FRExt)");
-        break;
-    case 244:
-        strcpy(profile_str, "High4:4:4(FRExt)");
-        break;
-    default:
-        strcpy(profile_str, "Unknown");
-    }
-}
-
 uint32_t Ue(uint8_t *pBuff, uint32_t nLen, uint32_t &nStartBit)
 {
     uint32_t nZeroNum = 0;
@@ -126,7 +96,9 @@ bool h264_decode_sps(uint8_t *buf, uint32_t nLen, int &width, int &height, int &
         int constraint_set1_flag = u(1, buf, StartBit);
         int constraint_set2_flag = u(1, buf, StartBit);
         int constraint_set3_flag = u(1, buf, StartBit);
-        int reserved_zero_4bits = u(4, buf, StartBit);
+        int constraint_set4_flag = u(1, buf, StartBit);
+        int constraint_set5_flag = u(1, buf, StartBit);
+        int reserved_zero_4bits = u(2, buf, StartBit);
         int level_idc = u(8, buf, StartBit);
 
         int seq_parameter_set_id = Ue(buf, nLen, StartBit);
@@ -142,10 +114,10 @@ bool h264_decode_sps(uint8_t *buf, uint32_t nLen, int &width, int &height, int &
             int qpprime_y_zero_transform_bypass_flag = u(1, buf, StartBit);
             int seq_scaling_matrix_present_flag = u(1, buf, StartBit);
 
-            int seq_scaling_list_present_flag[8];
+            int seq_scaling_list_present_flag[12];
             if (seq_scaling_matrix_present_flag)
             {
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < ((chroma_format_idc != 3) ? 8 : 12); i++)
                 {
                     seq_scaling_list_present_flag[i] = u(1, buf, StartBit);
                 }
@@ -171,23 +143,27 @@ bool h264_decode_sps(uint8_t *buf, uint32_t nLen, int &width, int &height, int &
         int gaps_in_frame_num_value_allowed_flag = u(1, buf, StartBit);
         int pic_width_in_mbs_minus1 = Ue(buf, nLen, StartBit);
         int pic_height_in_map_units_minus1 = Ue(buf, nLen, StartBit);
-
-        width = (pic_width_in_mbs_minus1 + 1) * 16;
-        height = (pic_height_in_map_units_minus1 + 1) * 16;
-
         int frame_mbs_only_flag = u(1, buf, StartBit);
         if (!frame_mbs_only_flag)
             int mb_adaptive_frame_field_flag = u(1, buf, StartBit);
 
         int direct_8x8_inference_flag = u(1, buf, StartBit);
         int frame_cropping_flag = u(1, buf, StartBit);
+
+        width = (pic_width_in_mbs_minus1 + 1) * 16;
+        height = (2 - frame_mbs_only_flag) * (pic_height_in_map_units_minus1 + 1) * 16;
+
         if (frame_cropping_flag)
         {
             int frame_crop_left_offset = Ue(buf, nLen, StartBit);
             int frame_crop_right_offset = Ue(buf, nLen, StartBit);
             int frame_crop_top_offset = Ue(buf, nLen, StartBit);
             int frame_crop_bottom_offset = Ue(buf, nLen, StartBit);
+
+            width = width - (frame_crop_bottom_offset * 2) - (frame_crop_top_offset * 2);
+            height = height - (frame_crop_bottom_offset * 2) - (frame_crop_top_offset * 2);
         }
+
         int vui_parameter_present_flag = u(1, buf, StartBit);
         if (vui_parameter_present_flag)
         {
@@ -238,18 +214,15 @@ bool h264_decode_sps(uint8_t *buf, uint32_t nLen, int &width, int &height, int &
             }
         }
 
-        char profile_str[32] = {0};
-        get_profile(profile_idc, &profile_str[0]);
-
         if (timing_info_present_flag)
         {
-            printf("H.264 SPS: -> video size %dx%d, %d fps, profile(%d) %s\n",
-                   width, height, fps, profile_idc, profile_str);
+            printf("H.264 SPS: -> video size %dx%d, %d fps, profile(%02x)\n",
+                   width, height, fps, profile_idc);
         }
         else
         {
-            printf("H.264 SPS: -> video size %dx%d, unknown fps, profile(%d) %s\n",
-                   width, height, profile_idc, profile_str);
+            printf("H.264 SPS: -> video size %dx%d, unknown fps, profile(%02x)\n",
+                   width, height, profile_idc);
         }
 
         return true;
