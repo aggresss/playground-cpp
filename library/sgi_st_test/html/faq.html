@@ -1,0 +1,411 @@
+<html><head><title>State Threads Library FAQ</title></head>
+<body bgcolor="#ffffff">
+
+<table width="100%">
+<tbody><tr><td width="50%"> </td><td>
+Perfection is achieved not when there is nothing more to add,
+but rather when there is nothing more to take away.<p>
+</p></td></tr>
+<tr><td width="50%"> </td><td>
+<i>-- Antoine de Saint-Exup�ry</i><p>
+</p></td></tr>
+</tbody></table>
+<p>
+
+</p><h2>State Threads Library FAQ</h2>
+
+<b>
+</b><ol>
+<li><b><a href="#intro">What is State Threads library (ST)?</a></b></li>
+<p>
+</p><li><b><a href="#edsm">How is ST different from traditional event-driven state
+    machine implementations?</a></b></li>
+<p>
+</p><li><b><a href="#pthreads">How is ST different from POSIX threads?</a></b></li>
+<p>
+</p><li><b><a href="#uthreads">How is ST different from other user-level thread
+    libraries (e.g., GNU Pth)?</a></b></li>
+<p>
+</p><li><b><a href="#cpus">How does ST take advantage of multiple CPUs?</a></b></li>
+<p>
+</p><li><b><a href="#disk">How does ST deal with disk I/O?</a></b></li>
+<p>
+</p><li><b><a href="#port">How portable is ST?</a></b></li>
+<p>
+</p><li><b><a href="#license">Under what license is ST distributed?</a></b></li>
+<p>
+</p><li><b><a href="#advant">What are the advantages of using ST?</a></b></li>
+<p>
+</p><li><b><a href="#disadv">What are the disadvantages of using ST?</a></b></li>
+<p>
+</p></ol>
+
+<pre>
+
+</pre>
+
+<a name="intro">
+<h2>1. What is State Threads library (ST)?</h2>
+</a>
+
+State Threads (ST) is a small application library which provides a
+foundation for writing fast and highly scalable network applications.
+It combines the simplicity of the multi-threaded programming paradigm,
+in which one thread supports each simultaneous connection, with the
+performance and scalability of an event-driven state machine (EDSM)
+architecture.
+<p>
+Although ST does not introduce new "breakthrough" ideas, it is a very
+effective engineering solution for many network applications.
+</p><p>
+
+<a name="edsm">
+<h2>2. How is ST different from traditional event-driven state machine
+ implementations?</h2>
+</a>
+
+This is an important question because ST was designed with intention
+to replace traditional event-driven state machines (EDSM) wherever
+possible.
+</p><p>
+In a traditional EDSM implementation (Figure 1) an application registers
+callback functions to be executed whenever a specific event occurs (e.g., a
+file descriptor becomes ready for I/O). The main dispatch loop waits for I/O
+or timing events using <tt>select()</tt>, <tt>poll()</tt> or whatever other
+exotic mechanism available on that OS.  When an event occurs, the dispatcher
+invokes an appropriate callback associated with that event ("event handler").
+Thus in a traditional EDSM implementation the request processing logic
+is represented as a sequence (chain) of disjoint callbacks.  The logical
+"context switch" between requests happens upon a callback return.
+Before callback returns, it usually registers next callback to be
+invoked upon event arrival to resume request processing.  It also saves the
+<b>execution state</b> in a data structure which will be passed to the
+next callback.
+</p><p>
+</p><center>
+<img src="edsm.gif"><p>
+<b>Figure 1.  Traditional EDSM</b>
+</p></center>
+<p>
+The fundamental problem with traditional EDSMs is that they are difficult
+to implement and extend.  Despite that there are several libraries and
+frameworks to make it easier (from small
+<a href="http://sourceforge.net/projects/levent/">libevent</a> to
+complex <a href="http://www.cs.wustl.edu/%7Eschmidt/ACE.html">ACE</a>
+reactor/proactor patterns), the intrinsic "complexity of breaking up
+linear thought into a bucketload of callbacks" (as Dean Gaudet put it)
+always remains.
+</p><p>
+The ST implementation turns the above EDSM model inside-out (Figure 2).
+It is meant to replace traditional EDSMs found in many network servers.
+</p><p>
+</p><center>
+<img src="st_edsm.gif"><p>
+<b>Figure 2.  State Threads EDSM</b>
+</p></center>
+<p>
+ST uses the thread abstraction and thus preserves natural programming model.
+Unlike traditional EDSMs where the main dispatch loop is exposed and
+applications are structured around it, the ST scheduler is hidden inside
+the library and invisible to an application writer.  The <b>execution state</b>
+is saved on the thread's stack (a contiguous chunk of memory) which is
+transparently managed by the C environment.
+</p><p>
+Whenever a thread needs to wait for a specific event to occur, it saves
+its execution state and puts itself on an event wait queue -- this is
+equivalent to registering a callback in traditional EDSMs.  Then the
+scheduler is executed.  It pulls the first thread from the run queue and
+restores its execution state -- this is equivalent to invoking a callback
+in traditional EDSMs.  If there are no runnable threads (the run queue
+is empty), the scheduler waits for I/O or timing events using
+<tt>select()</tt>, <tt>poll()</tt> or possibly other exotic mechanism
+available on that OS.  When events occur, the scheduler "wakes up" threads
+waiting for those events by putting them on the run queue.  Then it
+restores the execution state of the first runnable thread.  The cycle is
+complete.
+</p><p>
+Performance-wise ST is as fast as traditional EDSM implementations.
+The context switch overhead is a cost of doing <tt>_setjmp()/_longjmp()</tt>
+(no system calls are involved).  This is negligible for all practical
+applications.  The thread creation overhead is also very small.
+</p><p>
+Memory-wise ST is almost as efficient as traditional EDSMs.
+Although the swap space is reserved for the entire stack segment upon
+thread creation, only stack pages that are actually used (touched) will be
+brought into physical memory.  There is, however, one page per thread minimum
+memory requirement.  In any case -- ST or traditional EDSM -- the execution
+state has to be stored somewhere.  Keeping it on the stack is much more
+efficient than in ad hoc data structures.  As
+<a href="http://httpd.apache.org/contributors/#dgaudet">Dean Gaudet</a>
+from ASF wrote:
+</p><p>
+</p><blockquote>
+... one of the arguments the event folks sometimes throw against the
+thread folks is that the thread folks have a stack per thread.
+And if you've got a thread per connection then you're paying a stack per
+connection. That can be expensive if your stack is really deep. Whereas
+with the event model you only have one stack.
+<p>
+It's a good point. The counterpoint is that in the event model, much
+of the state which the thread folks store on the stack is stored on the
+heap, in a different form. And because languages such as C are designed
+more for the threaded/linear programming model, there are few optimizations
+to help the event folks. For example, in thread land you'd write code:
+</p><pre>       int foo()
+       {
+           int local1;
+           int local2;
+           ...
+           do_some_io();
+           ...
+       }
+</pre>
+in event land you might write:
+<pre>       struct foo_data {
+           int local1;
+           int local2;
+           ...
+       };
+
+       void foo_after_io_completes(void *arg)
+       {
+           struct foo_data *locals = arg;
+           ...
+       }
+
+       void foo()
+       {
+           struct foo_data *locals = malloc(sizeof(struct foo_data));
+           ...
+           initiate_io(foo_after_io_completes, locals);
+       }
+</pre>
+But in the thread version, some of those locals may actually never
+be allocated. They may live only in registers. But the compiler
+can't perform that optimization in the event model.
+These sort of micro details are what make me question how good the
+event model really is for the average programmer who doesn't want to think
+about cycles all the time. That's what compilers are supposed to help with.
+</blockquote>
+<p>
+For the full email thread see Apache server development
+<a href="http://httpd.apache.org/mail/dev/199903.gz">mail archives</a>.
+</p><p>
+
+<a name="pthreads">
+<h2>3. How is ST different from POSIX threads?</h2>
+</a>
+
+The POSIX specification (IEEE 1003.1c, or Pthreads) defines the
+API and behavior that must be met by all conforming thread libraries.
+Almost all UNIX vendors provide Pthreads libraries, many of them with
+kernel support (one-to-one or many-to-few model of mapping user-level
+threads to kernel entities).
+</p><p>
+Pthreads are meant to be general-purpose threads.  That is, a POSIX
+conforming thread library should work correctly for a wide range of
+applications.  In many cases, however, it is not the best choice for
+a particular application domain, such as event-driven network servers.
+Pthreads flexibility has its drawbacks.  Allowing several kernel
+execution entities ("lightweight processes") to share the same address
+space and other resources introduces new level of complexity.  Quoting the
+<a href="http://www.tldp.org/FAQ/Threads-FAQ/">Linux Threads FAQ</a>:
+"all the nightmares about sharing, locking, deadlock, race conditions,
+etc. come vividly alive in threads... Threads can share file handles,
+pipes, variables, signals, etc. Trying to test and duplicate error
+conditions can cause more gray hair than a wayward child."  To maintain
+portability, an application writer using Pthreads should never make any
+assumptions about their underlying implementation and always treat them
+as concurrent and preemptive.
+</p><p>
+ST, on the other hand, is not meant to be a general-purpose thread
+library.  It was designed with intention to replace
+<a href="#edsm">traditional EDSMs</a> found in many network applications.
+ST is fully deterministic and always guarantees that the context switch
+can only happen in a well-known set of functions (at I/O points or at
+explicit synchronization points).  As a result, global data does not
+have to be protected by mutual exclusion locks.  The entire application
+is free to use all the static variables and non-reentrant library
+functions it wants, greatly simplifying programming and debugging while
+increasing performance.
+</p><p>
+For more general information on threads see the <a href="http://www.serpentine.com/%7Ebos/threads-faq/">comp.programming.threads
+FAQ</a>.
+</p><p>
+
+<a name="uthreads">
+<h2>4. How is ST different from other user-level thread libraries
+    (e.g., GNU Pth)?</h2>
+</a>
+
+There are several user-level thread libraries for UNIX-like operating
+systems (such as
+<a href="http://www.gnu.org/software/pth/">GNU Pth</a>,
+<a href="http://www.humanfactor.com/pthreads/mit-pthreads.html">Patched MIT
+Pthreads</a> and others).  Many of these libraries are based pretty much on
+the same concept as ST -- cooperative event-driven scheduling within a
+single process address space (many-to-one model).  ST, however, has different
+objectives and development priorities and therefore its implementation is
+also different.
+</p><p>
+For example, top priorities in the development of GNU Pth are
+platform-independence and completeness.  ST, on the other hand, tries to
+achieve high performance, scalability, and correctness on all explicitly
+supported platforms.  The ST's API and internals are designed with respect
+to the needs of a specific application domain.  Preemptive- or priority-based
+scheduling of threads is omitted to achieve low thread management overhead.
+The number of system calls is minimized to make thread creation and context
+switching as fast as possible.  For example, per-thread signal mask is not
+supported, so there is no need to save and restore a process signal mask on
+every thread context switch.
+</p><p>
+To summarize, ST is not designed to provide full functionality of a
+general-purpose thread library (it is impossible without kernel support
+anyway).  It rather offers a threading API for structuring an application
+as an event-driven state machine.
+</p><p>
+
+<a name="cpus">
+<h2>5. How does ST take advantage of multiple CPUs?</h2>
+</a>
+
+On multiprocessor systems an application should create multiple processes
+to take advantage of hardware parallelism (Figure 3).  Each process acts
+as a "virtual processor" running multiple state threads.
+Process management is not in the ST's scope but instead is left up to
+the application.  The application designer has full control of how many
+processes to create and what resources, if any, to share among them
+via standard inter-process communication (IPC) facilities.
+</p><p>
+</p><center>
+<img src="st_app.gif"><p>
+<b>Figure 3.  ST Application Architecture</b>
+</p></center>
+<p>
+Using multiple processes allows to avoid synchronization overhead on
+multiprocessor systems and thus achieve high system scalability.  It is
+often better to have several separate smaller process-specific resources
+(such as data caches) than one large resource shared and modified by all
+processes.  In other words, each process should be considered as a
+separate mini-instance of the application ("cluster in a box" approach).
+This multi-process multi-threaded architecture also increases an
+application's availability because each process works as a fault container.
+If one of the processes crashes, only a fraction of all threads
+(user connections) will be lost.
+</p><p>
+
+<a name="disk">
+<h2>6. How does ST deal with disk I/O?</h2>
+</a>
+
+All event-driven state machine implementations (including both ST and
+<a href="#edsm">traditional EDSMs</a>) have the same drawback.  Certain
+operations on disk files (<tt>read()</tt>, <tt>stat()</tt>, <tt>open()</tt>
+and others) or a page fault may block the entire process while disk I/O
+is in progress.  Setting non-blocking mode on a file descriptor
+corresponding to a disk file has no effect on most UNIX-like operating
+systems.  In this respect ST is no different than traditional EDSMs.
+</p><p>
+To more efficiently multiplex disk I/O, multiple identical application
+processes may be created (Figure 3).  The probability that at any given
+moment <i>all</i> processes are blocked on disk I/O exponentially decreases
+with the number of processes.  This approach ("symmetric EDSM") is used,
+for example, by the <a href="http://www.zeus.co.uk/">Zeus</a> Web server.
+Another approach is to delegate blocking disk I/O operations to a special
+set of <i>helper</i> processes or kernel threads ("asymmetric EDSM").  This
+technique is used by the <a href="http://www.squid-cache.org/">Squid</a>
+Web proxy server and
+<a href="http://www.cs.rice.edu/%7Edruschel/usenix99flash.ps.gz">Flash</a>
+Web server.  In any case, it is up to the application designer to choose
+the most optimal architecture for the specific application at hand.
+</p><p>
+
+<a name="port">
+<h2>7. How portable is ST?</h2>
+</a>
+
+ST relies on OS features that are available in some form on most UNIX-like
+platforms.  That makes it very portable across many flavors of UNIX.
+Currently ST works on Linux, Solaris, IRIX, BSD family, and other operating
+systems.  There is even an experimental Win32 port.
+</p><p>
+The only part of the library which needs special attention when porting
+to a new platform is the <i>thread context initialization</i>.
+ST uses the <tt>_setjmp()/_longjmp()</tt> routines or their variants
+to save/restore the machine context.  The machine context consists of CPU
+registers including the program counter (PC) and the stack pointer (SP).
+It is usually initialized by calling <tt>_setjmp()</tt> to get the initial
+state and then manually setting the SP field of the <tt>jmp_buf</tt>
+structure to a newly allocated stack segment:
+</p><pre>    struct thread {
+        ...
+        jmp_buf context;
+        ...
+    };
+
+    ...
+    struct thread *t;
+    ...
+
+    /* Get the initial state including PC */
+    if (_setjmp(t-&gt;context)) {
+        /* This function never returns */
+        thread_main_function(); 
+    }
+
+    /* Now set SP to a new value */
+    ...
+</pre>
+There are several ways to find out the exact location of the SP field in
+the <tt>jmp_buf</tt> structure.  For many platforms ST just borrows the
+relevant code from <a href="http://www.mozilla.org/projects/nspr/">NSPR</a>,
+but other methods can be used as well.  For example, on open source platforms
+it is possible to look at the <tt>_setjmp()</tt> implementation and figure
+out where SP is saved even without any special skills in platform-specific
+assembly language.  Another approach is to run special "probing" code which
+explores the <tt>jmp_buf</tt> structure and reports the SP location.
+A <a href="http://www.cs.uiowa.edu/%7Ejones/opsys/threads/">minimal user-level
+thread package</a> by Douglas W. Jones uses this technique.  In any case,
+most of the work should be done up front to avoid any overhead during library
+initialization or, even worse, every time a thread is created.
+<p>
+
+<a name="license">
+<h2>8. Under what license is ST distributed?</h2>
+</a>
+
+ST is distributed under the Mozilla Public License
+(<a href="http://www.mozilla.org/MPL/">MPL</a>) version 1.1 or the GNU
+General Public License (<a href="http://www.gnu.org/copyleft/">GPL</a>)
+version 2 or later.  You can choose which of the two licenses you want
+or you can continue the dual license.  Commercial interests probably will
+choose the MPL, and free software advocates likely will prefer the GPL.
+</p><p>
+In short, ST can be used without restrictions with any other software
+(both free and non-free).  Modifications to ST itself, however, must be
+made available to anyone who uses your modified version.
+</p><p>
+
+<a name="advant">
+<h2>9. What are the advantages of using ST?</h2>
+</a>
+
+ST has the advantages of <a href="#edsm">traditional EDSMs</a> such
+as deterministic behavior, high performance, and ability to support large
+number of concurrent users.  At the same time, ST makes it possible to
+retain the natural linear programming model by using a thread concept.
+ST-based applications can be easily understood and extended.
+</p><p>
+
+<a name="disadv">
+<h2>10. What are the disadvantages of using ST?</h2>
+</a>
+
+The main limitation of ST is that all I/O operations on sockets must use
+the ST's I/O functions.  Only those functions perform thread scheduling and
+prevent application's processes from blocking.
+</p><p>
+
+</p><hr>
+<p>
+</p></body></html>
