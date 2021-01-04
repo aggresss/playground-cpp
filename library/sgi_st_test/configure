@@ -1,0 +1,13 @@
+# configure for SGI-ST(state threads) compile
+
+PATH_REPO=`git rev-parse --show-toplevel`
+source ${PATH_REPO}/env.sh
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_ST=$PATH_LIB/state-threads
+
+# st
+if [ ! -d $PATH_ST ] ; then
+    git_clone https://github.com/ossrs/state-threads.git srs ${PATH_ST}
+fi
