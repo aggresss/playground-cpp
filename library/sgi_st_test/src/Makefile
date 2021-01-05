@@ -1,2 +1,7 @@
+STDIR = ../lib/state-threads/obj
+
 all:
-	gcc -I../lib/state-threads/obj -g huge_threads.c ../lib/state-threads/obj/libst.a -o huge_threads.out
+	gcc -I$(STDIR) -g huge_threads.c $(STDIR)/libst.a -o huge_threads.out
+
+clean:
+	rm -f ./*.out
