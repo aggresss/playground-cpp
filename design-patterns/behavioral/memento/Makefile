@@ -8,7 +8,8 @@ objs = $(srcs:.cpp=.o)
 headers = $(wildcard *.hpp)
 
 .PHONY: all
-	all: $(target)
+
+all: $(target)
 
 $(target): $(objs) $(headers) FORCE
 	$(CXX) -o $@ $(objs) $(LDFLAGS)

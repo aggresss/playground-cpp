@@ -1,106 +1,57 @@
-#include <stdio.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <string.h>
-#include <unistd.h>
 #include <arpa/inet.h>
-#include <pthread.h>
+#include <netinet/in.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <sys/types.h>
 
-static void usage(const char *proc)
-{
-    printf("Please use :%s [IP] [port]\n", proc);
+static void usage(const char *proc) {
+    printf("please use : %s [ip] [port]\n", proc);
 }
 
-void thread_run(void *arg)
-{
-    printf("creat a new thread\n");
-    int fd = (int)arg;
-    char buf[1024];
-
-    while (1)
-    {
-        memset(buf, '\0', sizeof(buf));
-        ssize_t _s = read(fd, buf, sizeof(buf) - 1);
-        if (_s > 0)
-        {
-            buf[_s] = '\0';
-            printf("client say : %s\n", buf);
-        }
-        memset(buf, '\0', sizeof(buf));
-        printf("please Enter: ");
-        fflush(stdout);
-        ssize_t _s2 = read(0, buf, sizeof(buf) - 1);
-        if (_s2 > 0)
-        {
-            write(fd, buf, strlen(buf));
-        }
-    }
-}
-
-int main(int argc, char *argv[])
-{
-    if (argc != 3)
-    {
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
         usage(argv[0]);
         exit(1);
     }
 
-    // 1.creat socket
-    int sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (sock < 0)
-    {
+    // 1.create socket
+
+    int sock = socket(AF_INET, SOCK_DGRAM, 0);
+    if (sock < 0) {
         perror("creat socket error\n");
-        return 1;
+        return 2;
     }
 
     struct sockaddr_in local;
     local.sin_family = AF_INET;
     local.sin_port = htons(atoi(argv[2]));
-    local.sin_addr.s_addr = inet_addr(argv[1]);
+    local.sin_addr.s_addr = inet_addr(argv[1]); // or INADDR_ANY
+
+    int reuse = 1;
+    setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse));
 
     // 2.bind
 
-    if (bind(sock, (struct sockaddr *)&local, sizeof(local)) < 0)
-    {
-        perror("bind error\n");
-        close(sock);
-        return 2;
-    }
-
-    // 3.listen
-
-    if (listen(sock, 10) < 0)
-    {
-        perror("listen error\n");
-        close(sock);
+    if (bind(sock, (struct sockaddr *)&local, sizeof(local)) < 0) {
+        perror("bind error");
         return 3;
     }
 
-    printf("bind and listen success!wait accept...\n");
+    // 3. recvfrom
 
-    // 4.accept
-
+    int done = 0;
     struct sockaddr_in peer;
     socklen_t len = sizeof(peer);
-    while (1)
-    {
 
-        int fd = accept(sock, (struct sockaddr *)&peer, &len);
-
-        if (fd < 0)
-        {
-            perror("accept error\n");
-            close(sock);
-            return 4;
-        }
-
-        printf("get connect,ip is : %s port is : %d\n", inet_ntoa(peer.sin_addr), ntohs(peer.sin_port));
-
-        pthread_t id;
-        pthread_create(&id, NULL, thread_run, (void *)fd);
-
-        pthread_detach(id);
+    char buf[1024];
+    while (!done) {
+        memset(buf, '\0', sizeof(buf));
+        printf("Please Enter:");
+        recvfrom(sock, buf, sizeof(buf), 0, (struct sockaddr *)&peer, &len);
+        printf("get a client,socket: %s:%d\n", inet_ntoa(peer.sin_addr), ntohs(peer.sin_port));
+        printf("client : %s ,echo client!\n", buf);
     }
-    close(sock);
     return 0;
 }
