@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-Wall -g -c
-LDFLAGS =-lpthread
+LDFLAGS =
 
 SRC=$(wildcard *.c)
 OBJ=$(SRC:%.c=%.o)

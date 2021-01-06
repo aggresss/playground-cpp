@@ -1,5 +1,6 @@
 CC=gcc
 CFLAGS=-Wall -g -c
+LDFLAGS =
 
 SRC=$(wildcard *.c)
 OBJ=$(SRC:%.c=%.o)
@@ -10,7 +11,7 @@ BIN=$(OBJ:%.o=%.out)
 all: $(BIN)
 
 $(BIN):%.out:%.o FORCE
-	$(CC) $< -o $@
+	$(CC) $(LDFLAGS) $< -o $@
 
 $(OBJ):%.o:%.c FORCE
 	$(CC) $(CFLAGS) $< -o $@

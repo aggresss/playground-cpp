@@ -8,7 +8,7 @@
 #include <unistd.h>
 
 static void usage(const char *proc) {
-    printf("Please use :%s [IP] [port]\n", proc);
+    printf("Please use: %s [IP] [port]\n", proc);
 }
 
 void *thread_run(void *arg) {
@@ -21,7 +21,7 @@ void *thread_run(void *arg) {
         ssize_t _s = read(fd, buf, sizeof(buf) - 1);
         if (_s > 0) {
             buf[_s] = '\0';
-            printf("client say : %s\n", buf);
+            printf("client say: %s\n", buf);
         }
         memset(buf, '\0', sizeof(buf));
         printf("please Enter: ");
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
         return 3;
     }
 
-    printf("bind and listen success!wait accept...\n");
+    printf("bind and listen success! wait accept...\n");
 
     // 4.accept
 
@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
             return 4;
         }
 
-        printf("get connect,ip is : %s port is : %d\n", inet_ntoa(peer.sin_addr),
+        printf("get connect, ip is: %s port is: %d\n", inet_ntoa(peer.sin_addr),
                ntohs(peer.sin_port));
 
         pthread_t id;

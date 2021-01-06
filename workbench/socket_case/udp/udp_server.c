@@ -48,10 +48,9 @@ int main(int argc, char *argv[]) {
     char buf[1024];
     while (!done) {
         memset(buf, '\0', sizeof(buf));
-        printf("Please Enter:");
         recvfrom(sock, buf, sizeof(buf), 0, (struct sockaddr *)&peer, &len);
-        printf("get a client,socket: %s:%d\n", inet_ntoa(peer.sin_addr), ntohs(peer.sin_port));
-        printf("client : %s ,echo client!\n", buf);
+        printf("get a client, socket: %s:%d\n", inet_ntoa(peer.sin_addr), ntohs(peer.sin_port));
+        printf("client : %s\n", buf);
     }
     return 0;
 }
