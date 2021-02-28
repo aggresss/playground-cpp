@@ -3,9 +3,10 @@ CC = gcc
 CXX = g++
 CFLAGS = -g
 CXXFLAGS = -g -std=c++14
-OBJS = $(patsubst %c, %o, $(wildcard *.c))
-OBJS += $(patsubst %cpp, %o, $(wildcard *.cpp))
+OBJS = $(patsubst %.c, %.o, $(wildcard *.c))
+OBJS += $(patsubst %.cpp, %.o, $(wildcard *.cpp))
 HEADER = $(wildcard ../include/*.h)
+HEADER += $(wildcard ../include/*.hpp)
 BINS = $(OBJS:%.o=%.out)
 PATH_LIBLUA = $(shell cd ../lib && pwd)/lua/prefix
 CFLAGS += -I$(PATH_LIBLUA)/include
@@ -17,9 +18,9 @@ all: $(BINS)
 
 .PHONY: clean
 clean:
-	rm -rf $(OBJS) $(DEPS) $(Target)
+	rm -rf $(OBJS) $(DEPS) $(BINS)
 
-$(BINS):$(OBJS)
+%.out:%.o
 	$(CC) -o $@ $< $(LDFLAGS)
 
 %.o:%.cpp $(HEADER)
