@@ -11,7 +11,7 @@ BINS = $(OBJS:%.o=%.out)
 PATH_LIBLUA = $(shell cd ../lib && pwd)/lua/prefix
 CFLAGS += -I$(PATH_LIBLUA)/include
 CXXFLAGS += -I$(PATH_LIBLUA)/include
-LDFLAGS += -L$(PATH_LIBLUA)/lib -llua
+LDFLAGS += -L$(PATH_LIBLUA)/lib -llua -lm -ldl
 
 .PHONY: all
 all: $(BINS)

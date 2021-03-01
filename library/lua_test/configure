@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 # configure for lua compile
+#
+# sudo apt remove libreadline6-dev
+#
 
 PATH_REPO=`git rev-parse --show-toplevel`
 source ${PATH_REPO}/env.sh
