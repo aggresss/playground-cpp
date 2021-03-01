@@ -1,6 +1,14 @@
 /**
  * @file lua_stack.c
  * @brief https://www.jianshu.com/p/4496710276cb
+ *
+ * C <-> Stack <-> Lua
+ *
+ * push  C -> Stack
+ * to    C <- Stack
+ * set   Stack -> Lua
+ * get   Stack <- Lua
+ *
  */
 
 #include <lauxlib.h>
