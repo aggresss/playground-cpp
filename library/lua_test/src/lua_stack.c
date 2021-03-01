@@ -4,13 +4,14 @@
  *
  * C <-> Stack <-> Lua
  *
- * push  C -> Stack
- * to    C <- Stack
- * set   Stack -> Lua
- * get   Stack <- Lua
+ * push/pop  C -> Stack
+ * to        C <- Stack
+ * set       Stack -> Lua
+ * get       Stack <- Lua
  *
  */
 
+#include <stdio.h>
 #include <lauxlib.h>
 #include <lua.h>
 #include <lualib.h>
@@ -22,7 +23,7 @@ void print_stacknum(const char *desc, const int count) {
 void test_api_getfield() {
     lua_State *L = lua_open();
 
-    luaL_dofile(L, "fieldtest.lua");  // 加载执行lua文件
+    luaL_dofile(L, "lua_stack.lua");  // 加载执行lua文件
     lua_getglobal(L, "Param");        // 查找param变量压入栈底
     print_stacknum("stage1", lua_gettop(L));
 
@@ -49,7 +50,7 @@ void test_api_getfield() {
     lua_pop(L, 1);                      // 弹出返回结果
     print_stacknum("stage6", lua_gettop(L));
 
-    printf("\nresult = %d", result);
+    printf("\nresult = %d\n", result);
     lua_close(L);  //关闭lua环境
 }
 

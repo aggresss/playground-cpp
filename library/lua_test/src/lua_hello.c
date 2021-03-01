@@ -1,3 +1,10 @@
+/**
+ * @file lua_hello.c
+ * @brief https://www.cnblogs.com/blueberryzzz/p/9557256.html
+ *
+ */
+
+#include <stdio.h>
 #include <lauxlib.h>
 #include <lua.h>
 #include <lualib.h>
@@ -12,7 +19,7 @@ int main() {
     }
 
     // 载入lua文件
-    int loadInfo = luaL_loadfile(luaEnv, "hello.lua");
+    int loadInfo = luaL_loadfile(luaEnv, "lua_hello.lua");
     if (loadInfo) {
         return loadInfo;
     }
