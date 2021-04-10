@@ -20,4 +20,6 @@ ninja -t list
 
 - https://gn.googlesource.com/gn/
 - https://ninja-build.org/
+- https://gn.googlesource.com/gn/+/master/docs/language.md
 - https://blog.csdn.net/foruok/article/details/70050342
+- https://blog.csdn.net/zhangtracy/article/details/79045363
