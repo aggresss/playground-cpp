@@ -1,8 +1,8 @@
 # build directory
 lib/
-build*/
-output*/
-out*/
+build/
+output/
+out/
 /tmp/
 /project/gyp/deps/
 
