@@ -1,6 +1,5 @@
 # build directory
 lib/
-build/
 output/
 out/
 /tmp/
