@@ -1,68 +1,37 @@
-
-template <typename T>
-struct TypeTraits {
-    static bool IsPODType() {
-        return false;
-    }
-};
-
-template <>
-struct TypeTraits<int> {
-    static bool IsPODType() {
-        return true;
-    }
-};
-
-template <>
-struct TypeTraits<unsigned int> {
-    static bool IsPODType() {
-        return true;
-    }
-};
-
-template <>
-struct TypeTraits<char> {
-    static bool IsPODType() {
-        return true;
-    }
-};
-
-template <>
-struct TypeTraits<unsigned char> {
-    static bool IsPODType() {
-        return true;
-    }
-};
-
-template <>
-struct TypeTraits<short> {
-    static bool IsPODType() {
-        return true;
-    }
-};
-
-template <>
-struct TypeTraits<unsigned short> {
-    static bool IsPODType() {
-        return true;
-    }
-};
-
 #include <iostream>
-template <typename T>
-void CheckTypeTraits(T &v) {
-    std::cout << v << " is POD type: " << TypeTraits<T>::IsPODType() << std::endl;
-}
 
+template <class T1, class T2>
+class Data {
+   public:
+    Data() { std::cout << "Primary template" << std::endl; }
+
+   private:
+    T1 _d1;
+    T2 _d2;
+};
+template <>
+class Data<int, char>
+{
+   public:
+    Data() { std::cout << "Full template specialization" << std::endl; }
+
+   private:
+    int _d1;
+    char _d2;
+};
+template <class T1>
+class Data<T1, int>
+{
+   public:
+    Data() { std::cout << "Partial template specialization" << std::endl; }
+
+   private:
+    T1 _d1;
+    char _d2;
+};
 int main() {
-    int a = 1;
-    char b = '2';
-    short c = 3;
-    float d = 4.4; /* 没有特化处理,因此返回0 */
-
-    CheckTypeTraits(a);
-    CheckTypeTraits(b);
-    CheckTypeTraits(c);
-    CheckTypeTraits(d);
+    Data<int, double> d1;  // primary
+    Data<int, char> d2;    // full
+    Data<char, int> d3;    // partial
     return 0;
 }
