@@ -44,6 +44,18 @@ LHS 和 RHS 的含义是“赋值操作的左侧或右侧”并不一定意味�
 使用move几乎没有任何代价，只是转换了资源的所有权。他实际上将左值变成右值引用，然后应用移动语义，调用移动构造函数，就避免了拷贝，提高了程序性能。
 move 对于含资源（堆内存或句柄）的对象来说更有意义
 
+### 引用折叠 (Reference-Collapsing Rules)
+
+一般来讲，我们不能定义一个引用的引用，但是通过类型别名或者模板参数可以间接定义。
+
+引用折叠规则适用于这种情况。当我们间接创建一个引用的引用，这些引用形成了“折叠”。
+对于一个给定的类型X，下面是折叠规则：
+
+- `X& &` / `X& &&` / `X&& &` 都被折叠为 `X&`
+- `X&& &&` 折叠为 `X&&`
+
+引用折叠会导致 `右值转换`，形如 `funRef(T && arg)` 的这种参数为右值引用的模板，当实参为一个左值时，调用仍然成功，此时编译器推断模板参数为**左值的引用**。
+
 ### Compile
 
 ```
@@ -57,3 +69,4 @@ g++ -std=c++17 -o move_construction.out move_construction.cpp
 - https://www.cnblogs.com/qicosmos/p/4283455.html
 - https://www.cnblogs.com/taiyang-li/p/5894607.html
 - https://blog.csdn.net/chenhaifeng2016/article/details/74192525
+- https://blog.csdn.net/sixdaycoder/article/details/46489891
