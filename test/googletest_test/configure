@@ -14,8 +14,7 @@ fi
 
 if [ ! -d $PATH_GOOGLETEST/build ] ; then
 cd $PATH_GOOGLETEST && \
-    mkdir build && cd build && \
-    cmake .. && \
-    make
+    cmake . -Bbuild && \
+    make -C build
 fi
 
