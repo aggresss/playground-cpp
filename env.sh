@@ -11,7 +11,7 @@ BASE_URL="http://repo.router7.com/libs"
 function down_load
 {
     local down_file=`echo "$1" | awk -F "/" '{print $NF}'`
-    if [ $(curl -I -o /dev/null -s -w %{http_code} $1) != 200 ]; then
+    if [ $(curl -I -o /dev/null -s -w %{http_code} $1) -ge 400 ]; then
         echo "Query $1 not exist."
         return 1
     fi

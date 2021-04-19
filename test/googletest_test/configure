@@ -9,7 +9,7 @@ PATH_GOOGLETEST=$PATH_LIB/googletest
 
 # googletest
 if [ ! -d $PATH_GOOGLETEST ] ; then
-    down_load ${BASE_URL}/googletest-release-1.8.1.tar.bz2 ${PATH_GOOGLETEST}
+    down_load https://github.com/google/googletest/archive/refs/tags/release-1.10.0.tar.gz ${PATH_GOOGLETEST}
 fi
 
 if [ ! -d $PATH_GOOGLETEST/build ] ; then
