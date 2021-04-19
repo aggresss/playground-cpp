@@ -11,6 +11,7 @@ PATH_ABSEIL_OUT=$(PATH_ABSEIL)/out
 CXXFLAGS += -I$(PATH_ABSEIL_OUT)/include
 
 LDFLAGS += -L$(PATH_ABSEIL_OUT)/lib
+LDFLAGS += $(patsubst $(PATH_ABSEIL_OUT)/lib/lib%.a, -l%, $(wildcard $(PATH_ABSEIL_OUT)/lib/lib*.a))
 LDFLAGS += -lpthread -ldl
 
 Target = abseil_test.out
