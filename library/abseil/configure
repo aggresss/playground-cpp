@@ -14,6 +14,6 @@ fi
 
 if [ ! -d $PATH_ABSEIL/build ] ; then
 cd $PATH_ABSEIL && \
-    cmake . -Bbuild -DCMAKE_INSTALL_PREFIX="${PATH_ABSEIL}/out" && \
+    cmake . -Bbuild -DCMAKE_CXX_STANDARD=11 -DCMAKE_INSTALL_PREFIX="${PATH_ABSEIL}/out" && \
     make install -C build
 fi
