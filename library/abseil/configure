@@ -1,0 +1,19 @@
+# configure for abseil compile
+
+PATH_REPO=`git rev-parse --show-toplevel`
+source ${PATH_REPO}/env.sh
+
+PATH_CUR=`pwd`
+PATH_LIB=$PATH_CUR/lib
+PATH_ABSEIL=$PATH_LIB/abseil
+
+# abseil
+if [ ! -d $PATH_ABSEIL ] ; then
+    down_load https://github.com/abseil/abseil-cpp/archive/refs/tags/20210324.0.tar.gz ${PATH_ABSEIL}
+fi
+
+if [ ! -d $PATH_ABSEIL/build ] ; then
+cd $PATH_ABSEIL && \
+    cmake . -Bbuild -DCMAKE_INSTALL_PREFIX="${PATH_ABSEIL}/out" && \
+    make install -C build
+fi
