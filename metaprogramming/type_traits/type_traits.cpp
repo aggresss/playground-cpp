@@ -1,7 +1,8 @@
 #include <iostream>
 #include <type_traits>
 
-int main() {
+int demo_01() {
+    std::cout << std::boolalpha;
     std::cout << "is_*" << std::endl;
     std::cout << std::is_const<const int>::value << std::endl;
     std::cout << std::is_volatile<volatile int>::value << std::endl;
@@ -23,8 +24,8 @@ int main() {
     std::cout << std::is_same<int, std::remove_cv<const volatile int>::type>::value << std::endl;
 
     std::cout << "add_lvalue_reference add_rvalue_reference" << std::endl;
-    std::cout << std::is_same<int&, std::add_lvalue_reference<int>::type>::value << std::endl;
-    std::cout << std::is_same<int&&, std::add_rvalue_reference<int>::type>::value << std::endl;
+    std::cout << std::is_same<int &, std::add_lvalue_reference<int>::type>::value << std::endl;
+    std::cout << std::is_same<int &&, std::add_rvalue_reference<int>::type>::value << std::endl;
 
     std::cout << "decay" << std::endl;
     std::cout << std::is_same<int, std::decay<const volatile int &&>::type>::value << std::endl;
@@ -32,6 +33,28 @@ int main() {
     std::cout << "common_type" << std::endl;
     typedef std::common_type<unsigned char, short, int>::type NumericType;
     std::cout << std::is_same<int, NumericType>::value << std::endl;
+
+    return 0;
+}
+
+template <typename T, typename U>
+struct decay_equiv : std::is_same<typename std::decay<T>::type, U>::type {};
+
+int demo_02() {
+    std::cout << std::boolalpha
+              << decay_equiv<int, int>::value << std::endl
+              << decay_equiv<int &, int>::value << std::endl
+              << decay_equiv<int &&, int>::value << std::endl
+              << decay_equiv<const int &, int>::value << std::endl
+              << decay_equiv<int[2], int *>::value << std::endl
+              << decay_equiv<int(int), int (*)(int)>::value << std::endl;
+
+    return 0;
+}
+
+int main() {
+    // demo_01();
+    demo_02();
 
     return 0;
 }
