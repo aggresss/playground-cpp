@@ -24,14 +24,19 @@ POD 数据满足的条件：
 
 类型萃取通过对函数模板的特化来实现
 
-
-
 ## 4 constexpr
 
 指示值或返回值是常数，并且如果可能，将在编译时计算值或返回值
 
+## 5 #include <type_traits>
+
+- type_traits 是 C++11 提供的模板元基础库
+- type_traits 可实现在编译期计算、判断、转换、查询等等功能
+- type_traits 提供了编译期的 true 和 false
+
 ## Reference
 
+- http://www.cplusplus.com/reference/type_traits/
 - https://en.cppreference.com/w/cpp/language/template_specialization
 - https://www.cnblogs.com/DswCnblog/p/6371071.html
 - https://blog.csdn.net/lucky52529/article/details/104127705
