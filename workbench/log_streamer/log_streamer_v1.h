@@ -11,7 +11,7 @@ namespace v1 {
 
 class LogStreamer {
    public:
-    LogStreamer(const char* arg = "")
+    explicit LogStreamer(const char* arg = "")
         : log_(arg) {}
 
     LogStreamer& operator=(const LogStreamer&) = delete;
