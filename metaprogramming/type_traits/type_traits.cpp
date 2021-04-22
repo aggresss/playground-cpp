@@ -2,7 +2,6 @@
 #include <type_traits>
 
 int demo_01() {
-    std::cout << std::boolalpha;
     std::cout << "is_*" << std::endl;
     std::cout << std::is_const<const int>::value << std::endl;
     std::cout << std::is_volatile<volatile int>::value << std::endl;
@@ -52,9 +51,18 @@ int demo_02() {
     return 0;
 }
 
+// SFINAE
+template<typename T, typename = typename std::enable_if<std::is_integral<T>::value, void>::type>
+bool isodd(T x)
+{
+    return x % 2;
+}
+
 int main() {
+    std::cout << std::boolalpha;
     // demo_01();
-    demo_02();
+    // demo_02();
+    std::cout << isodd(10) << std::endl;
 
     return 0;
 }
