@@ -14,9 +14,11 @@ class LogStreamer {
     LogStreamer(const char* arg = "")
         : log_(arg) {}
 
+    LogStreamer& operator=(const LogStreamer&) = delete;
+
     LogStreamer operator<<(const char* arg) {
         this->log_.append(arg);
-        return *this;
+        return std::move(*this);
     }
 
     template <typename... U>
