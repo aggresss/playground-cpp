@@ -51,18 +51,10 @@ int demo_02() {
     return 0;
 }
 
-// SFINAE
-template<typename T, typename = typename std::enable_if<std::is_integral<T>::value, void>::type>
-bool isodd(T x)
-{
-    return x % 2;
-}
-
 int main() {
     std::cout << std::boolalpha;
-    // demo_01();
-    // demo_02();
-    std::cout << isodd(10) << std::endl;
+    demo_01();
+    demo_02();
 
     return 0;
 }
