@@ -1,39 +1,31 @@
 #ifndef LOG_STREAMER_V1_H_
 #define LOG_STREAMER_V1_H_
 
-#include <cstdarg>
-#include <cstdio>
-#include <cstdlib>
 #include <iostream>
 #include <string>
 
 #define LOG_V1 \
-    v1::LogCall(__FILE__, "LOG_V1") & v1::LogStreamer()
+    v1::LogCall(__FILE__, " LOG_V1 ") & v1::LogStreamer()
 
 namespace v1 {
 
 class LogStreamer {
    public:
-    LogStreamer(const char* arg = "", const LogStreamer* prior = nullptr)
-        : arg_(arg), prior_(prior) {}
+    LogStreamer(const char* arg = "")
+        : log_(arg) {}
 
-    LogStreamer operator<<(const char* arg) const {
-        return LogStreamer(arg, this);
+    LogStreamer operator<<(const char* arg) {
+        this->log_.append(arg);
+        return *this;
     }
 
     template <typename... U>
     void Call(U... args) const {
-        std::cout << this->arg_ << std::endl;
-        if (this->prior_ != nullptr) {
-            this->prior_->Call(this->arg_, args...);
-        } else {
-            (std::cout << ... << args) << std::endl;
-        }
+        (std::cout << ... << args) << this->log_ << std::endl;
     }
 
    private:
-    const char* arg_;
-    const LogStreamer* prior_;
+    std::string log_;
 };
 
 class LogCall final {
