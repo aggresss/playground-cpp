@@ -14,14 +14,14 @@ class LogStreamer {
     explicit LogStreamer(const char* arg = "")
         : log_(arg) {}
 
-    LogStreamer(const LogStreamer&) = delete;
-    LogStreamer(const LogStreamer&&) = delete;
-    LogStreamer& operator=(const LogStreamer&) = delete;
-    LogStreamer& operator=(const LogStreamer&&) = delete;
+    LogStreamer(const LogStreamer&) = default;
+    LogStreamer(LogStreamer&&) = default;
+    LogStreamer& operator=(const LogStreamer&) = default;
+    LogStreamer& operator=(LogStreamer&&) = default;
 
-    LogStreamer&& operator<<(const char* arg) {
+    LogStreamer operator<<(const char* arg) {
         this->log_.append(arg);
-        return std::forward<LogStreamer>(*this);
+        return *this;
     }
 
     template <typename... U>
