@@ -14,9 +14,12 @@ class LogStreamer {
     explicit LogStreamer(const char* arg = "")
         : log_(arg) {}
 
+    LogStreamer(const LogStreamer&) = delete;
+    LogStreamer(const LogStreamer&&) = delete;
     LogStreamer& operator=(const LogStreamer&) = delete;
+    LogStreamer& operator=(const LogStreamer&&) = delete;
 
-    LogStreamer operator<<(const char* arg) {
+    LogStreamer&& operator<<(const char* arg) {
         this->log_.append(arg);
         return std::forward<LogStreamer>(*this);
     }
