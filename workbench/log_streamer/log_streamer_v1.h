@@ -16,9 +16,9 @@ class LogStreamer {
 
     LogStreamer& operator=(const LogStreamer&) = delete;
 
-    LogStreamer& operator<<(const char* arg) {
+    LogStreamer&& operator<<(const char* arg) {
         this->log_.append(arg);
-        return std::move(*this);
+        return std::forward<LogStreamer>(*this);
     }
 
     template <typename... U>
