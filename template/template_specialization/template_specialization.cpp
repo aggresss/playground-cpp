@@ -1,6 +1,6 @@
 #include <iostream>
 
-template <class T1, class T2>
+template <typename T1, typename T2>
 class Data {
    public:
     Data() { std::cout << "Primary template" << std::endl; }
@@ -20,7 +20,7 @@ class Data<int, char> {
     char _d2;
 };
 
-template <class T1>
+template <typename T1>
 class Data<T1, int> {
    public:
     Data() { std::cout << "Partial template specialization" << std::endl; }
