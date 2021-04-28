@@ -9,9 +9,9 @@ class Data {
     T1 _d1;
     T2 _d2;
 };
+
 template <>
-class Data<int, char>
-{
+class Data<int, char> {
    public:
     Data() { std::cout << "Full template specialization" << std::endl; }
 
@@ -19,9 +19,9 @@ class Data<int, char>
     int _d1;
     char _d2;
 };
+
 template <class T1>
-class Data<T1, int>
-{
+class Data<T1, int> {
    public:
     Data() { std::cout << "Partial template specialization" << std::endl; }
 
@@ -29,6 +29,7 @@ class Data<T1, int>
     T1 _d1;
     char _d2;
 };
+
 int main() {
     Data<int, double> d1;  // primary
     Data<int, char> d2;    // full
