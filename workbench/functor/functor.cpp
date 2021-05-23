@@ -1,22 +1,29 @@
 #include <iostream>
 #include <string>
 
-class StringAppend
-{
-public:
-    explicit StringAppend(const std::string &str) : ss(str) {}
+typedef int (*AddFunc)(int, int);
 
-    void operator()(const std::string &str) const
-    {
-        std::cout << str << ' ' << ss << std::endl;
+int Add(int a, int b, AddFunc addFunc) {
+    return addFunc(a, b);
+}
+
+int addImpl(int a, int b) {
+    return a + b;
+}
+
+class AddCls {
+   public:
+    int operator()(int a, int b) {
+        return a + b;
     }
-
-private:
-    const std::string ss;
 };
 
-int main()
-{
-    StringAppend myFunc("is world");
-    myFunc("hello");
+int addProxy(int a, int b) {
+    return AddCls().operator()(a, b);
+}
+
+int main() {
+    std::cout << Add(1, 2, addImpl) << std::endl;
+    std::cout << Add(1, 2, addProxy) << std::endl;
+    return 0;
 }
