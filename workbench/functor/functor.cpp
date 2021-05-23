@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 
 typedef int (*AddFunc)(int, int);
 
@@ -12,8 +11,7 @@ int addImpl(int a, int b) {
     return a + b;
 }
 
-class AddCls {
-   public:
+struct AddCls {
     int operator()(int a, int b) {
         return a + b;
     }
