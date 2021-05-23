@@ -3,7 +3,8 @@
 
 typedef int (*AddFunc)(int, int);
 
-int Add(int a, int b, AddFunc addFunc) {
+template <typename T>
+int Add(int a, int b, T addFunc) {
     return addFunc(a, b);
 }
 
@@ -18,12 +19,8 @@ class AddCls {
     }
 };
 
-int addProxy(int a, int b) {
-    return AddCls().operator()(a, b);
-}
-
 int main() {
     std::cout << Add(1, 2, addImpl) << std::endl;
-    std::cout << Add(1, 2, addProxy) << std::endl;
+    std::cout << Add(1, 2, AddCls()) << std::endl;
     return 0;
 }
