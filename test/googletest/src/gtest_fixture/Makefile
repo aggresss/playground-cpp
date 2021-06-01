@@ -16,7 +16,7 @@ CFLAGS += -I$(PATH_GOOGLETEST)/googlemock/include
 CXXFLAGS += -I$(PATH_GOOGLETEST)/googletest/include -DGTEST_HAS_PTHREAD=1 -pthread
 CXXFLAGS += -I$(PATH_GOOGLETEST)/googlemock/include
 
-LDFLAGS += -L$(PATH_GOOGLETEST_BUILD)/lib -lgmock -lgmock_main -lgtest -lgtest_main
+LDFLAGS += -L$(PATH_GOOGLETEST_BUILD)/lib -lgtest -lgtest_main
 LDFLAGS += -lpthread -ldl
 
 Target = gtest_test.out
