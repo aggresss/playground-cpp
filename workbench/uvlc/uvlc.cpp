@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 // Get Variable Length Unsigned Integer
-static uint32_t GetVarLenUInteger(uint8_t* pBuff, size_t nLen, uint32_t& nStartBit) {
+static uint32_t GetVLCUInteger(uint8_t* pBuff, size_t nLen, uint32_t& nStartBit) {
     uint32_t dwRet = 0;
     uint32_t leadingZeros = 0;
 
@@ -40,6 +40,6 @@ int main() {
     uint32_t startBit = 0;
 
     for (uint32_t i = 0; i < 6; i++) {
-        assert(i == GetVarLenUInteger(testBitstream, 4, startBit));
+        assert(i == GetVLCUInteger(testBitstream, 4, startBit));
     }
 }
