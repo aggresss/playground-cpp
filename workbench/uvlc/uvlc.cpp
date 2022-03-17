@@ -5,6 +5,7 @@
 static uint32_t GetVarLenUInteger(uint8_t* pBuff, size_t nLen, uint32_t& nStartBit) {
     uint32_t dwRet = 0;
     uint32_t leadingZeros = 0;
+
     while (1) {
         if (nStartBit + 1 > nLen * 8)
             return dwRet;
