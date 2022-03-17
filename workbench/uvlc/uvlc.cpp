@@ -1,5 +1,5 @@
-#include <stdint.h>
 #include <assert.h>
+#include <stdint.h>
 
 // Get Variable Length Unsigned Integer
 static uint32_t GetVarLenUInteger(uint8_t* pBuff, size_t nLen, uint32_t& nStartBit) {
@@ -18,7 +18,7 @@ static uint32_t GetVarLenUInteger(uint8_t* pBuff, size_t nLen, uint32_t& nStartB
     }
 
     if (leadingZeros >= 32) {
-        dwRet = (1 << 32) - 1;
+        dwRet = UINT32_MAX;
     }
 
     if (nStartBit + leadingZeros > nLen * 8)
@@ -31,17 +31,14 @@ static uint32_t GetVarLenUInteger(uint8_t* pBuff, size_t nLen, uint32_t& nStartB
         }
         nStartBit++;
     }
-    return dwRet;
+    return dwRet + (1 << leadingZeros) - 1;
 }
 
-int main () {
-    uint8_t testBitstream[3] = {0b10100010, 0b00010100, 0b11000111};
+int main() {
+    uint8_t testBitstream[4] = {0b10100110, 0b01000010, 0b10011000, 0b11111111};
     uint32_t startBit = 0;
 
-    assert(0 == GetVarLenUInteger(testBitstream, 3, startBit));
-    assert(1 == GetVarLenUInteger(testBitstream, 3, startBit));
-
-    // for (uint32_t i = 0; i < 6; i++) {
-    //     assert(i == GetVarLenUInteger(testBitstream, 3, startBit));
-    // }
+    for (uint32_t i = 0; i < 6; i++) {
+        assert(i == GetVarLenUInteger(testBitstream, 4, startBit));
+    }
 }
