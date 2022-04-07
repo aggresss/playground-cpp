@@ -11,4 +11,7 @@ if host_machine.system() == 'windows'
     '-D_ENABLE_EXTENDED_ALIGNED_STORAGE',
   ]
 endif
+
+dependency('foo', required : get_option('someoption'))
+
 executable('demo', 'hello.c')

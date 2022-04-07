@@ -1,0 +1,1 @@
+option('someoption', type : 'feature', value : 'auto', description : 'An option')
