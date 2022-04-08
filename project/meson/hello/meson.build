@@ -1,6 +1,6 @@
-project('tutorial', 'c',
+project('tutorial', 'cpp',
   version: '1.2.3.4',
-  default_options: ['buildtype=release', 'cpp_std=c++14'])
+  default_options: ['buildtype=release', 'cpp_std=c++11'])
 
 gst_version = '>= @0@'.format(meson.project_version())
 
@@ -21,9 +21,21 @@ if host_machine.system() == 'windows'
   ]
 endif
 
-dependency('foo', required : get_option('someoption'), method: 'pkg-config')
+catch2_proj = subproject(
+  'catch2',
+  default_options: [
+    'warning_level=0',
+  ],
+)
 
-executable('demo', 'hello.c')
+catch2_dep = dependency('catch2',
+  required : get_option('someoption'),
+  method: 'pkg-config',
+  fallback: ['catch2', 'catch2_dep'])
+
+executable('demo',
+  'hello.cpp',
+  dependencies: catch2_dep)
 
 summary({'bindir': get_option('bindir'),
         'libdir': get_option('libdir'),

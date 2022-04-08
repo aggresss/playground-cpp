@@ -1,0 +1,4 @@
+# Meson.
+/build/
+/subprojects/*
+!/subprojects/*.wrap
