@@ -8,5 +8,5 @@ apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreame
 ```
 
 ```
-gcc basic-tutorial-1.c -o basic-tutorial-1 `pkg-config --cflags --libs gstreamer-1.0`
+gcc basic-tutorial-1.c -o basic-tutorial.out `pkg-config --cflags --libs gstreamer-1.0`
 ```
