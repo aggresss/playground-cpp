@@ -1,5 +1,22 @@
 # Clang-Format
 
+## MRU
+
+```
+clang-format -style=llvm -dump-config > .clang-format
+clang-format -style=google -dump-config > .clang-format
+clang-format -style=chromium -dump-config > .clang-format
+clang-format -style=mozilla -dump-config > .clang-format
+clang-format -style=webkit -dump-config > .clang-format
+clang-format -style=microsoft -dump-config > .clang-format
+clang-format -style=gnu -dump-config > .clang-format
+
+clang-format -style=file -fallback-style=llvm --Wno-error=unknown -i *.cpp
+```
+
+## Reference
+
+- [https://clang.llvm.org/docs/ClangFormat.html](https://clang.llvm.org/docs/ClangFormat.html)
 - [https://clang.llvm.org/docs/ClangFormatStyleOptions.html](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
 - [https://code.visualstudio.com/docs/cpp/cpp-ide](https://code.visualstudio.com/docs/cpp/cpp-ide)
 
