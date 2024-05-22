@@ -3,7 +3,7 @@
 set -uv
 
 # viriable for build
-BASE_URL="http://repo.router7.com/libs"
+BASE_URL="http://repo.traitx.cn/libs"
 
 ###  function for download and extract to assign path ####
 # $1 download URL
